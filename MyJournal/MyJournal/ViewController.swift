@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  MyJournal
 //
-//  Created by WEIZHUO TIAN on 12/01/2017.
+//  Created by XINGZHAO on 12/01/2017.
 //  Copyright © 2017 Xing. All rights reserved.
 //
 

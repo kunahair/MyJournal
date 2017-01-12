@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AC25F1E2840F0009992ED /* EditPageController.swift */; };
 		3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */; };
 		3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE311E271EB8003C9490 /* ViewController.swift */; };
 		3B95AE351E271EB8003C9490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE331E271EB8003C9490 /* Main.storyboard */; };
 		3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE361E271EB8003C9490 /* Assets.xcassets */; };
-		3B95AE3A1E271EB8003C9490 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE381E271EB8003C9490 /* LaunchScreen.storyboard */; };
 		3B95AE451E271EB8003C9490 /* MyJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE441E271EB8003C9490 /* MyJournalTests.swift */; };
 		3B95AE501E271EB8003C9490 /* MyJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */; };
-		3B95AE601E2745BF003C9490 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE5F1E2745BF003C9490 /* ContentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B0AC25F1E2840F0009992ED /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		3B95AE2C1E271EB8003C9490 /* MyJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B95AE311E271EB8003C9490 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B95AE341E271EB8003C9490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B95AE361E271EB8003C9490 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3B95AE391E271EB8003C9490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B95AE3B1E271EB8003C9490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B95AE401E271EB8003C9490 /* MyJournalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyJournalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE441E271EB8003C9490 /* MyJournalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJournalTests.swift; sourceTree = "<group>"; };
@@ -48,7 +47,6 @@
 		3B95AE4B1E271EB8003C9490 /* MyJournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyJournalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJournalUITests.swift; sourceTree = "<group>"; };
 		3B95AE511E271EB8003C9490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B95AE5F1E2745BF003C9490 /* ContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +101,8 @@
 				3B95AE311E271EB8003C9490 /* ViewController.swift */,
 				3B95AE331E271EB8003C9490 /* Main.storyboard */,
 				3B95AE361E271EB8003C9490 /* Assets.xcassets */,
-				3B95AE381E271EB8003C9490 /* LaunchScreen.storyboard */,
 				3B95AE3B1E271EB8003C9490 /* Info.plist */,
-				3B95AE5F1E2745BF003C9490 /* ContentCell.swift */,
+				3B0AC25F1E2840F0009992ED /* EditPageController.swift */,
 			);
 			path = MyJournal;
 			sourceTree = "<group>";
@@ -238,7 +235,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B95AE3A1E271EB8003C9490 /* LaunchScreen.storyboard in Resources */,
 				3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */,
 				3B95AE351E271EB8003C9490 /* Main.storyboard in Resources */,
 			);
@@ -265,9 +261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B95AE601E2745BF003C9490 /* ContentCell.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */,
+				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,14 +305,6 @@
 				3B95AE341E271EB8003C9490 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3B95AE381E271EB8003C9490 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3B95AE391E271EB8003C9490 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -518,6 +506,7 @@
 				3B95AE561E271EB8003C9490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B95AE571E271EB8003C9490 /* Build configuration list for PBXNativeTarget "MyJournalTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +515,7 @@
 				3B95AE591E271EB8003C9490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B95AE5A1E271EB8003C9490 /* Build configuration list for PBXNativeTarget "MyJournalUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +524,7 @@
 				3B95AE5C1E271EB8003C9490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
