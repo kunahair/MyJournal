@@ -76,6 +76,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BBB42F41E29C592000C3EE0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2BBB42F51E29C59D000C3EE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4FB41D831E289C43009D3C60 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2BBB42F61E29C5A1000C3EE0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4FB41D811E289C43009D3C60 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		4FB41D731E289C43009D3C60 = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +122,10 @@
 		4FB41D7E1E289C43009D3C60 /* MyJournal */ = {
 			isa = PBXGroup;
 			children = (
+				2BBB42F61E29C5A1000C3EE0 /* Controller */,
+				2BBB42F51E29C59D000C3EE0 /* View */,
+				2BBB42F41E29C592000C3EE0 /* Model */,
 				4FB41D7F1E289C43009D3C60 /* AppDelegate.swift */,
-				4FB41D811E289C43009D3C60 /* ViewController.swift */,
-				4FB41D831E289C43009D3C60 /* Main.storyboard */,
 				4FB41D891E289C43009D3C60 /* Assets.xcassets */,
 				4FB41D8B1E289C43009D3C60 /* LaunchScreen.storyboard */,
 				4FB41D8E1E289C43009D3C60 /* Info.plist */,
@@ -509,6 +533,7 @@
 				4FB41DA91E289C43009D3C60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FB41DAA1E289C43009D3C60 /* Build configuration list for PBXNativeTarget "MyJournalTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +542,7 @@
 				4FB41DAC1E289C43009D3C60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FB41DAD1E289C43009D3C60 /* Build configuration list for PBXNativeTarget "MyJournalUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +551,7 @@
 				4FB41DAF1E289C43009D3C60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
