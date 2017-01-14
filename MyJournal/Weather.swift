@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ Weather struct to store all information about Weather from API
+ Return separated by OpenWeatherMap JSON keys
+ **/
 struct Weather {
     
     //Coords
