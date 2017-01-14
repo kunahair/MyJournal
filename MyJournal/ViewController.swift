@@ -10,15 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         //Instanciate a new Model
-        var model = Model()
+        let model = Model()
+        
+        //Get Device Location
+        let deviceLocation:DeviceLocation = DeviceLocation()
+        var location:Location? = try? deviceLocation.getDeviceLocation()
+        
+        //Handle location error if needed
+        if location == nil {
+            //Handle if location is nil, that is, threw an error
+            print("Location is nil")
+        }else{
+            location = model.getReadableAddress(lat: location!.lat, lon: location!.lon)
+            
+            print(location!)
+        }
         
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
