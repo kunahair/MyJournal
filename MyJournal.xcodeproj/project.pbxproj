@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BA3B6C71E2B264F00770E08 /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3B6C61E2B264F00770E08 /* EditPageController.swift */; };
 		2BBB42F81E29C9E2000C3EE0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB42F71E29C9E2000C3EE0 /* SwiftyJSON.swift */; };
 		2BBB42FA1E29CA18000C3EE0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB42F91E29CA18000C3EE0 /* Model.swift */; };
 		2BBB42FD1E29CA61000C3EE0 /* OpenWeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB42FC1E29CA61000C3EE0 /* OpenWeatherMap.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BA3B6C61E2B264F00770E08 /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		2BBB42F71E29C9E2000C3EE0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		2BBB42F91E29CA18000C3EE0 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2BBB42FC1E29CA61000C3EE0 /* OpenWeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMap.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 		2BBB42F61E29C5A1000C3EE0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2BA3B6C61E2B264F00770E08 /* EditPageController.swift */,
 				4FB41D811E289C43009D3C60 /* ViewController.swift */,
 			);
 			name = Controller;
@@ -347,6 +350,7 @@
 				2BBB43041E29F6E6000C3EE0 /* OpenStreetMap.swift in Sources */,
 				2BF97C001E2A4B7D0009AA3C /* DeviceLocation.swift in Sources */,
 				4FB41D801E289C43009D3C60 /* AppDelegate.swift in Sources */,
+				2BA3B6C71E2B264F00770E08 /* EditPageController.swift in Sources */,
 				2BBB42F81E29C9E2000C3EE0 /* SwiftyJSON.swift in Sources */,
 				2BBB43001E29CA85000C3EE0 /* Weather.swift in Sources */,
 			);
