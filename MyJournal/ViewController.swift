@@ -18,8 +18,7 @@ class ViewController: UIViewController {
         let model = Model()
         
         //Get Device Location
-        let deviceLocation:DeviceLocation = DeviceLocation()
-        var location:Location? = try? deviceLocation.getDeviceLocation()
+        var location:Location? = try? model.getLocation()
         
         //Handle location error if needed
         if location == nil {

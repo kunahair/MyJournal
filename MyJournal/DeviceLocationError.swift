@@ -13,6 +13,7 @@ import Foundation
  **/
 enum DeviceLocationError: Error
 {
+    case locationError
     case locationNotFound
     case permissionDenied
 }

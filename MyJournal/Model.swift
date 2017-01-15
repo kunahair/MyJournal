@@ -43,4 +43,29 @@ class Model{
         return location
     }
     
+    /**
+     User facing function to get device location.
+     Ability to be extended using Chain of Responsibility, eg try GPS, then try by IP address...
+     Returns a Location Object or Throws an error
+    **/
+    func getLocation() throws ->Location
+    {
+        let deviceLocation:DeviceLocation = DeviceLocation()
+        
+        var location:Location?
+        
+        //Test for device location, catch errors and re-throw them up to the caller
+        do {
+            location = try deviceLocation.getDeviceLocation()
+        } catch DeviceLocationError.locationNotFound {
+            throw DeviceLocationError.locationNotFound
+        } catch DeviceLocationError.permissionDenied {
+            throw DeviceLocationError.permissionDenied
+        } catch {
+            throw DeviceLocationError.locationError
+        }
+        
+        return location!
+    }
+    
 }
