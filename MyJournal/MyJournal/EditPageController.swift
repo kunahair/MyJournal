@@ -8,7 +8,10 @@
 
 
 /*
-    In this page, basic information as date and place will be automatically recorded based on your current location(to get location you will need to turn on the switch button). You can also choose from many emoji expressions to best describe the weather and your personal mood. Apart from logging your day by way of words and sentences, you can also choose sources from your own music library and photos to add to the journal
+    In this page, basic information as date and place will be automatically recorded based on your current location(to get location you 
+will need to turn on the switch button). You can also choose from many emoji expressions to best describe the weather and your personal
+mood. Apart from logging your day by way of words and sentences, you can also choose sources from your own music library and photos to
+add to the journal
  */
 import UIKit
 import CoreLocation
