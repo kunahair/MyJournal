@@ -7,21 +7,41 @@
 //
 
 import UIKit
+import CoreLocation
+import MediaPlayer
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate{
 
-    
+    @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectPhoto: UIButton!
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var selectMusic: UIButton!
+    @IBOutlet weak var musicFile: UITextField!
+    @IBOutlet weak var address: UITextView!
+    @IBOutlet weak var switchButton: UISwitch!
+    @IBOutlet weak var currentDate: UILabel!
     
     let photoPicker = UIImagePickerController()
-    
+    let musicPicker = MPMediaPickerController()
+    let locationManager = CLLocationManager()
+    var addressInfo = "Mark your location"
+    var switchOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         photoPicker.delegate = self
-
-        // Do any additional setup after loading the view.
+        musicPicker.delegate = self
+        self.hideKeyboard()
+        //sets the class as delegate for locationManager, specifies the location accuracy
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        var today = currentDay()
+        currentDate.text = "\(today)"
+        switchButton.isOn = false
+        address.text = addressInfo
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,12 +49,64 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, UIN
         // Dispose of any resources that can be recreated.
     }
     
+    //get current date in costom format
+    func currentDay()->String{
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD/MM/YY"
+        var dateStr = formatter.string(from: date)
+        return dateStr
+    }
+    
+    //handle users' selection in the photo library
     @IBAction func selectPhoto(_ sender: UIButton) {
         photoPicker.allowsEditing = false
         photoPicker.sourceType = .photoLibrary
         present(photoPicker, animated: true, completion: nil)
     }
     
+    
+    @IBAction func selectMusic(_ sender: Any) {
+        musicPicker.allowsPickingMultipleItems = false
+        musicPicker.showsCloudItems = false
+        present(musicPicker, animated: true, completion: {})
+
+    }
+    
+    
+    //handle users' selection in the switch button
+    @IBAction func getCurrentLocation(_ sender: Any) {
+        if switchButton.isOn == true{
+            self.switchOn = true
+            //start receiving location updates from CoreLocation
+            self.locationManager.startUpdatingLocation()
+            print("switchButton + \(self.switchOn)")
+        }else{
+            address.text = addressInfo
+        }
+    }
+    
+    //Hide the keyboard when clicking anywhere except textview and textfield
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.background.endEditing(true)
+    }
+    
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(self.dismissKeyboard))
+            
+        self.view.addGestureRecognizer(tap)
+    }
+        
+    func dismissKeyboard()
+    {
+        self.view.endEditing(true)
+    }
+    
+
+    //assign selected photo to the scene
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage{
             self.photo.image = selectedPhoto
@@ -44,6 +116,44 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, UIN
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        //if users are allowed to play music they chose
+        //let musicPlayer = MPMusicPlayerController.applicationMusicPlayer() 
+        //print("\(mediaItemCollection))")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+  
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+          //process the location array (placeMarks)
+        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: { placeMarks, error in
+            guard let address = placeMarks?[0].addressDictionary else {
+                return
+            }
+            //log the message to the console when there is an error, .
+            if error != nil{
+                print("Error : "+(error?.localizedDescription)!)
+            }
+            if self.switchOn == true{
+                // get formatted address
+                if let formattedAddress = address["FormattedAddressLines"] as? [String] {
+                    self.locationManager.stopUpdatingLocation()
+                    self.address.text = formattedAddress.joined(separator: ", ")
+                }
+            }
+        })
+    }
+    
+    //print errlr while updating location
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error"+error.localizedDescription)
     }
 
     /*
