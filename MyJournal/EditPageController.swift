@@ -29,12 +29,14 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     @IBOutlet weak var address: UITextView!
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var currentDate: UILabel!
+    @IBOutlet weak var weatherLabel: UILabel!
+    
     
     let photoPicker = UIImagePickerController()
     let musicPicker = MPMediaPickerController()
 //    let locationManager = CLLocationManager()
     var addressInfo = "Mark your location"
-    var switchOn = false
+    var locationSwitchOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,9 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         let date:String = model.getUserReadableDate(date: Date())
         currentDate.text = date
         
-        switchButton.isOn = false
+        switchButton.isOn = self.locationSwitchOn
         address.text = addressInfo
+        
         
     }
     
@@ -75,7 +78,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     //handle users' selection of the location switch button
     @IBAction func getCurrentLocation(_ sender: Any) {
         if switchButton.isOn == true{
-            self.switchOn = true
+            self.locationSwitchOn = true
             
             //Get Device Location
             var location:Location? = try? model.getLocation()
@@ -90,10 +93,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 addressInfo = location!.address
                 
                 address.text =  addressInfo
+                
+                //Update Weather Label, as OpenWeatherMap needs location
+                weatherLabel.text = model.getWeather(lat: location!.lat, lon: location!.lon).description
             }
             
         }else{
-            self.switchOn = false
+            self.locationSwitchOn = false
             addressInfo = "Mark your location"
             address.text = addressInfo
         }
