@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B9CB5231E2B631E00EAC952 /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9CB5221E2B631E00EAC952 /* Journal.swift */; };
+		2B9CB5251E2B635100EAC952 /* MoodEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9CB5241E2B635100EAC952 /* MoodEnum.swift */; };
+		2B9CB5271E2B638C00EAC952 /* WeatherEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9CB5261E2B638C00EAC952 /* WeatherEnum.swift */; };
+		2B9CB52A1E2B77B400EAC952 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9CB5291E2B77B400EAC952 /* RadioButton.swift */; };
 		2BA3B6C71E2B264F00770E08 /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3B6C61E2B264F00770E08 /* EditPageController.swift */; };
 		2BBB42F81E29C9E2000C3EE0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB42F71E29C9E2000C3EE0 /* SwiftyJSON.swift */; };
 		2BBB42FA1E29CA18000C3EE0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBB42F91E29CA18000C3EE0 /* Model.swift */; };
@@ -45,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B9CB5221E2B631E00EAC952 /* Journal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
+		2B9CB5241E2B635100EAC952 /* MoodEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoodEnum.swift; sourceTree = "<group>"; };
+		2B9CB5261E2B638C00EAC952 /* WeatherEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherEnum.swift; sourceTree = "<group>"; };
+		2B9CB5291E2B77B400EAC952 /* RadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		2BA3B6C61E2B264F00770E08 /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		2BBB42F71E29C9E2000C3EE0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		2BBB42F91E29CA18000C3EE0 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -96,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B9CB5281E2B775800EAC952 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				2B9CB5291E2B77B400EAC952 /* RadioButton.swift */,
+			);
+			name = CustomUI;
+			sourceTree = "<group>";
+		};
 		2BBB42F41E29C592000C3EE0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +119,9 @@
 				2BBB42FE1E29CA77000C3EE0 /* Structs */,
 				2BBB42FB1E29CA53000C3EE0 /* API */,
 				2BBB42F91E29CA18000C3EE0 /* Model.swift */,
+				2B9CB5221E2B631E00EAC952 /* Journal.swift */,
+				2B9CB5241E2B635100EAC952 /* MoodEnum.swift */,
+				2B9CB5261E2B638C00EAC952 /* WeatherEnum.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -110,6 +129,7 @@
 		2BBB42F51E29C59D000C3EE0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B9CB5281E2B775800EAC952 /* CustomUI */,
 				4FB41D831E289C43009D3C60 /* Main.storyboard */,
 			);
 			name = View;
@@ -341,14 +361,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BBB42FA1E29CA18000C3EE0 /* Model.swift in Sources */,
+				2B9CB5271E2B638C00EAC952 /* WeatherEnum.swift in Sources */,
 				4FB41D881E289C43009D3C60 /* MyJournal.xcdatamodeld in Sources */,
 				2BBB43021E29EBB4000C3EE0 /* Location.swift in Sources */,
 				4FB41D821E289C43009D3C60 /* ViewController.swift in Sources */,
 				2BBB42FD1E29CA61000C3EE0 /* OpenWeatherMap.swift in Sources */,
+				2B9CB5231E2B631E00EAC952 /* Journal.swift in Sources */,
 				2BF5C4641E2B08AC0098D395 /* DeviceDate.swift in Sources */,
 				2BF97C021E2A54AD0009AA3C /* DeviceLocationError.swift in Sources */,
 				2BBB43041E29F6E6000C3EE0 /* OpenStreetMap.swift in Sources */,
+				2B9CB52A1E2B77B400EAC952 /* RadioButton.swift in Sources */,
 				2BF97C001E2A4B7D0009AA3C /* DeviceLocation.swift in Sources */,
+				2B9CB5251E2B635100EAC952 /* MoodEnum.swift in Sources */,
 				4FB41D801E289C43009D3C60 /* AppDelegate.swift in Sources */,
 				2BA3B6C71E2B264F00770E08 /* EditPageController.swift in Sources */,
 				2BBB42F81E29C9E2000C3EE0 /* SwiftyJSON.swift in Sources */,

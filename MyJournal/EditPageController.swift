@@ -18,7 +18,7 @@ import MediaPlayer
 
 class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate{
     
-    let model:Model = Model()
+//    let model:Model = Model()
     
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -44,7 +44,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         musicPicker.delegate = self
         self.hideKeyboard()
         
-        let date:String = model.getUserReadableDate(date: Date())
+        let date:String = Model.getUserReadableDate(date: Date())
         currentDate.text = date
         
         switchButton.isOn = self.locationSwitchOn
@@ -81,21 +81,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             self.locationSwitchOn = true
             
             //Get Device Location
-            var location:Location? = try? model.getLocation()
+            var location:Location? = try? Model.getLocation()
             
             //Handle location error if needed
             if location == nil {
                 //Handle if location is nil, that is, threw an error
                 address.text = "An error occured getting Location"
             }else{
-                location = model.getReadableAddress(lat: location!.lat, lon: location!.lon)
+                location = Model.getReadableAddress(lat: location!.lat, lon: location!.lon)
                 
                 addressInfo = location!.address
                 
                 address.text =  addressInfo
                 
                 //Update Weather Label, as OpenWeatherMap needs location
-                weatherLabel.text = model.getWeather(lat: location!.lat, lon: location!.lon).description
+                weatherLabel.text = Model.getWeather(lat: location!.lat, lon: location!.lon).description
             }
             
         }else{

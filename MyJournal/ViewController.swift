@@ -15,22 +15,22 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         //Instanciate a new Model
-        let model = Model()
+//        let model = Model()
         
         //Get Device Location
-        var location:Location? = try? model.getLocation()
+        var location:Location? = try? Model.getLocation()
         
         //Handle location error if needed
         if location == nil {
             //Handle if location is nil, that is, threw an error
             print("Location is nil")
         }else{
-            location = model.getReadableAddress(lat: location!.lat, lon: location!.lon)
+            location = Model.getReadableAddress(lat: location!.lat, lon: location!.lon)
             
             print(location!)
         }
         
-        print(model.getUserReadableDate(date: Date()))
+        print(Model.getUserReadableDate(date: Date()))
         
     }
     
