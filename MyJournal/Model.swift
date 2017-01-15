@@ -68,4 +68,10 @@ class Model{
         return location!
     }
     
+    func getUserReadableDate(date: Date)->String
+    {
+        let deviceDate:DeviceDate = DeviceDate(date: date)
+        return deviceDate.readableDate
+    }
+    
 }

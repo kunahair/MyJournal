@@ -30,6 +30,8 @@ class ViewController: UIViewController {
             print(location!)
         }
         
+        print(model.getUserReadableDate(date: Date()))
+        
     }
     
     
