@@ -38,7 +38,7 @@ class DeviceLocation: NSObject, CLLocationManagerDelegate
         if CLLocationManager.locationServicesEnabled() {
             //Setup delegation, accuracy and update the location
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
             
             

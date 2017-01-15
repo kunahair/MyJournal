@@ -14,10 +14,11 @@
  add to the journal
  */
 import UIKit
-import CoreLocation
 import MediaPlayer
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate{
+    
+    let model:Model = Model()
     
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -31,7 +32,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     let photoPicker = UIImagePickerController()
     let musicPicker = MPMediaPickerController()
-    let locationManager = CLLocationManager()
+//    let locationManager = CLLocationManager()
     var addressInfo = "Mark your location"
     var switchOn = false
     
@@ -40,12 +41,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         photoPicker.delegate = self
         musicPicker.delegate = self
         self.hideKeyboard()
-        //sets the class as delegate for locationManager, specifies the location accuracy
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        var today = currentDay()
-        currentDate.text = "\(today)"
+        
+        let date:String = model.getUserReadableDate(date: Date())
+        currentDate.text = date
+        
         switchButton.isOn = false
         address.text = addressInfo
         
@@ -56,14 +55,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         // Dispose of any resources that can be recreated.
     }
     
-    //get current date in costom format
-    func currentDay()->String{
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "DD/MM/YY"
-        var dateStr = formatter.string(from: date)
-        return dateStr
-    }
     
     //handle users' selection in the photo library
     @IBAction func selectPhoto(_ sender: UIButton) {
@@ -81,14 +72,29 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     }
     
     
-    //handle users' selection in the switch button
+    //handle users' selection of the location switch button
     @IBAction func getCurrentLocation(_ sender: Any) {
         if switchButton.isOn == true{
             self.switchOn = true
-            //start receiving location updates from CoreLocation
-            self.locationManager.startUpdatingLocation()
-            print("switchButton + \(self.switchOn)")
+            
+            //Get Device Location
+            var location:Location? = try? model.getLocation()
+            
+            //Handle location error if needed
+            if location == nil {
+                //Handle if location is nil, that is, threw an error
+                address.text = "An error occured getting Location"
+            }else{
+                location = model.getReadableAddress(lat: location!.lat, lon: location!.lon)
+                
+                addressInfo = location!.address
+                
+                address.text =  addressInfo
+            }
+            
         }else{
+            self.switchOn = false
+            addressInfo = "Mark your location"
             address.text = addressInfo
         }
     }
@@ -135,32 +141,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //process the location array (placeMarks)
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: { placeMarks, error in
-            guard let address = placeMarks?[0].addressDictionary else {
-                return
-            }
-            //log the message to the console when there is an error, .
-            if error != nil{
-                print("Error : "+(error?.localizedDescription)!)
-            }
-            if self.switchOn == true{
-                // get formatted address
-                if let formattedAddress = address["FormattedAddressLines"] as? [String] {
-                    self.locationManager.stopUpdatingLocation()
-                    self.address.text = formattedAddress.joined(separator: ", ")
-                }
-            }
-        })
-    }
-    
-    //print errlr while updating location
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error"+error.localizedDescription)
     }
     
     /*
