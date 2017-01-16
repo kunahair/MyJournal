@@ -1,18 +1,16 @@
 //
-//  ContentCell.swift
+//  QuoteViewCell.swift
 //  MyJournal
 //
-//  Created by WEIZHUO TIAN on 12/01/2017.
+//  Created by XING ZHAO on 16/01/2017.
 //  Copyright © 2017 Xing. All rights reserved.
 //
 
 import UIKit
 
-class ContentCell: UITableViewCell {
+class QuoteViewCell: UITableViewCell {
+    @IBOutlet weak var likedQuotes: UILabel!
 
-    @IBOutlet weak var picture: UIImageView!
-    @IBOutlet weak var content: UITextView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
     
@@ -14,14 +15,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        scrollView.contentSize.height = 1000
+       // UNUserNotificationCenter.current().delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*
+    @IBAction func scheduleNotifiy() {
+        let content = UNMutableNotificationContent()
+        content.title = "My Journey"
+        content.subtitle = "which breed you like best"
+        content.body = "I like poodle best but doodle is also fine"
+        content.badge = 1
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let requestIdentifier = "Quiz"
+        let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler:{ error in })
+        //UNUserNotificationCenter.current()
+    }*/
+
  
    }
 

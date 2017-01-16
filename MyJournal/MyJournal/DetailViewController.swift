@@ -1,18 +1,23 @@
 //
-//  EditPageControllerViewController.swift
+//  DetailViewController.swift
 //  MyJournal
 //
-//  Created by WEIZHUO TIAN on 13/01/2017.
-//  Copyright © 2017 Xing. All rights reserved.
+//  Created by Yuanqing Jiang on 15/01/2017.
+//  Copyright © 2017 LegDay. All rights reserved.
 //
 
 import UIKit
 
-class EditPageControllerViewController: UIViewController {
-
+class DetailViewController: UIViewController {
+    
+    var journalObj: Journal = Journal()
+    
+    @IBOutlet weak var journalDateLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        journalDateLabel.text = journalObj.date
+        self.title = journalObj.date
         // Do any additional setup after loading the view.
     }
 
@@ -20,7 +25,6 @@ class EditPageControllerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

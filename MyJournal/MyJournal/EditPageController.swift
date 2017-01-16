@@ -32,6 +32,9 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var addressInfo = "Mark your location"
     var switchOn = false
     
+    // back stack ref
+    var previousView = UIViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         photoPicker.delegate = self
@@ -159,6 +162,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error"+error.localizedDescription)
     }
+    
+    // button action to backtrack
+
+    
+   // @IBAction func backTrack(_ sender: Any) {
+ //       present(previousView, animated: true, completion: nil)
+ //   }
 
     /*
     // MARK: - Navigation
