@@ -10,13 +10,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    
+    // later on we are going to use the date to access objects in the model
+    
+    var journalModel = Model.getJournalEntriesArray()
+    // var jounalDate: String = ""
+    
+    
     var journalObj: Journal = Journal()
-    
-    @IBOutlet weak var journalDateLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        journalDateLabel.text = journalObj.date
         self.title = journalObj.date
         // Do any additional setup after loading the view.
     }
