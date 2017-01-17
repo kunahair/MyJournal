@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BF4A7801E2DD07D00A66E0C /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF4A77F1E2DD07D00A66E0C /* PlacesViewController.swift */; };
 		3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AC25F1E2840F0009992ED /* EditPageController.swift */; };
 		3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */; };
 		3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE311E271EB8003C9490 /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BF4A77F1E2DD07D00A66E0C /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
 		3B0AC25F1E2840F0009992ED /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		3B95AE2C1E271EB8003C9490 /* MyJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */,
 				3B95AE311E271EB8003C9490 /* ViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
+				2BF4A77F1E2DD07D00A66E0C /* PlacesViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */,
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
+				2BF4A7801E2DD07D00A66E0C /* PlacesViewController.swift in Sources */,
 				EBA4BBC81E2C7D9100C1C24D /* MoodEnum.swift in Sources */,
 				EBA4BBDD1E2C9ED800C1C24D /* OpenWeatherMap.swift in Sources */,
 				EB90C82C1E2C440500B50A07 /* QuoteViewController.swift in Sources */,

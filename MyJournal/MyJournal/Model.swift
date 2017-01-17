@@ -12,7 +12,7 @@ class Model{
     
     static let getInstance = Model()
     
-    static var journalArray:Array<Journal> = []
+    var journalArray:Array<Journal> = []
     static var journalCurrentEntry:Journal = Journal()
     
     
@@ -21,13 +21,37 @@ class Model{
         
         //The Latitude of rmit university is -37.8087. The Longitude of rmit university is 144.9637
         
-        Model.journalArray = Array(repeating: Journal(), count: 10)
+        self.journalArray = Array(repeating: Journal(), count: 10)
         
     }
     
-    static func getJournalEntriesArray()->Array<Journal>
+    func getJournalEntriesArray()->Array<Journal>
     {
         return journalArray
+    }
+    
+    func getJournalEntryByDate(date: String)->Journal?
+    {
+        for journalEntry in journalArray
+        {
+            if journalEntry.date == date
+            {
+                return journalEntry
+            }
+        }
+        
+        return nil
+    }
+    
+    func getJournalIndexByDate(date: String)->Int
+    {
+        for (index, journalEntry) in journalArray.enumerated()
+        {
+            if journalEntry.date == date{
+                return index
+            }
+        }
+        return -1
     }
     
     

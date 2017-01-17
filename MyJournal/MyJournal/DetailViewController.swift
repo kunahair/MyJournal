@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     
     // later on we are going to use the date to access objects in the model
     
-    var journalModel = Model.getJournalEntriesArray()
+    var journalModel = Model.getInstance.getJournalEntriesArray()
     // var jounalDate: String = ""
     
     

@@ -17,7 +17,8 @@ struct Journal {
     private var _mood: MoodEnum              // Enum Object <- extracted from JSON String
     private var _date: String                // Readable date <- converted from UNIX Date Object
     private var _location: String            // JSON String
-       
+    private var _coordinates: [Double]
+    
     
     // Default empty constructor for dummy data testing
     init() {
@@ -37,13 +38,15 @@ struct Journal {
         
         _location = "default loc"
         
+        _coordinates = [-37.6, 144.0]
+        
     }
     
     // Sepecific constructor
-    init(note: String, music: String, quote: String, photo: String, weather: String, mood: String, date: String, location: String) {
+    init(note: String, music: String, quote: String, photo: String, weather: String, mood: String, date: String, location: String, coordinates:[Double]) {
         
         // Assignments
-        _note = note; _music = music; _quote = quote; _photo = photo; _date = date; _location = location;
+        _note = note; _music = music; _quote = quote; _photo = photo; _date = date; _location = location; _coordinates = coordinates;
         
         _weather = WeatherEnum(weather: weather)!
         _mood = MoodEnum(mood: mood)!
@@ -134,6 +137,16 @@ struct Journal {
         }
         set(newLocation) {
             self._location = newLocation
+        }
+        
+        }
+    var coordinates:[Double]
+    {
+        get{
+            return self._coordinates
+        }
+        set(coordinates){
+            self._coordinates = coordinates
         }
     }
     
