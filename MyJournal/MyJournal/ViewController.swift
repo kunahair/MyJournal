@@ -9,12 +9,16 @@
 import UIKit
 import UserNotifications
 
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
+    let hour:Int = 15
+    let minute:Int = 40
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scheduleNotifiy(hour: hour, minute: minute)
        // UNUserNotificationCenter.current().delegate = self
     }
 
@@ -22,20 +26,22 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    /*
-    @IBAction func scheduleNotifiy() {
+    
+    func scheduleNotifiy(hour: Int, minute: Int) {
         let content = UNMutableNotificationContent()
         content.title = "My Journey"
-        content.subtitle = "which breed you like best"
-        content.body = "I like poodle best but doodle is also fine"
+        content.subtitle = "Good Morning"
+        content.body = "Seize the day and never let any moment slip away"
         content.badge = 1
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
-        let requestIdentifier = "Quiz"
+        var time = DateComponents()
+        time.hour = hour
+        time.minute = minute
+        let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: true)
+        let requestIdentifier = "MyJournalNotification"
         let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler:{ error in })
-        //UNUserNotificationCenter.current()
-    }*/
+    }
 
  
    }

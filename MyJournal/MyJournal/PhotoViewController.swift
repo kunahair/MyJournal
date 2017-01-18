@@ -19,6 +19,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         super.viewDidLoad()
         self.photoView.delegate = self
         self.photoView.dataSource = self
+        self.photoView.backgroundView = UIImageView(image: UIImage(named: "background"))
         // Do any additional setup after loading the view.
     }
        

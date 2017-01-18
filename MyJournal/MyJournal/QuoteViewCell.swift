@@ -9,8 +9,9 @@
 import UIKit
 
 class QuoteViewCell: UITableViewCell {
-    @IBOutlet weak var likedQuotes: UILabel!
-
+    
+   
+    var likedQuote:Journal?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

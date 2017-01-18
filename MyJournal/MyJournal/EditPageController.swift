@@ -14,9 +14,11 @@ import UIKit
 import CoreLocation
 import MediaPlayer
 
+
+
 class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate{
 
-    @IBOutlet weak var background: UIImageView!
+    @IBOutlet weak var background: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectPhoto: UIButton!
     @IBOutlet weak var photo: UIImageView!
@@ -25,6 +27,11 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     @IBOutlet weak var address: UITextView!
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var currentDate: UILabel!
+    @IBOutlet weak var save: UIBarButtonItem!
+    @IBOutlet weak var quote: UITextField!
+    @IBOutlet weak var note: UITextView!
+    
+    @IBOutlet weak var isFavorite: UISwitch!
     
     let photoPicker = UIImagePickerController()
     let musicPicker = MPMediaPickerController()
@@ -163,13 +170,44 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         print("Error"+error.localizedDescription)
     }
     
-    // button action to backtrack
-
+    func saveButtonState(){
+        if (quote.text != "" || note.text != ""){
+            save.isEnabled = true
+            save.tintColor = UIColor.darkGray
+        }else{
+            save.isEnabled = false
+            save.tintColor = (UIColor.darkGray)
+        }
+    }
     
-   // @IBAction func backTrack(_ sender: Any) {
- //       present(previousView, animated: true, completion: nil)
- //   }
-
+    @IBAction func isFavorite(_ sender: Any) {
+        
+        if isFavorite.isOn == true{
+            self.switchOn = true
+            //start receiving location updates from CoreLocation
+            self.locationManager.startUpdatingLocation()
+            print("switchButton + \(self.switchOn)")
+        }else{
+            address.text = addressInfo
+        }
+    }
+    
+    
+    @IBAction func saveJournal(_ sender: Any) {
+        if isFavorite.isOn == true{
+            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo: note.text, weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            JournalManger.AddFavJournal(note: note.text, music: "", quote: quote.text!, photo: note.text, weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            note.text = ""
+            quote.text = ""
+        }else{
+            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo: note.text, weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            note.text = ""
+            quote.text = ""
+        }
+             
+        self.navigationController?.popViewController(animated: true)
+    }
+       //elf.presentedViewController(nextViewController, animated:true, completion:nil)
     /*
     // MARK: - Navigation
 

@@ -29,8 +29,11 @@
 		EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBD61E2C9EA600C1C24D /* Location.swift */; };
 		EBA4BBDD1E2C9ED800C1C24D /* OpenWeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBDA1E2C9ED800C1C24D /* OpenWeatherMap.swift */; };
 		EBA4BBDE1E2C9ED800C1C24D /* OpenStreetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBDB1E2C9ED800C1C24D /* OpenStreetMap.swift */; };
-		EBA4BBDF1E2C9ED800C1C24D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBDC1E2C9ED800C1C24D /* Model.swift */; };
 		EBA4BBE31E2C9FE900C1C24D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBE21E2C9FE900C1C24D /* SwiftyJSON.swift */; };
+		EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BC231E2E39D300C1C24D /* JournalManger.swift */; };
+		EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */; };
+		EBA4BC281E2F193900C1C24D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BC271E2F193900C1C24D /* Model.swift */; };
+		EBA4BC2A1E2F2D2B00C1C24D /* TransitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BC291E2F2D2B00C1C24D /* TransitViewController.swift */; };
 		EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */; };
 		EBD43BCF1E2B4747006968DB /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD43BCE1E2B4747006968DB /* PhotoViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -81,8 +84,11 @@
 		EBA4BBD61E2C9EA600C1C24D /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		EBA4BBDA1E2C9ED800C1C24D /* OpenWeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMap.swift; sourceTree = "<group>"; };
 		EBA4BBDB1E2C9ED800C1C24D /* OpenStreetMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenStreetMap.swift; sourceTree = "<group>"; };
-		EBA4BBDC1E2C9ED800C1C24D /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		EBA4BBE21E2C9FE900C1C24D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		EBA4BC231E2E39D300C1C24D /* JournalManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalManger.swift; sourceTree = "<group>"; };
+		EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		EBA4BC271E2F193900C1C24D /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		EBA4BC291E2F2D2B00C1C24D /* TransitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitViewController.swift; sourceTree = "<group>"; };
 		EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		EBD43BCE1E2B4747006968DB /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,10 +203,11 @@
 		EBA4BBE11E2C9EF200C1C24D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EBA4BBE01E2C9EE100C1C24D /* API */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
+				EBA4BC231E2E39D300C1C24D /* JournalManger.swift */,
+				EBA4BC271E2F193900C1C24D /* Model.swift */,
+				EBA4BBE01E2C9EE100C1C24D /* API */,
 				EBA4BBE21E2C9FE900C1C24D /* SwiftyJSON.swift */,
-				EBA4BBDC1E2C9ED800C1C24D /* Model.swift */,
 				EBA4BBD91E2C9EBC00C1C24D /* Structs */,
 			);
 			name = Model;
@@ -214,7 +221,9 @@
 				EB90C82B1E2C440500B50A07 /* QuoteViewController.swift */,
 				EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */,
 				3B95AE311E271EB8003C9490 /* ViewController.swift */,
+				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
+				EBA4BC291E2F2D2B00C1C24D /* TransitViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -366,20 +375,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBA4BBDF1E2C9ED800C1C24D /* Model.swift in Sources */,
 				EBA4BBD11E2C9E7E00C1C24D /* DeviceLocation.swift in Sources */,
 				EBA4BBD71E2C9EA600C1C24D /* Weather.swift in Sources */,
 				EBA4BBE31E2C9FE900C1C24D /* SwiftyJSON.swift in Sources */,
 				EBA4BBCD1E2C855100C1C24D /* DetailViewController.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
+				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
+				EBA4BC2A1E2F2D2B00C1C24D /* TransitViewController.swift in Sources */,
 				EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */,
 				EBA4BBDE1E2C9ED800C1C24D /* OpenStreetMap.swift in Sources */,
 				EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */,
 				3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */,
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
+				EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
 				EBA4BBC81E2C7D9100C1C24D /* MoodEnum.swift in Sources */,
 				EBA4BBDD1E2C9ED800C1C24D /* OpenWeatherMap.swift in Sources */,
+				EBA4BC281E2F193900C1C24D /* Model.swift in Sources */,
 				EB90C82C1E2C440500B50A07 /* QuoteViewController.swift in Sources */,
 				EBA4BBD31E2C9E7E00C1C24D /* DeviceDate.swift in Sources */,
 				EBA4BBD21E2C9E7E00C1C24D /* DeviceLocationError.swift in Sources */,
