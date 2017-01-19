@@ -18,7 +18,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     // When extracting arrays from the Model, the Model shall have a function that return a 2D array, the first array will the journals from last week, then last month, then the rest, to utilize the group function of the table view
-    var dummyList: [[Journal]] = [[Journal(), Journal(), Journal()], [Journal(), Journal(), Journal()], [Journal(), Journal(), Journal()]]
+    // var dummyList: [[Journal]] = [[Journal(), Journal(), Journal()], [Journal(), Journal(), Journal()], [Journal(), Journal(), Journal()]]
     
     var headers: [String] = ["This Week", "Last Month", "Previous Journals"]
     

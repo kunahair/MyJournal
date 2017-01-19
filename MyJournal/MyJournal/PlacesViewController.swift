@@ -25,6 +25,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
         for journalEntry in Model.getInstance.journalManager.getJournalEntriesArray()
         {
             let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(journalEntry.coordinates[0], journalEntry.coordinates[1] + i)
+            print("==")
             let objectAnn = MKPointAnnotation()
             objectAnn.coordinate = pinLocation
            // let span = MKCoordinateSpanMake(0.075, 0.075)

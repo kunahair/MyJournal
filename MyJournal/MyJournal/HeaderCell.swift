@@ -17,6 +17,8 @@ class HeaderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        super.selectionStyle = UITableViewCellSelectionStyle.none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,5 +26,5 @@ class HeaderCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

@@ -19,8 +19,9 @@ struct Journal {
     private var _location: String            // JSON String
     private var _favorite:Bool
     private var _coordinates: [Double]
+    private var _id: String
     // Default empty constructor for dummy data testing
-    init() {
+    init(id: String) {
         _note = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum enim tortor. Etiam consequat fringilla velit, at sollicitudin leo pretium nec. Sed porttitor, mi in condimentum convallis, nibh dui congue nisl, ut pharetra massa nisl sit amet mauris. Ut fermentum, enim vitae fringilla eleifend, nisl ex dignissim dui, eu sollicitudin ligula ex nec diam. Curabitur elementum laoreet elit, sit amet iaculis leo eleifend eu. Curabitur vel orci ut tortor convallis bibendum. Maecenas malesuada, metus elementum vehicula luctus, purus sapien accumsan augue, a feugiat nunc velit ut elit. \nVivamus auctor congue nulla, vitae sollicitudin turpis euismod non. Pellentesque eu ullamcorper nisl, at imperdiet quam. Etiam efficitur arcu lectus, eget suscipit turpis imperdiet sit amet. Nam suscipit risus nisl, quis sodales est dignissim non. Vivamus convallis elit eget felis ornare, a rhoncus est pretium. Pellentesque ut pellentesque sem, non viverra est. Nunc rutrum lacinia justo eu facilisis. \nVivamus ut sapien fermentum nulla congue aliquet sit amet ut augue. Aliquam vel feugiat eros, a tincidunt sem. Fusce ligula elit, gravida molestie ultrices vitae, tristique ut dui. Fusce ac euismod velit. Sed aliquet sodales ligula et tincidunt. Fusce condimentum volutpat mollis. Maecenas ullamcorper mattis ex, id tempus eros rutrum non. Vivamus sed urna lectus."
         
         _music = "horse.mp3"
@@ -41,13 +42,15 @@ struct Journal {
         
         _coordinates = [-37.6, 144.0]
         
+        _id = id
+        
     }
     
     // Sepecific constructor
-    init(note: String, music: String, quote: String, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double]) {
+    init(note: String, music: String, quote: String, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String) {
         
         // Assignments
-        _note = note; _music = music; _quote = quote; _photo = photo; _date = date; _location = location; _favorite = favorite;_coordinates = coordinates;
+        _note = note; _music = music; _quote = quote; _photo = photo; _date = date; _location = location; _favorite = favorite;_coordinates = coordinates; _id = id
         
         _weather = WeatherEnum(weather: weather)!
         _mood = MoodEnum(mood: mood)!
@@ -157,6 +160,12 @@ struct Journal {
         }
         set(coordinates){
             self._coordinates = coordinates
+        }
+    }
+    
+    var id:String {
+        get {
+            return self._id
         }
     }
 

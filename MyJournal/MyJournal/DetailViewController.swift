@@ -14,14 +14,18 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     var contentArray: [[String]] = []
     
-    var sepArray: [String] = ["", "", "", ""]
+    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More"]
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = journalDetail!.date
+        self.title = ""
+        
+        // enable auto layout
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
         
         // Do any additional setup after loading the view.
     }
@@ -34,28 +38,26 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     /* Table Functions */
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 4
         case 1:
             return 1
         case 2:
             return 1
         case 3:
             return 2
-        case 4:
-            return 1
         default:
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""
+        return sepArray[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,12 +67,15 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
                 switch indexPath.row {
                 case 0:
+                    cell.icon.image = UIImage(named: "calendar")
+                    cell.label.text = journalDetail!.date
+                case 1:
                     cell.icon.image = UIImage(named: journalDetail!.weather)
                     cell.label.text = "It was a " + journalDetail!.weather + " day /n"
-                case 1:
-                    cell.icon.image = #imageLiteral(resourceName: "location-pointer")
-                    cell.label.text = "I was at " + journalDetail!.location
                 case 2:
+                    cell.icon.image = UIImage(named: "location-pointer")
+                    cell.label.text = "I was at " + journalDetail!.location
+                case 3:
                     cell.icon.image = UIImage(named: journalDetail!.mood)
                     cell.label.text = "I was feeling " + journalDetail!.mood
                 default:
@@ -88,14 +93,14 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         // with image section
         if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextbodyCell", for: indexPath) as! ImageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
             cell.imageBody.image = UIImage(named: journalDetail!.photo)
             return cell
         }
         
         // with quote and music 
         if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextbodyCell", for: indexPath) as! FooterCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
             switch indexPath.row {
             case 0:
                 cell.titleLabel.text = "Quote of the Day"
@@ -110,9 +115,15 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         
-        return tableView.dequeueReusableCell(withIdentifier: "TextbodyCell", for: indexPath) as! FooterCell
+        return tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
     }
     
+    // prepare segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailToEditSegue" {
+            
+        }
+    }
 
     /*
     // MARK: - Navigation
