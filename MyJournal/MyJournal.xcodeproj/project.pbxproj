@@ -14,6 +14,13 @@
 		3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE361E271EB8003C9490 /* Assets.xcassets */; };
 		3B95AE451E271EB8003C9490 /* MyJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE441E271EB8003C9490 /* MyJournalTests.swift */; };
 		3B95AE501E271EB8003C9490 /* MyJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */; };
+		942032841E307CBE005B1541 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327D1E307CBE005B1541 /* HeaderCell.swift */; };
+		942032851E307CBE005B1541 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327E1E307CBE005B1541 /* ImageCell.swift */; };
+		942032861E307CBE005B1541 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327F1E307CBE005B1541 /* MapCell.swift */; };
+		942032871E307CBE005B1541 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032801E307CBE005B1541 /* MusicCell.swift */; };
+		942032881E307CBE005B1541 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032811E307CBE005B1541 /* QuoteCell.swift */; };
+		942032891E307CBE005B1541 /* TextbodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032821E307CBE005B1541 /* TextbodyCell.swift */; };
+		9420328A1E307CBE005B1541 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032831E307CBE005B1541 /* WeatherCell.swift */; };
 		EB90C82C1E2C440500B50A07 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82B1E2C440500B50A07 /* QuoteViewController.swift */; };
 		EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */; };
 		EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */; };
@@ -69,6 +76,13 @@
 		3B95AE4B1E271EB8003C9490 /* MyJournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyJournalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJournalUITests.swift; sourceTree = "<group>"; };
 		3B95AE511E271EB8003C9490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9420327D1E307CBE005B1541 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		9420327E1E307CBE005B1541 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		9420327F1E307CBE005B1541 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		942032801E307CBE005B1541 /* MusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
+		942032811E307CBE005B1541 /* QuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
+		942032821E307CBE005B1541 /* TextbodyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextbodyCell.swift; sourceTree = "<group>"; };
+		942032831E307CBE005B1541 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		EB90C82B1E2C440500B50A07 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
 		EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewCell.swift; sourceTree = "<group>"; };
 		EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
@@ -169,6 +183,20 @@
 			path = MyJournalUITests;
 			sourceTree = "<group>";
 		};
+		9420328C1E307CEF005B1541 /* DetailViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9420327D1E307CBE005B1541 /* HeaderCell.swift */,
+				9420327E1E307CBE005B1541 /* ImageCell.swift */,
+				9420327F1E307CBE005B1541 /* MapCell.swift */,
+				942032801E307CBE005B1541 /* MusicCell.swift */,
+				942032811E307CBE005B1541 /* QuoteCell.swift */,
+				942032821E307CBE005B1541 /* TextbodyCell.swift */,
+				942032831E307CBE005B1541 /* WeatherCell.swift */,
+			);
+			name = DetailViewCells;
+			sourceTree = "<group>";
+		};
 		EBA4BBD41E2C9E8E00C1C24D /* DeviceAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +259,7 @@
 		EBD43BD01E2B8988006968DB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9420328C1E307CEF005B1541 /* DetailViewCells */,
 				EBD43BCE1E2B4747006968DB /* PhotoViewCell.swift */,
 				EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */,
 				3B95AE331E271EB8003C9490 /* Main.storyboard */,
@@ -375,20 +404,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942032881E307CBE005B1541 /* QuoteCell.swift in Sources */,
 				EBA4BBD11E2C9E7E00C1C24D /* DeviceLocation.swift in Sources */,
 				EBA4BBD71E2C9EA600C1C24D /* Weather.swift in Sources */,
 				EBA4BBE31E2C9FE900C1C24D /* SwiftyJSON.swift in Sources */,
 				EBA4BBCD1E2C855100C1C24D /* DetailViewController.swift in Sources */,
+				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
 				EBA4BC2A1E2F2D2B00C1C24D /* TransitViewController.swift in Sources */,
 				EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */,
 				EBA4BBDE1E2C9ED800C1C24D /* OpenStreetMap.swift in Sources */,
 				EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */,
+				942032851E307CBE005B1541 /* ImageCell.swift in Sources */,
 				3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */,
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 				EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
+				942032871E307CBE005B1541 /* MusicCell.swift in Sources */,
 				EBA4BBC81E2C7D9100C1C24D /* MoodEnum.swift in Sources */,
 				EBA4BBDD1E2C9ED800C1C24D /* OpenWeatherMap.swift in Sources */,
 				EBA4BC281E2F193900C1C24D /* Model.swift in Sources */,
@@ -399,7 +432,10 @@
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
 				EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */,
+				9420328A1E307CBE005B1541 /* WeatherCell.swift in Sources */,
+				942032861E307CBE005B1541 /* MapCell.swift in Sources */,
 				EBD43BCF1E2B4747006968DB /* PhotoViewCell.swift in Sources */,
+				942032891E307CBE005B1541 /* TextbodyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import Foundation
 
 enum WeatherEnum: String {
     
-    case rain, sunny, cloud, smog, windy
+    case rainy, sunny, cloudy, smog, windy
     
     
     // default init
@@ -21,9 +21,9 @@ enum WeatherEnum: String {
     init?(weather: String) {
         switch weather {
         case "sunny": self = .sunny
-        case "rain": self = .rain
-        case "cloud": self = .cloud
-        case "somg" : self = .smog
+        case "rainy": self = .rainy
+        case "cloudy": self = .cloudy
+        case "smog" : self = .smog
         case "windy" : self = .windy
         default: self = .sunny
         }
@@ -33,9 +33,9 @@ enum WeatherEnum: String {
         get {
             switch self {
             case .sunny: return "sunny"
-            case .rain: return "rain"
-            case .cloud: return "cloud"
-            case .smog: return "somg"
+            case .rainy: return "rainy"
+            case .cloudy: return "cloudy"
+            case .smog: return "smog"
             case .windy: return "windy"
             }
         }
@@ -43,9 +43,9 @@ enum WeatherEnum: String {
         set(weather) {
             switch weather {
             case "sunny": self = .sunny
-            case "rain": self = .rain
-            case "cloud": self = .cloud
-            case "somg" : self = .smog
+            case "rainy": self = .rainy
+            case "cloudy": self = .cloudy
+            case "smog" : self = .smog
             case "windy" : self = .windy
             default: self = .sunny
             }
@@ -56,8 +56,8 @@ enum WeatherEnum: String {
         get {
             switch self {
             case .sunny: return "☀️"
-            case .rain: return "☔️"
-            case .cloud: return "☁️"
+            case .rainy: return "☔️"
+            case .cloudy: return "☁️"
             case .smog: return "🌫"
             case .windy: return "💨"
             }
