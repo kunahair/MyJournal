@@ -36,10 +36,15 @@ struct JournalManger {
         return journalDictionary
     }
     
+    func getJournalEntriesCount()-> Int
+    {
+        return self.journalEntries.count
+    }
+    
     //Add a Journal Entry to the JournalEntries Array
     mutating func AddJournal(note: String, music: String, quote: String, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double])
     {
-        var journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates)
+        let journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates)
         self.journalEntries.append(journal)
     }
     
