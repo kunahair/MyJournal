@@ -13,8 +13,8 @@ import UserNotifications
 class MainTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var curTableView: UITableView!
-    let hour:Int = 15
-    let minute:Int = 52
+    let hour:Int = 9
+    let minute:Int = 0
     
     
     // When extracting arrays from the Model, the Model shall have a function that return a 2D array, the first array will the journals from last week, then last month, then the rest, to utilize the group function of the table view

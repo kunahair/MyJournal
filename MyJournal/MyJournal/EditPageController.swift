@@ -34,10 +34,12 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     @IBOutlet weak var isFavorite: UISwitch!
     
     let photoPicker = UIImagePickerController()
+    
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
     var addressInfo = "Mark your location"
     var switchOn = false
+    
     
     // back stack ref
     var previousView = UIViewController()
@@ -56,6 +58,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         switchButton.isOn = false
         address.text = addressInfo
         
+               
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,6 +125,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
 
     //assign selected photo to the scene
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage{
             self.photo.image = selectedPhoto
         }
@@ -195,12 +199,12 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     @IBAction func saveJournal(_ sender: Any) {
         if isFavorite.isOn == true{
-            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo: note.text, weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
-            JournalManger.AddFavJournal(note: note.text, music: "", quote: quote.text!, photo: note.text, weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo:"winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
             note.text = ""
             quote.text = ""
+            
         }else{
-            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo: note.text, weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo: "winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
             note.text = ""
             quote.text = ""
         }

@@ -10,9 +10,11 @@ import UIKit
 
 class PhotoViewCell: UICollectionViewCell {
     
+    var favorite:Journal?
     
     
     @IBOutlet weak var likedPhotos: UIImageView!
     
+    @IBOutlet weak var likedDate: UILabel!
     
 }

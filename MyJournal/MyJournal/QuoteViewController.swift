@@ -5,7 +5,7 @@
 //  Created by XING ZHAO on 16/01/2017.
 //  Copyright © 2017 Xing. All rights reserved.
 //
-
+/*
 import UIKit
 
 class QuoteViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -32,7 +32,7 @@ class QuoteViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return JournalManger.favJournals.count
+        return JournalManger.journals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,9 +41,7 @@ class QuoteViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         let journal = JournalManger.favJournals[indexPath.item]
         cell.textLabel?.text = journal.quote
         cell.likedQuote = journal
-        if journal.favorite == true{
-            
-        }
+       
         return cell
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,3 +63,4 @@ class QuoteViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     */
 
 }
+*/

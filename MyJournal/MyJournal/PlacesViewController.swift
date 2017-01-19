@@ -27,6 +27,19 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
             let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(journalEntry.coordinates[0], journalEntry.coordinates[1] + i)
             let objectAnn = MKPointAnnotation()
             objectAnn.coordinate = pinLocation
+           // let span = MKCoordinateSpanMake(0.075, 0.075)
+            //let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.808515, longitude: 144.9695), span: span)
+            
+          //  let viewRegion = MKCoordinateRegionMakeWithDistance(pinLocation, 500, 500);
+           // MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
+           // [self.mapView setRegion:adjustedRegion animated:YES];
+            
+            
+            let viewRegion = MKCoordinateRegionMakeWithDistance(pinLocation, 500, 500)
+            let adjustedRegion = mapView.regionThatFits(viewRegion)
+            self.mapView.setRegion(adjustedRegion, animated: true)
+            self.mapView.showsUserLocation = true
+            //mapView.setRegion(region, animated: true)
             objectAnn.title = journalEntry.date
             objectAnn.subtitle = journalEntry.location
             self.mapView.addAnnotation(objectAnn)

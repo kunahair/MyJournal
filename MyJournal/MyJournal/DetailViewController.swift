@@ -20,11 +20,13 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var noteContent: UITextView!
    
+    @IBOutlet weak var journalPhoto: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
      //   journalDateLabel.text = journalObj.quote
         self.noteContent.text = journalDetail?.note
         self.quoteContent.text = journalDetail?.quote
+        self.journalPhoto.image = UIImage(named: "\(journalDetail?.photo)")
         // Do any additional setup after loading the view.
     }
     
