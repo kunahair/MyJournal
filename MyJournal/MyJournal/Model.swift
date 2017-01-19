@@ -12,8 +12,10 @@ class Model{
     
     static let getInstance = Model()
     
-    var journalArray:Array<Journal> = []
-    static var journalCurrentEntry:Journal = Journal()
+//    var journalArray:Array<Journal> = []
+//    static var journalCurrentEntry:Journal = Journal()
+    
+    var journalManager:JournalManger = JournalManger()
     
     
     private init()
@@ -21,38 +23,38 @@ class Model{
         
         //The Latitude of rmit university is -37.8087. The Longitude of rmit university is 144.9637
         
-        self.journalArray = Array(repeating: Journal(), count: 10)
+//        self.journalArray = Array(repeating: Journal(), count: 10)
         
     }
     
-    func getJournalEntriesArray()->Array<Journal>
-    {
-        return journalArray
-    }
-    
-    func getJournalEntryByDate(date: String)->Journal?
-    {
-        for journalEntry in journalArray
-        {
-            if journalEntry.date == date
-            {
-                return journalEntry
-            }
-        }
-        
-        return nil
-    }
-    
-    func getJournalIndexByDate(date: String)->Int
-    {
-        for (index, journalEntry) in journalArray.enumerated()
-        {
-            if journalEntry.date == date{
-                return index
-            }
-        }
-        return -1
-    }
+//    func getJournalEntriesArray()->Array<Journal>
+//    {
+//        return journalArray
+//    }
+//    
+//    func getJournalEntryByDate(date: String)->Journal?
+//    {
+//        for journalEntry in journalArray
+//        {
+//            if journalEntry.date == date
+//            {
+//                return journalEntry
+//            }
+//        }
+//        
+//        return nil
+//    }
+//    
+//    func getJournalIndexByDate(date: String)->Int
+//    {
+//        for (index, journalEntry) in journalArray.enumerated()
+//        {
+//            if journalEntry.date == date{
+//                return index
+//            }
+//        }
+//        return -1
+//    }
     
     
     
@@ -60,7 +62,7 @@ class Model{
      User accesible function to get the weather from API
      Returns a Weather Object
     **/
-    static func getWeather(lat:Float, lon:Float)->Weather
+    func getWeather(lat:Float, lon:Float)->Weather
     {
         //Get current weather from OpenWeatherMap API and add to current Weather Object
         let openWeatherMap = OpenWeatherMap()
@@ -71,7 +73,7 @@ class Model{
      User accessible function to get a User Readable location
      Returns a Location Object
     **/
-    static func getReadableAddress(lat:Float, lon:Float)->Location
+    func getReadableAddress(lat:Float, lon:Float)->Location
     {
         //Get User Readable Address from OpenStreet API and load into Location Object
         let openStreetMap = OpenStreetMap()
@@ -87,7 +89,7 @@ class Model{
      Ability to be extended using Chain of Responsibility, eg try GPS, then try by IP address...
      Returns a Location Object or Throws an error
     **/
-    static func getLocation() throws ->Location
+    func getLocation() throws ->Location
     {
         let deviceLocation:DeviceLocation = DeviceLocation()
         

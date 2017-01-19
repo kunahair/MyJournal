@@ -22,7 +22,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
         
         var i:Double = 0.0
         
-        for journalEntry in Model.getInstance.getJournalEntriesArray()
+        for journalEntry in Model.getInstance.journalManager.getJournalEntriesArray()
         {
             let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(journalEntry.coordinates[0], journalEntry.coordinates[1] + i)
             let objectAnn = MKPointAnnotation()
@@ -77,7 +77,8 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
             //Add a button to the right of the text in annotation view
             //This button will call the DetailViewController so the user can see details
             let button:UIButton = UIButton(type: .detailDisclosure)
-            button.tag = Model.getInstance.getJournalIndexByDate(date: annotation.title!!)
+//            button.tag = Model.getInstance.getJournalIndexByDate(date: annotation.title!!)
+            button.tag = Model.getInstance.journalManager.getJournalEntryAndIndexByDate(date: annotation.title!!)!.index
             button.addTarget(self, action: #selector(ratingButtonTapped), for: .touchDown)
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             view.canShowCallout = true
@@ -107,7 +108,8 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
             
             print(journalIndex)
             
-            detailView.journalObj = Model.getInstance.getJournalEntriesArray()[journalIndex]
+//            detailView.journalObj = Model.getInstance.getJournalEntriesArray()[journalIndex]
+            detailView.journalObj = Model.getInstance.journalManager.getJournalEntryByIndex(id: journalIndex)
             
         }
     }
