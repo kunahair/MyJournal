@@ -109,7 +109,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
             print(journalIndex)
             
 //            detailView.journalObj = Model.getInstance.getJournalEntriesArray()[journalIndex]
-            detailView.journalObj = Model.getInstance.journalManager.getJournalEntryByIndex(id: journalIndex)
+            detailView.journalDetail = Model.getInstance.journalManager.getJournalEntryByIndex(id: journalIndex)
             
         }
     }

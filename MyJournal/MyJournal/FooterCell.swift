@@ -1,15 +1,20 @@
 //
-//  QuoteCell.swift
+//  FooterCell.swift
 //  MyJournal
 //
-//  Created by Yuanqing Jiang on 18/01/2017.
+//  Created by Yuanqing Jiang on 19/01/2017.
 //  Copyright © 2017 Xing. All rights reserved.
 //
 
 import UIKit
 
-class QuoteCell: UITableViewCell {
+class FooterCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    
+    @IBOutlet weak var label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
