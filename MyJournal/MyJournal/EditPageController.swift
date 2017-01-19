@@ -199,12 +199,12 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     @IBAction func saveJournal(_ sender: Any) {
         if isFavorite.isOn == true{
-            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo:"winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            Model.getInstance.journalManager.AddJournal(note: note.text, music: "", quote: quote.text!, photo:"winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
             note.text = ""
             quote.text = ""
             
         }else{
-            JournalManger.AddJournal(note: note.text, music: "", quote: quote.text!, photo: "winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            Model.getInstance.journalManager.AddJournal(note: note.text, music: "", quote: quote.text!, photo: "winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
             note.text = ""
             quote.text = ""
         }

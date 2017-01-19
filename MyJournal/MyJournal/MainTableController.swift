@@ -42,7 +42,8 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     // number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return JournalManger.journals.count
+//        return JournalManger.journals.count
+        return Model.getInstance.journalManager.getJournalEntriesCount()
         
     }
     
@@ -55,7 +56,8 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recell", for: indexPath) as! CustomCell
        // cell.textLabel?.text = dummyList[indexPath.section][indexPath.row].date
-        let journal = JournalManger.journals[indexPath.item]
+//        let journal = JournalManger.journals[indexPath.item]
+        let journal = Model.getInstance.journalManager.getJournalEntryByIndex(id: indexPath.item)
         cell.textLabel?.text = journal.quote
         cell.detailTextLabel?.text = journal.note
         cell.journal = journal
@@ -77,8 +79,11 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            JournalManger.DeleteJounal(id: indexPath.item)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            JournalManger.DeleteJounal(id: indexPath.item)
+            if Model.getInstance.journalManager.deleteJounalEntryByIndex(id: indexPath.item)
+            {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }            
         }
     }
     

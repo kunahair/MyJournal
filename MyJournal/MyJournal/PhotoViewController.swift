@@ -58,14 +58,16 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return JournalManger.journals.count
+//        return JournalManger.journals.count
+        return Model.getInstance.journalManager.getJournalEntriesCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoViewCell
         
         //let cell = tableView.dequeueReusableCell(withIdentifier: "quoteCell", for: indexPath) as! QuoteViewCell
-        let journal = JournalManger.journals[indexPath.item]
+//        let journal = JournalManger.journals[indexPath.item]
+        let journal = Model.getInstance.journalManager.getJournalEntryByIndex(id: indexPath.item)
         cell.likedDate.text = journal.date
         cell.likedPhotos.image = UIImage(named: journal.photo)
         
