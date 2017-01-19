@@ -14,7 +14,8 @@ struct JournalManger {
     
     init()
     {
-        self.journalEntries = Array(repeating: Journal(), count: 10)
+        //self.journalEntries = Array(repeating: Journal(), count: 10)
+        self.journalEntries = FakeJournalEntries.getFakeJournalEntries()
     }
     
     //Get the JournalEntries Array
@@ -86,6 +87,76 @@ struct JournalManger {
         return nil
     }
     
+    func getJournalEntriesFromLastSevenDays()->[Journal]
+    {
+        var journalsLastSevenDays:[Journal] = [Journal]()
+        
+        var date = Date()
+        date.addTimeInterval((60.0 * 60.0 * 24.0 * 7.0) * -1.0)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD/MM/YYYY"
+        var dateStr = formatter.string(from: date)
+        
+        for journal in self.journalEntries
+        {
+            if journal.date >= dateStr
+            {
+                journalsLastSevenDays.append(journal)
+            }
+        }
+        
+        return journalsLastSevenDays
+    }
+    
+    func getJournalEntriesFromLastFourteenDays()->[Journal]
+    {
+        var journalsLastFourteenDays:[Journal] = [Journal]()
+        
+        var dateFourteenDaysAgo = Date()
+        dateFourteenDaysAgo.addTimeInterval((60.0 * 60.0 * 24.0 * 14.0) * -1.0)
+        
+        var dateSevenDaysAgo = Date()
+        dateSevenDaysAgo.addTimeInterval((60.0 * 60.0 * 24.0 * 7.0) * -1.0)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD/MM/YYYY"
+        
+        let dateFourteenDaysAgoStr = formatter.string(from: dateFourteenDaysAgo)
+        let dateSevenDaysAgoStr = formatter.string(from: dateSevenDaysAgo)
+        
+        for journal in self.journalEntries
+        {
+            if journal.date >= dateFourteenDaysAgoStr && journal.date < dateSevenDaysAgoStr
+            {
+                journalsLastFourteenDays.append(journal)
+            }
+        }
+        
+        return journalsLastFourteenDays
+    }
+    
+    func getJournalEntriesBeyondFourteenDaysAgo()->[Journal]
+    {
+        var journalsLastFourteenDays:[Journal] = [Journal]()
+        
+        var dateFourteenDaysAgo = Date()
+        dateFourteenDaysAgo.addTimeInterval((60.0 * 60.0 * 24.0 * 14.0) * -1.0)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD/MM/YYYY"
+        
+        let dateFourteenDaysAgoStr = formatter.string(from: dateFourteenDaysAgo)
+        
+        for journal in self.journalEntries
+        {
+            if journal.date < dateFourteenDaysAgoStr
+            {
+                journalsLastFourteenDays.append(journal)
+            }
+        }
+        
+        return journalsLastFourteenDays
+    }
     
 
 }

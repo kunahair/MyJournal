@@ -31,6 +31,44 @@ class MyJournalUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        
+        let app = XCUIApplication()
+        
+        //Get reference to main table view
+        let tablesQuery = app.tables.cells
+        //Test that the delete button is not present
+        XCTAssert(!tablesQuery.element(boundBy: 0).buttons["Delete"].exists)
+        //Swipe left on first cell to show delete button
+        tablesQuery.element(boundBy: 0).swipeLeft()
+        //Test that the delete button is present
+        XCTAssert( tablesQuery.element(boundBy: 0).buttons["Delete"].exists)
+        //Tap first element on table
+        tablesQuery.element(boundBy: 0).tap()
+        
+        //let label = app.staticTexts["If everything could feel this real forever"]
+        //let label = app.navigationBars["MyJournal.DetailView"].buttons["Main"]
+        //let exists = NSPredicate(format: "exists == 1")
+        
+        //expectation(for: exists, evaluatedWith: label, handler: nil)
+        //waitForExpectations(timeout: 10, handler: nil)
+
+        
+        //XCTAssert(app.navigationBars["MyJournal.DetailView"].buttons["Main"].exists)
+        
+        
+        //waitForExpectations(timeout: 3, handler: nil)
+        
+        //XCTAssertEqual(app.navigationBars.element.identifier, "DetailView")
+        
+        
+        
+        
+        
+        
+        
+        //let cellQuery = app.tables.cells.containing(.staticText, identifier:"recell")
+        
+        //XCUIApplication().tables.staticTexts["Title"].tap()
+        }
     
 }

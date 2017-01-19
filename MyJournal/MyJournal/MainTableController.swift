@@ -43,7 +43,8 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
 //        return JournalManger.journals.count
-        return Model.getInstance.journalManager.getJournalEntriesCount()
+        //return Model.getInstance.journalManager.getJournalEntriesCount()
+        return Model.getInstance.journalManager.getJournalEntriesBeyondFourteenDaysAgo().count
         
     }
     
@@ -57,7 +58,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "recell", for: indexPath) as! CustomCell
        // cell.textLabel?.text = dummyList[indexPath.section][indexPath.row].date
 //        let journal = JournalManger.journals[indexPath.item]
-        let journal = Model.getInstance.journalManager.getJournalEntryByIndex(id: indexPath.item)
+        let journal = Model.getInstance.journalManager.getJournalEntriesBeyondFourteenDaysAgo()[indexPath.item]
         cell.textLabel?.text = journal.quote
         cell.detailTextLabel?.text = journal.note
         cell.journal = journal

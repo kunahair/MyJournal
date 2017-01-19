@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B55410F1E307C640071F303 /* FakeJournalEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B55410E1E307C640071F303 /* FakeJournalEntries.swift */; };
 		3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AC25F1E2840F0009992ED /* EditPageController.swift */; };
 		3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */; };
 		3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE311E271EB8003C9490 /* ViewController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B55410E1E307C640071F303 /* FakeJournalEntries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeJournalEntries.swift; sourceTree = "<group>"; };
 		3B0AC25F1E2840F0009992ED /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		3B95AE2C1E271EB8003C9490 /* MyJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				EBA4BBE01E2C9EE100C1C24D /* API */,
 				EBA4BBE21E2C9FE900C1C24D /* SwiftyJSON.swift */,
 				EBA4BBD91E2C9EBC00C1C24D /* Structs */,
+				2B55410E1E307C640071F303 /* FakeJournalEntries.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				EBA4BBE31E2C9FE900C1C24D /* SwiftyJSON.swift in Sources */,
 				EBA4BBCD1E2C855100C1C24D /* DetailViewController.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
+				2B55410F1E307C640071F303 /* FakeJournalEntries.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
 				EBA4BC2A1E2F2D2B00C1C24D /* TransitViewController.swift in Sources */,
 				EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */,
