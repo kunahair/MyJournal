@@ -808,13 +808,22 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="DetailToEditSegue" id="jmL-kM-Jpo"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="delete" id="1zK-Hj-dev"/>
-                            <barButtonItem image="heart" id="bK1-lg-V87" userLabel="FavBtn Item"/>
+                            <barButtonItem systemItem="trash" id="1zK-Hj-dev" userLabel="DeleteBtn Item">
+                                <connections>
+                                    <action selector="delBtn:" destination="3kV-eU-QMu" id="cnF-lS-OS4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="heart" id="bK1-lg-V87" userLabel="FavBtn Item">
+                                <connections>
+                                    <action selector="favBtn:" destination="3kV-eU-QMu" id="7kE-hJ-JK4"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1350"/>
                     <connections>
+                        <outlet property="favBtnOutlet" destination="bK1-lg-V87" id="Urn-Hl-307"/>
                         <outlet property="tableView" destination="R7y-dj-1Od" id="Sgj-sx-J8E"/>
                     </connections>
                 </viewController>
@@ -827,7 +836,6 @@
         <image name="addButton" width="225" height="225"/>
         <image name="border5" width="1376" height="688"/>
         <image name="city" width="736" height="919"/>
-        <image name="delete" width="30" height="30"/>
         <image name="heart" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="location-pointer" width="30" height="30"/>

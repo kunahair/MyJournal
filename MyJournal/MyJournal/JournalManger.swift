@@ -77,6 +77,11 @@ struct JournalManger {
         return false
     }
     
+    // get journal entry from Dict by key
+    func getJournalEntryByKey(key: String) -> Journal? {
+        return journalEntries[key]
+    }
+    
     
     //Get a Journal Entry from Array by index
     //Returns a Journal Entry if found, returns a Blank Journal if not found
@@ -111,7 +116,8 @@ struct JournalManger {
  
     mutating func setJournalFavouriteByKey(key: String)->Bool {
         //let journalToLike:Journal? = journalEntries[key]
-        if journalEntries[key] != nil {
+        if journalEntries[key] != nil { // when the key is found in the dictionary
+            // set true to false, false to true
             journalEntries[key]!.favorite ? (journalEntries[key]!.favorite=false) : (journalEntries[key]!.favorite=true)
             return true
         }

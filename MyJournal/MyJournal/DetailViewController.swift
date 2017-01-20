@@ -18,16 +18,26 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var favBtnOutlet: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = ""
+        //just in case, grab it again from the model by key
+        journalDetail = Model.getInstance.journalManager.getJournalEntryByKey(key: journalDetail!.id)
         
         // enable auto layout
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
         
         // Do any additional setup after loading the view.
+        
+        sepArray[0] = journalDetail!.date
+        if journalDetail!.favorite {
+            favBtnOutlet.image = UIImage(named: "heartfill")
+        }
     }
     
    
@@ -134,5 +144,47 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //btns
+    
+    @IBAction func favBtn(_ sender: Any) {
+        if journalDetail != nil {
+            if journalDetail!.favorite { // when it is true - favourite
+                // modify the model and then local copy
+                if Model.getInstance.journalManager.setJournalFavouriteByKey(key: journalDetail!.id) {
+                    // on successful fav-set, change local copy
+                    localFavSet(set: false)
+                }
+            }
+            else { // when it is false, not favourite
+                if Model.getInstance.journalManager.setJournalFavouriteByKey(key: journalDetail!.id) {
+                    localFavSet(set: true)
+                }
+            }
+        }
+    }
+    
+    
+    @IBAction func delBtn(_ sender: Any) {
+        // on successful deletion
+        if Model.getInstance.journalManager.deleteJournalEntryByKey(key: journalDetail!.id) { // success
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            print("deletion failed on: " + "\(journalDetail!.id)")
+        }
+    }
+    
+    func localFavSet(set: Bool) {
+        if set { // when set to fav
+            // set btn appearence
+            favBtnOutlet.image = UIImage(named: "heartfill")
+        }
+        else { // when set to not fav
+            favBtnOutlet.image = UIImage(named: "heart")
+        }
+        // finally set the local copy
+        journalDetail!.favorite = set
+    }
 
 }
