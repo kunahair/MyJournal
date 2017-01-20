@@ -426,7 +426,6 @@
         <!--Quote-->
         <scene sceneID="lVb-eQ-oG7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fmD-Cq-6Rq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Quote" id="r2P-lS-Le2" customClass="QuoteViewController" customModule="MyJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HmV-BN-jQx"/>
@@ -465,6 +464,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fmD-Cq-6Rq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4407.2463768115949" y="482.60869565217394"/>
         </scene>

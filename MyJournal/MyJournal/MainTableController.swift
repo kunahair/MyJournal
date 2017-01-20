@@ -58,8 +58,8 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
        // cell.textLabel?.text = dummyList[indexPath.section][indexPath.row].date
 //        let journal = JournalManger.journals[indexPath.item]
         let journal = Model.getInstance.journalManager.getJournalEntryByIndex(id: indexPath.item)
-        cell.textLabel?.text = journal.quote
-        cell.detailTextLabel?.text = journal.note
+        cell.textLabel?.text = journal.date
+        cell.detailTextLabel?.text = journal.quote
         cell.journal = journal
         
         

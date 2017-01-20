@@ -123,5 +123,23 @@ struct JournalManger {
         }
         return false
     }
+    
+    func getJournalFavouriteArray()->[Journal] {
+        let journalArray = getJournalEntriesArray()
+        var favouriteArray: [Journal] = []
+        for journal in journalArray {
+            if journal.favorite { // if it is favourite
+                // add to the favs
+                favouriteArray.append(journal)
+            }
+        }
+        return favouriteArray
+    }
+    
+    func getJournalFavouriteByIndex(index: Int)->Journal? {
+
+        // access by index
+        return getJournalEntriesArray()[index]
+    }
 
 }

@@ -59,7 +59,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return JournalManger.journals.count
-        return Model.getInstance.journalManager.getJournalEntriesCount()
+        return Model.getInstance.journalManager.getJournalFavouriteArray().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,9 +67,9 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         
         //let cell = tableView.dequeueReusableCell(withIdentifier: "quoteCell", for: indexPath) as! QuoteViewCell
 //        let journal = JournalManger.journals[indexPath.item]
-        let journal = Model.getInstance.journalManager.getJournalEntryByIndex(id: indexPath.item)
-        cell.likedDate.text = journal.date
-        cell.likedPhotos.image = UIImage(named: journal.photo)
+        let journal = Model.getInstance.journalManager.getJournalFavouriteByIndex(index: indexPath.item)
+        cell.likedDate.text = journal!.date
+        cell.likedPhotos.image = UIImage(named: journal!.photo)
         
         cell.favorite = journal
         
