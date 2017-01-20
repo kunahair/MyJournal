@@ -14,6 +14,7 @@
 		3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE361E271EB8003C9490 /* Assets.xcassets */; };
 		3B95AE451E271EB8003C9490 /* MyJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE441E271EB8003C9490 /* MyJournalTests.swift */; };
 		3B95AE501E271EB8003C9490 /* MyJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */; };
+		4F80B2881E31DD74006832A9 /* testMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F80B2871E31DD74006832A9 /* testMainTableView.swift */; };
 		942032841E307CBE005B1541 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327D1E307CBE005B1541 /* HeaderCell.swift */; };
 		942032851E307CBE005B1541 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327E1E307CBE005B1541 /* ImageCell.swift */; };
 		942032861E307CBE005B1541 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327F1E307CBE005B1541 /* MapCell.swift */; };
@@ -74,6 +75,7 @@
 		3B95AE4B1E271EB8003C9490 /* MyJournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyJournalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJournalUITests.swift; sourceTree = "<group>"; };
 		3B95AE511E271EB8003C9490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F80B2871E31DD74006832A9 /* testMainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testMainTableView.swift; sourceTree = "<group>"; };
 		9420327D1E307CBE005B1541 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		9420327E1E307CBE005B1541 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		9420327F1E307CBE005B1541 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		3B95AE4E1E271EB8003C9490 /* MyJournalUITests */ = {
 			isa = PBXGroup;
 			children = (
+				4F80B2871E31DD74006832A9 /* testMainTableView.swift */,
 				3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */,
 				3B95AE511E271EB8003C9490 /* Info.plist */,
 			);
@@ -443,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F80B2881E31DD74006832A9 /* testMainTableView.swift in Sources */,
 				3B95AE501E271EB8003C9490 /* MyJournalUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
