@@ -80,7 +80,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
 //            JournalManger.DeleteJounal(id: indexPath.item)
-            if Model.getInstance.journalManager.deleteJounalEntryByIndex(id: indexPath.item)
+            if Model.getInstance.journalManager.deleteJournalEntryByIndex(id: indexPath.item)
             {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }            

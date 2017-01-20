@@ -53,7 +53,7 @@ struct JournalManger {
     //Delete a JournalEntry from JournalEntries Array, using the Array Index
     //Returns true if index and delete where valied, otherwise returns false
     // 19Jan Ryan: this func remains its functionality
-    mutating func deleteJounalEntryByIndex(id: Int)->Bool
+    mutating func deleteJournalEntryByIndex(id: Int)->Bool
     {
         let journalArray = getJournalEntriesArray()
         let journalToRemove:Journal? = journalArray[id]

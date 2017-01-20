@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjC-qa-648">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="907"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="902"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tm-LL-1Xf">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="850"/>
@@ -468,10 +468,10 @@
             </objects>
             <point key="canvasLocation" x="4407.2463768115949" y="482.60869565217394"/>
         </scene>
-        <!--View Controller-->
+        <!--Places View Controller-->
         <scene sceneID="VKB-7x-V8l">
             <objects>
-                <viewController id="av6-qv-XBO" sceneMemberID="viewController">
+                <viewController id="av6-qv-XBO" customClass="PlacesViewController" customModule="MyJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4uh-NJ-wtr"/>
                         <viewControllerLayoutGuide type="bottom" id="VAA-lE-JTi"/>
@@ -488,6 +488,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vZA-MN-WzQ"/>
+                    <connections>
+                        <outlet property="mapView" destination="MGl-Cz-yMz" id="DDg-Ku-wx7"/>
+                        <segue destination="3kV-eU-QMu" kind="show" identifier="DetailViewSegue" id="Mtb-y2-dEd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qe3-Cc-e5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -663,7 +667,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" rowHeight="60" id="hXk-GY-bH8" userLabel="Header View Cell" customClass="HeaderCell" customModule="MyJournal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hXk-GY-bH8" id="R9w-EA-0Nl">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
@@ -699,7 +703,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextbodyCell" rowHeight="286" id="chH-Cy-BDU" userLabel="Textbody View Cell" customClass="TextbodyCell" customModule="MyJournal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="115" width="375" height="286"/>
+                                        <rect key="frame" x="0.0" y="116" width="375" height="286"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="chH-Cy-BDU" id="YVI-FF-6bS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
@@ -725,7 +729,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="296" id="82F-au-mvI" userLabel="Image View Cell" customClass="ImageCell" customModule="MyJournal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="401" width="375" height="296"/>
+                                        <rect key="frame" x="0.0" y="402" width="375" height="296"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="82F-au-mvI" id="xtR-uU-R25">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="295"/>
@@ -751,7 +755,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FooterCell" rowHeight="95" id="eeg-cN-BZg" userLabel="Quote View Cell" customClass="FooterCell" customModule="MyJournal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="697" width="375" height="95"/>
+                                        <rect key="frame" x="0.0" y="698" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eeg-cN-BZg" id="HEL-1P-qv6">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
@@ -803,7 +807,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="66f-7Y-QPy">
                         <rightBarButtonItems>
-                            <barButtonItem image="pencil" id="gpj-Fg-dXn" userLabel="EditBtn Item">
+                            <barButtonItem systemItem="compose" id="gpj-Fg-dXn" userLabel="EditBtn Item">
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="DetailToEditSegue" id="jmL-kM-Jpo"/>
                                 </connections>
@@ -839,10 +843,9 @@
         <image name="heart" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="location-pointer" width="30" height="30"/>
-        <image name="pencil" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jmL-kM-Jpo"/>
-        <segue reference="P7E-Qq-Xqe"/>
+        <segue reference="Mtb-y2-dEd"/>
     </inferredMetricsTieBreakers>
 </document>
