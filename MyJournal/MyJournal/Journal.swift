@@ -47,10 +47,14 @@ struct Journal {
     }
     
     // Sepecific constructor
-    init(note: String, music: String, quote: String, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String) {
+    init(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String) {
+        
+        // check for nil values
+        _music = music==nil ? "No Music" : music!
+        _quote = quote==nil ? "No Quote" : quote!
         
         // Assignments
-        _note = note; _music = music; _quote = quote; _photo = photo; _date = date; _location = location; _favorite = favorite;_coordinates = coordinates; _id = id
+        _note = note; _photo = photo; _date = date; _location = location; _favorite = favorite;_coordinates = coordinates; _id = id
         
         _weather = WeatherEnum(weather: weather)!
         _mood = MoodEnum(mood: mood)!

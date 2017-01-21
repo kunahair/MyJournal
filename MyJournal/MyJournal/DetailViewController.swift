@@ -81,7 +81,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                     cell.label.text = journalDetail!.date
                 case 1:
                     cell.icon.image = UIImage(named: journalDetail!.weather)
-                    cell.label.text = "It was a " + journalDetail!.weather + " day /n"
+                    cell.label.text = "It was a " + journalDetail!.weather + " day"
                 case 2:
                     cell.icon.image = UIImage(named: "location-pointer")
                     cell.label.text = "I was at " + journalDetail!.location
@@ -104,7 +104,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         // with image section
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
-            cell.imageBody.image = UIImage(named: journalDetail!.photo)
+            cell.imageBody.image = UIImage(contentsOfFile: journalDetail!.photo)
             return cell
         }
         

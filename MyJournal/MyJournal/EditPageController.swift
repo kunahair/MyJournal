@@ -8,7 +8,7 @@
 
 
 /*
-    In this page, basic information as date and place will be automatically recorded based on your current location(to get location you will need to turn on the switch button). You can also choose from many emoji expressions to best describe the weather and your personal mood. Apart from logging your day by way of words and sentences, you can also choose sources from your own music library and photos to add to the journal
+ In this page, basic information as date and place will be automatically recorded based on your current location(to get location you will need to turn on the switch button). You can also choose from many emoji expressions to best describe the weather and your personal mood. Apart from logging your day by way of words and sentences, you can also choose sources from your own music library and photos to add to the journal
  */
 import UIKit
 import CoreLocation
@@ -16,8 +16,8 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate{
-
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
+    
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var selectPhoto: UIButton!
@@ -37,12 +37,23 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
+    //let date = Date()
     var addressInfo = "Mark your location"
     var switchOn = false
+    var photoURL: String!
+    var photoPath:String!
+    let today: String = Model.getInstance.getCurrentDate()
     
+    /*  Change by Ryan, 21Jan, added weather result and mood picker ref here
+        To Josh: Weather API shall be called in this VC and update the Label and save in the Model, which is 
+        the func at the bottom :)
+     */
+    var mood: MoodEnum = MoodEnum.happy
     
-    // back stack ref
-    var previousView = UIViewController()
+    @IBOutlet weak var moodPickerView: UIPickerView!
+    
+    @IBOutlet weak var weatherResultLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,28 +64,20 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        var today = currentDay()
         currentDate.text = "\(today)"
         switchButton.isOn = false
         address.text = addressInfo
         
-               
+        // 21Jan Ryan:
+        moodPickerView.dataSource = self
+        moodPickerView.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //get current date in costom format
-    func currentDay()->String{
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "DD/MM/YY"
-        var dateStr = formatter.string(from: date)
-        return dateStr
-    }
-    
+
     //handle users' selection in the photo library
     @IBAction func selectPhoto(_ sender: UIButton) {
         photoPicker.allowsEditing = false
@@ -87,7 +90,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         musicPicker.allowsPickingMultipleItems = false
         musicPicker.showsCloudItems = false
         present(musicPicker, animated: true, completion: {})
-
+        
     }
     
     
@@ -113,21 +116,46 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(self.dismissKeyboard))
-            
+        
         self.view.addGestureRecognizer(tap)
     }
-        
+    
     func dismissKeyboard()
     {
         self.view.endEditing(true)
     }
     
-
+    
     //assign selected photo to the scene
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        if let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            self.photo.image = selectedPhoto
+        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        //save selected photo data and get the url
+        DispatchQueue.global().async {
+            DispatchQueue.main.async {
+                self.photo.image = selectedPhoto
+            }
+            //get the saving time as the name of photo data
+            let dateStr = self.currentDate.text!
+            self.photoURL = String(format: "%@.png", dateStr)
+            let photoData = UIImagePNGRepresentation(selectedPhoto!)
+            
+            let photoPaths = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(self.photoURL)
+            //write data
+            do {
+                try photoData?.write(to: photoPaths, options: .atomic)
+            } catch {
+                print(error)
+            }
+            
+            let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+            let documentsDir: NSString = paths.object(at: 0) as! NSString
+            
+            self.photoPath  = documentsDir.appendingPathComponent(self.photoURL!)
+            
+            print("picture : "+"\(self.photoPath)")
+            
         }
         dismiss(animated: true, completion: nil)
     }
@@ -138,9 +166,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        //if users are allowed to play music they chose
-        //let musicPlayer = MPMusicPlayerController.applicationMusicPlayer() 
-        //print("\(mediaItemCollection))")
         dismiss(animated: true, completion: nil)
     }
     
@@ -148,9 +173,9 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         dismiss(animated: true, completion: nil)
     }
     
-  
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-          //process the location array (placeMarks)
+        //process the location array (placeMarks)
         CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: { placeMarks, error in
             guard let address = placeMarks?[0].addressDictionary else {
                 return
@@ -196,30 +221,44 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }
     }
     
+    // Mood Picker and its funcs : Picker delegate and DataSource
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Model.getInstance.getMoodArray().count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Model.getInstance.getMoodArray()[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.mood = MoodEnum(mood: Model.getInstance.getMoodArray()[row])!
+    }
+    
+    
+    //save data to model
+    // Notes-> Ryan 21Jan: waiting for weather & Location API calls when save to model
+    // correct params waiting to be passed: weather, location, coordinates
     @IBAction func saveJournal(_ sender: Any) {
-        if isFavorite.isOn == true{
-            Model.getInstance.journalManager.AddJournal(note: note.text, music: "", quote: quote.text!, photo:"winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+        print("save : "+"\(self.photoPath)")
+        print("MOOD: \(self.mood.description)")
+        //if user have chosen the picture for the journal
+        if self.photoPath == nil{
+            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"", weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+            note.text = ""
+            quote.text = ""
+        }else{
+            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:self.photoPath, weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
             note.text = ""
             quote.text = ""
             
-        }else{
-            Model.getInstance.journalManager.AddJournal(note: note.text, music: "", quote: quote.text!, photo: "winter", weather: "sunny", mood: "happy", date: "18/01/17", location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
-            note.text = ""
-            quote.text = ""
         }
-             
+        
         self.navigationController?.popViewController(animated: true)
     }
-       //elf.presentedViewController(nextViewController, animated:true, completion:nil)
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

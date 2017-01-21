@@ -20,6 +20,9 @@
 		942032861E307CBE005B1541 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327F1E307CBE005B1541 /* MapCell.swift */; };
 		942032891E307CBE005B1541 /* TextbodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032821E307CBE005B1541 /* TextbodyCell.swift */; };
 		9420328E1E309178005B1541 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328D1E309178005B1541 /* FooterCell.swift */; };
+		942032901E31E044005B1541 /* testDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328F1E31E044005B1541 /* testDetailView.swift */; };
+		942032921E334AF2005B1541 /* FavPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032911E334AF2005B1541 /* FavPhotos.swift */; };
+		942032951E336FEE005B1541 /* MyJournal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 942032931E336FEE005B1541 /* MyJournal.xcdatamodeld */; };
 		EB90C82C1E2C440500B50A07 /* QuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82B1E2C440500B50A07 /* QuoteViewController.swift */; };
 		EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */; };
 		EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */; };
@@ -81,6 +84,9 @@
 		9420327F1E307CBE005B1541 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		942032821E307CBE005B1541 /* TextbodyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextbodyCell.swift; sourceTree = "<group>"; };
 		9420328D1E309178005B1541 /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
+		9420328F1E31E044005B1541 /* testDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testDetailView.swift; sourceTree = "<group>"; };
+		942032911E334AF2005B1541 /* FavPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavPhotos.swift; sourceTree = "<group>"; };
+		942032941E336FEE005B1541 /* MyJournal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyJournal.xcdatamodel; sourceTree = "<group>"; };
 		EB90C82B1E2C440500B50A07 /* QuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewController.swift; sourceTree = "<group>"; };
 		EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewCell.swift; sourceTree = "<group>"; };
 		EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 		3B95AE2E1E271EB8003C9490 /* MyJournal */ = {
 			isa = PBXGroup;
 			children = (
+				942032931E336FEE005B1541 /* MyJournal.xcdatamodeld */,
 				EBA4BBE41E2CA06400C1C24D /* Controller */,
 				EBA4BBE11E2C9EF200C1C24D /* Model */,
 				EBD43BD01E2B8988006968DB /* View */,
@@ -175,6 +182,7 @@
 		3B95AE4E1E271EB8003C9490 /* MyJournalUITests */ = {
 			isa = PBXGroup;
 			children = (
+				9420328F1E31E044005B1541 /* testDetailView.swift */,
 				4F80B2871E31DD74006832A9 /* testMainTableView.swift */,
 				3B95AE4F1E271EB8003C9490 /* MyJournalUITests.swift */,
 				3B95AE511E271EB8003C9490 /* Info.plist */,
@@ -207,6 +215,7 @@
 		EBA4BBD91E2C9EBC00C1C24D /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				942032911E334AF2005B1541 /* FavPhotos.swift */,
 				EBA4BBC41E2C7D9100C1C24D /* WeatherEnum.swift */,
 				EBA4BBC51E2C7D9100C1C24D /* MoodEnum.swift */,
 				EBA4BBD51E2C9EA600C1C24D /* Weather.swift */,
@@ -408,6 +417,7 @@
 				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
+				942032921E334AF2005B1541 /* FavPhotos.swift in Sources */,
 				EBA4BC2A1E2F2D2B00C1C24D /* TransitViewController.swift in Sources */,
 				EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */,
 				EBA4BBDE1E2C9ED800C1C24D /* OpenStreetMap.swift in Sources */,
@@ -415,6 +425,7 @@
 				EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */,
 				942032851E307CBE005B1541 /* ImageCell.swift in Sources */,
 				3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */,
+				942032951E336FEE005B1541 /* MyJournal.xcdatamodeld in Sources */,
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 				EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
@@ -447,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F80B2881E31DD74006832A9 /* testMainTableView.swift in Sources */,
+				942032901E31E044005B1541 /* testDetailView.swift in Sources */,
 				3B95AE501E271EB8003C9490 /* MyJournalUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -695,6 +707,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		942032931E336FEE005B1541 /* MyJournal.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				942032941E336FEE005B1541 /* MyJournal.xcdatamodel */,
+			);
+			currentVersion = 942032941E336FEE005B1541 /* MyJournal.xcdatamodel */;
+			path = MyJournal.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3B95AE241E271EB8003C9490 /* Project object */;
 }

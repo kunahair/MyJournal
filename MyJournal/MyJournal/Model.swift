@@ -16,7 +16,7 @@ class Model{
 //    static var journalCurrentEntry:Journal = Journal()
     
     var journalManager:JournalManger = JournalManger()
-    
+    private let _moodCases: [String] = ["happy", "sad", "okay", "tired", "peaceful"]
     
     private init()
     {
@@ -107,6 +107,21 @@ class Model{
         }
         
         return location!
+    }
+    
+    //get current date in custom format
+    // moved from view
+    func getCurrentDate()->String{
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "DD-MM-YY"
+        let dateStr = formatter.string(from: currentDate)
+        return dateStr
+    }
+    
+    // return passible mood selections in an array
+    func getMoodArray()->[String] {
+        return self._moodCases
     }
     
     static func getUserReadableDate(date: Date)->String
