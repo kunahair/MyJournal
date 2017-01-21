@@ -137,7 +137,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 self.photo.image = selectedPhoto
             }
             //get the saving time as the name of photo data
-            let dateStr = self.currentDate.text!
+            let dateStr = Model.getInstance.getCurrentDateSec()
             self.photoURL = String(format: "%@.png", dateStr)
             let photoData = UIImagePNGRepresentation(selectedPhoto!)
             

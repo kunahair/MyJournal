@@ -111,6 +111,14 @@ class Model{
     
     //get current date in custom format
     // moved from view
+    func getCurrentDateSec()->String{
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YY-MM-DD-HH-MM-SS"
+        let dateStr = formatter.string(from: currentDate)
+        return dateStr
+    }
+    
     func getCurrentDate()->String{
         let currentDate = Date()
         let formatter = DateFormatter()
