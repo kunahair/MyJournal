@@ -23,7 +23,7 @@ struct FakeJournalEntries
         
         fakeJournalEntries[journalEntry.id] = journalEntry
         
-        journalEntry = Journal(note: "How long, I\'v waited here for you \n Everlong \n Tonight, I throw myself into", music: "https://www.youtube.com/watch?v=1VQ_3sBZEm0", quote: "If everything could feel this real forever", photo: "defaultphoto", weather: "sunny", mood: "happy", date: "22-01-2016", location: "Melbourne, Victoria, Australia", favorite: true, coordinates: [-37.8251,144.9838], id: String(Date().timeIntervalSince1970))
+        journalEntry = Journal(note: "How long, I\'v waited here for you \n Everlong \n Tonight, I throw myself into", music: "https://www.youtube.com/watch?v=1VQ_3sBZEm0", quote: "If everything could feel this real forever", photo: "defaultphoto", weather: "sunny", mood: "happy", date: "22-01-2017", location: "Melbourne, Victoria, Australia", favorite: true, coordinates: [-37.8251,144.9838], id: String(Date().timeIntervalSince1970))
         
         fakeJournalEntries[journalEntry.id] = journalEntry
         
