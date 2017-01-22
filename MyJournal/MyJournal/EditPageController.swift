@@ -199,6 +199,16 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 if let formattedAddress = address["FormattedAddressLines"] as? [String] {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
+                    
+                    //Update weather based on location
+                    let location = try? Model.getInstance.getLocation()
+                    
+                    if location == nil{
+                        self.weatherResultLabel.text = "Weather"
+                    }else{
+                        self.weatherResultLabel.text = Model.getInstance.getWeather(lat: (location?.lat)!, lon: (location?.lon)!).description
+                    }
+
                 }
             }
         })
