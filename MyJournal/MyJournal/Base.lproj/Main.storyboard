@@ -59,14 +59,14 @@
                                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qhq-ZH-jMl" userLabel="Mood Picker View">
                                                                 <rect key="frame" x="267" y="0.0" width="100" height="50"/>
                                                             </pickerView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="W-Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koA-yR-1uW">
-                                                                <rect key="frame" x="80" y="16" width="30" height="21"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W-Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koA-yR-1uW">
+                                                                <rect key="frame" x="80" y="16" width="52" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mood:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-Dg-y9e">
-                                                                <rect key="frame" x="228" y="14" width="49" height="23"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mood:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-Dg-y9e">
+                                                                <rect key="frame" x="228.33333333333337" y="12" width="48.666666666666629" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -275,7 +275,7 @@
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="j13-e4-8jg">
-                                                <rect key="frame" x="188.66666666666666" y="0.0" width="37" height="37"/>
+                                                <rect key="frame" x="189" y="0.0" width="37" height="37"/>
                                             </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
@@ -739,8 +739,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="285"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvt-dM-oiI" userLabel="Textbody Label">
-                                                    <rect key="frame" x="8" y="8" width="359" height="269"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yvt-dM-oiI" userLabel="Textbody Label">
+                                                    <rect key="frame" x="16" y="8" width="359" height="269"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -791,8 +791,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Quote of the Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOy-cI-UoK">
-                                                    <rect key="frame" x="8" y="8" width="359" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quote of the Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOy-cI-UoK">
+                                                    <rect key="frame" x="16" y="8" width="359" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -875,7 +875,7 @@
         <image name="location-pointer" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iJS-me-IPs"/>
-        <segue reference="O5a-SZ-2zG"/>
+        <segue reference="Mtb-y2-dEd"/>
+        <segue reference="jmL-kM-Jpo"/>
     </inferredMetricsTieBreakers>
 </document>
