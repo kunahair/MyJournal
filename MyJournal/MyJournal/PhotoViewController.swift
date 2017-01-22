@@ -42,13 +42,13 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Model.getInstance.journalManager.getJournalEntriesCount()
+        return Model.getInstance.journalManager.getJournalFavouriteArray().count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoViewCell
-        let journal = Model.getInstance.journalManager.getJournalEntriesArray()[indexPath.item]
+        let journal = Model.getInstance.journalManager.getJournalFavouriteArray()[indexPath.item]
         cell.likedDate.text = journal.date
         if journal.photo == "defaultphoto"
         {
