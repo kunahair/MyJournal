@@ -277,11 +277,11 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             self.activityIndicator.startAnimating()
             if self.photoPath == nil{
                
-                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"", weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"", weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
                 note.text = ""
                 quote.text = ""
             }else{
-                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:self.photoPath, weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:self.photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
                 note.text = ""
                 quote.text = ""
             }
