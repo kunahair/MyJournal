@@ -19,19 +19,27 @@ import MediaPlayer
 class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
     
     @IBOutlet weak var background: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var selectPhoto: UIButton!
     @IBOutlet weak var photo: UIImageView!
+    
     @IBOutlet weak var selectMusic: UIButton!
-    @IBOutlet weak var musicFile: UITextField!
     @IBOutlet weak var address: UITextView!
+   
+    @IBOutlet weak var musicFile: UITextField!
+    
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var currentDate: UILabel!
     @IBOutlet weak var save: UIBarButtonItem!
+    
     @IBOutlet weak var quote: UITextField!
+    
     @IBOutlet weak var note: UITextView!
     
     @IBOutlet weak var isFavorite: UISwitch!
+ 
     
     let photoPicker = UIImagePickerController()
     
@@ -79,22 +87,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     }
 
     //handle users' selection in the photo library
-    @IBAction func selectPhoto(_ sender: UIButton) {
+    @IBAction func selectPhoto(_ sender: Any) {
         photoPicker.allowsEditing = false
         photoPicker.sourceType = .photoLibrary
         present(photoPicker, animated: true, completion: nil)
     }
-    
+  
     
     @IBAction func selectMusic(_ sender: Any) {
         musicPicker.allowsPickingMultipleItems = false
         musicPicker.showsCloudItems = false
         present(musicPicker, animated: true, completion: {})
-        
     }
     
-    
     //handle users' selection in the switch button
+
     @IBAction func getCurrentLocation(_ sender: Any) {
         if switchButton.isOn == true{
             self.switchOn = true
@@ -104,7 +111,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }else{
             address.text = addressInfo
         }
+
     }
+    
+     
     
     //Hide the keyboard when clicking anywhere except textview and textfield
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -220,7 +230,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             address.text = addressInfo
         }
     }
-    
+   
+   
     // Mood Picker and its funcs : Picker delegate and DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -242,23 +253,35 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     //save data to model
     // Notes-> Ryan 21Jan: waiting for weather & Location API calls when save to model
     // correct params waiting to be passed: weather, location, coordinates
+    // Xing : add more features to improve user experience
     @IBAction func saveJournal(_ sender: Any) {
-        print("save : "+"\(self.photoPath)")
-        print("MOOD: \(self.mood.description)")
-        //if user have chosen the picture for the journal
-        if self.photoPath == nil{
-            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"", weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
-            note.text = ""
-            quote.text = ""
-        }else{
-            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:self.photoPath, weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
-            note.text = ""
-            quote.text = ""
-            
-        }
         
-        self.navigationController?.popViewController(animated: true)
+        
+        if note.text == "" && musicFile.text == "" && quote.text == ""{
+            let alert = UIAlertController (title: "No content has been added yet", message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSheetController) -> Void in
+            }))
+            present(alert, animated: true)
+        }else{
+            //if user have chosen the picture for the journal
+            self.activityIndicator.startAnimating()
+            if self.photoPath == nil{
+               
+                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"", weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+                note.text = ""
+                quote.text = ""
+            }else{
+                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:self.photoPath, weather: "sunny", mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+                note.text = ""
+                quote.text = ""
+            }
+            // 1 second later, this page will be closed
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1))
+           {
+                self.activityIndicator.stopAnimating()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
-    
-    
+   
 }

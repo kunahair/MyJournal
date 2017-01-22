@@ -50,7 +50,14 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoViewCell
         let journal = Model.getInstance.journalManager.getJournalEntriesArray()[indexPath.item]
         cell.likedDate.text = journal.date
-        cell.likedPhotos.image = UIImage(contentsOfFile: journal.photo)
+        if journal.photo == "defaultphoto"
+        {
+            cell.likedPhotos.image = UIImage(named: "defaultphoto")!
+        }else{
+            cell.likedPhotos.image = UIImage(contentsOfFile: journal.photo)
+        }
+        
+        
         cell.favorite = journal
         return cell
     }

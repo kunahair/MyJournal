@@ -104,7 +104,12 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         // with image section
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
-            cell.imageBody.image = UIImage(contentsOfFile: journalDetail!.photo)
+            if journalDetail!.photo == "defaultphoto"
+            {
+                cell.imageBody.image = UIImage(named: "defaultphoto")!
+            }else{
+                cell.imageBody.image = UIImage(contentsOfFile: journalDetail!.photo)
+            }
             return cell
         }
         
