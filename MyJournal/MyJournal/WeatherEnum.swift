@@ -23,7 +23,6 @@ enum WeatherEnum: String {
         case "sunny": self = .sunny
         case "rainy": self = .rainy
         case "cloudy": self = .cloudy
-        case "few clouds": self = .cloudy
         case "smog" : self = .smog
         case "windy" : self = .windy
         default: self = .sunny

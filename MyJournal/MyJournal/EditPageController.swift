@@ -276,8 +276,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             //if user have chosen the picture for the journal
             self.activityIndicator.startAnimating()
             if self.photoPath == nil{
-               
-                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"", weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
+                
+                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"defaultphoto", weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
                 note.text = ""
                 quote.text = ""
             }else{
@@ -287,7 +287,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             }
             // 1 second later, this page will be closed
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1))
-           {
+            {
                 self.activityIndicator.stopAnimating()
                 self.navigationController?.popViewController(animated: true)
             }
