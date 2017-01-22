@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Custom cell view for collection view (Favouites photo gallary)
+ **/
 class PhotoViewCell: UICollectionViewCell {
     
     var favorite:Journal?

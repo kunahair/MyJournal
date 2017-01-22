@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Enum that matches weather with an icon
+ **/
 enum WeatherEnum: String {
     
     case rainy, sunny, cloudy, smog, windy

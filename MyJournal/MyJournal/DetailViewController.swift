@@ -14,6 +14,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     var contentArray: [[String]] = []
     
+    //Journal Headings
     var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More"]
     
     @IBOutlet weak var tableView: UITableView!
@@ -51,6 +52,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         return 4
     }
     
+    //Divide into sections for each journal heading
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -70,6 +72,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         return sepArray[section]
     }
     
+    //Populate cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // with header section

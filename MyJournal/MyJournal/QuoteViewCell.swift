@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Custom Cell for quote (unused in assignment submission)
+ **/
 class QuoteViewCell: UITableViewCell {
     
    

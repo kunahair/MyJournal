@@ -10,6 +10,7 @@ import Foundation
 
 class OpenStreetMap {
     
+    //Return readable address
     func getReadableAddress(lat: Float, lon: Float)->String
     {
        

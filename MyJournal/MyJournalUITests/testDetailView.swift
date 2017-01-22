@@ -32,20 +32,20 @@ class testDetailView: XCTestCase {
         XCUIApplication().launch()
         
         let tablesQuery = XCUIApplication().tables
-        tablesQuery.children(matching: .cell).element(boundBy: 0).staticTexts["DD/MM/YYYY"].tap()
-        tablesQuery.cells.staticTexts["DD/MM/YYYY"].tap()
+        tablesQuery.children(matching: .cell).element(boundBy: 0).staticTexts["22-01-17"].tap()
+        tablesQuery.cells.staticTexts["22-01-17"].tap()
         // test journal is there
         //XCTAssert(tablesQuery.cells.staticTexts["Journal"].exists)
         
         let bar = XCUIApplication().navigationBars["MyJournal.DetailView"]
         
-        XCUIApplication().tables.staticTexts["I was at default loc"].tap()
+        XCUIApplication().tables.staticTexts["I was at Melbourne, Victoria, Australia"].tap()
         XCUIApplication().tables.staticTexts["Journal"].swipeUp()
         
         tablesQuery.staticTexts["Journal"].swipeUp()
         tablesQuery.staticTexts["Shot of the Day"].swipeUp()
 
-        tablesQuery.staticTexts["You can do anything, but not everything.  —David Allen"].tap()
+        
         tablesQuery.staticTexts["Music of the Day"].tap()
         // test music label is there
         XCTAssert(tablesQuery.staticTexts["Music of the Day"].exists)

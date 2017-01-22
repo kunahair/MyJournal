@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Custom cell for TableView
+ **/
 class CustomCell: UITableViewCell {
 
     var journal:Journal?

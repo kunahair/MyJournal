@@ -52,6 +52,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var photoPath:String!
     let today: String = Model.getInstance.getCurrentDate()
     
+    var currentLocation:Location = Location()
+    
     /*  Change by Ryan, 21Jan, added weather result and mood picker ref here
         To Josh: Weather API shall be called in this VC and update the Label and save in the Model, which is 
         the func at the bottom :)
@@ -107,7 +109,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             self.switchOn = true
             //start receiving location updates from CoreLocation
             self.locationManager.startUpdatingLocation()
-            print("switchButton + \(self.switchOn)")
         }else{
             address.text = addressInfo
         }
@@ -206,6 +207,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                     if location == nil{
                         self.weatherResultLabel.text = "Weather"
                     }else{
+                        self.currentLocation = location!
                         self.weatherResultLabel.text = Model.getInstance.getWeather(lat: (location?.lat)!, lon: (location?.lon)!).description
                     }
 
@@ -229,16 +231,9 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }
     }
     
+    //Action placeholder if favourite switch need to do Model work
     @IBAction func isFavorite(_ sender: Any) {
         
-        if isFavorite.isOn == true{
-            self.switchOn = true
-            //start receiving location updates from CoreLocation
-            self.locationManager.startUpdatingLocation()
-            print("switchButton + \(self.switchOn)")
-        }else{
-            address.text = addressInfo
-        }
     }
    
    
@@ -264,27 +259,33 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     // Notes-> Ryan 21Jan: waiting for weather & Location API calls when save to model
     // correct params waiting to be passed: weather, location, coordinates
     // Xing : add more features to improve user experience
+    // Josh: Increased code maintainability by having only one Journal entry write to the Model
     @IBAction func saveJournal(_ sender: Any) {
         
         
-        if note.text == "" && musicFile.text == "" && quote.text == ""{
-            let alert = UIAlertController (title: "No content has been added yet", message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
+        //Show alert if user has not entered information into note (otherwise why have a journal right?)
+        if note.text!.isEmpty  {
+            let alert = UIAlertController (title: "No content has been added to notes", message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSheetController) -> Void in
             }))
             present(alert, animated: true)
         }else{
+            var photoPath:String = "defaultphoto"
+            
+            //Check if photo path has been set, assign if nessessary
+            if self.photoPath != nil
+            {
+                photoPath = self.photoPath
+            }
+            
+            //Save Journal entry to memory model
+            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)])
+            note.text = ""
+            quote.text = ""
+            
             //if user have chosen the picture for the journal
             self.activityIndicator.startAnimating()
-            if self.photoPath == nil{
-                
-                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:"defaultphoto", weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
-                note.text = ""
-                quote.text = ""
-            }else{
-                Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:self.photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: "RMIT",favorite: isFavorite.isOn, coordinates: [-37.6, 144.0])
-                note.text = ""
-                quote.text = ""
-            }
+            
             // 1 second later, this page will be closed
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1))
             {

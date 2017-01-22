@@ -16,36 +16,36 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //Delegate MapView functions to self
         
         self.mapView.delegate = self
         
-        var i:Double = 0.0
+        var setupMapViewRegion:Bool = false
         
+        //Loop through all entries, annotate with the date and the address
         for journalEntry in Model.getInstance.journalManager.getJournalEntriesArray()
         {
-            let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(journalEntry.coordinates[0], journalEntry.coordinates[1] + i)
-            print("==")
+            let pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(journalEntry.coordinates[0], journalEntry.coordinates[1])
             let objectAnn = MKPointAnnotation()
             objectAnn.coordinate = pinLocation
-           // let span = MKCoordinateSpanMake(0.075, 0.075)
-            //let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.808515, longitude: 144.9695), span: span)
             
-          //  let viewRegion = MKCoordinateRegionMakeWithDistance(pinLocation, 500, 500);
-           // MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
-           // [self.mapView setRegion:adjustedRegion animated:YES];
+            //Setup the Map view region, for the latest entry to be the center
+            if !setupMapViewRegion {
+                let viewRegion = MKCoordinateRegionMakeWithDistance(pinLocation, 500000.0, 500000.0)
+                let adjustedRegion = mapView.regionThatFits(viewRegion)
+                self.mapView.setRegion(adjustedRegion, animated: true)
+                self.mapView.showsUserLocation = true
+                setupMapViewRegion = true
+            }
             
             
-            let viewRegion = MKCoordinateRegionMakeWithDistance(pinLocation, 500, 500)
-            let adjustedRegion = mapView.regionThatFits(viewRegion)
-            self.mapView.setRegion(adjustedRegion, animated: true)
-            self.mapView.showsUserLocation = true
-            //mapView.setRegion(region, animated: true)
+            //Setup annotation
             objectAnn.title = journalEntry.date
             objectAnn.subtitle = journalEntry.location
+            
+            //Place pin on map
             self.mapView.addAnnotation(objectAnn)
             
-            i += 0.5
         }
     }
 
@@ -78,7 +78,6 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
             //Add a button to the right of the text in annotation view
             //This button will call the DetailViewController so the user can see details
             let button:UIButton = UIButton(type: .detailDisclosure)
-//            button.tag = Model.getInstance.getJournalIndexByDate(date: annotation.title!!)
             button.tag = Model.getInstance.journalManager.getJournalEntryAndIndexByDate(date: annotation.title!!)!.index
             button.addTarget(self, action: #selector(ratingButtonTapped), for: .touchDown)
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
@@ -94,22 +93,16 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
     
     // When Button is pressed, perform a Seque into the DetailViewController
     func ratingButtonTapped(sender: UIButton) {
-        //print(String(sender.tag))
-     
         performSegue(withIdentifier: "DetailViewSegue", sender: sender)
-        
-        
     }
     
+    //Prepare for Segue into the details page by setting the detail view journal to the selected index
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailView = segue.destination as! DetailViewController
         if segue.identifier == "DetailViewSegue" {
             let senderbutton = sender as! UIButton
             let journalIndex:Int = senderbutton.tag
             
-            print(journalIndex)
-            
-//            detailView.journalObj = Model.getInstance.getJournalEntriesArray()[journalIndex]
             detailView.journalDetail = Model.getInstance.journalManager.getJournalEntryByIndex(id: journalIndex)
             
         }

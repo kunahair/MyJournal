@@ -14,14 +14,6 @@ import Foundation
 struct DeviceDate
 {
     var date:Date = Date()
-//    {
-//        get{
-//            return self.date
-//        }
-//        set(date){
-//            self.date = date
-//        }
-//    }
     
     init(date: Date)
     {
@@ -32,17 +24,11 @@ struct DeviceDate
     var readableDate:String
     {
         get{
-//            let calendar:Calendar = Calendar.current
-            
             let formatter = DateFormatter()
-            formatter.dateFormat = "DD/MM/YY"
+            formatter.dateFormat = "DD-MM-YYYY"
             return formatter.string(from: date)
 
-            
-//            return String(calendar.component(.day, from: self.date)) + "/" +
-//                String(calendar.component(.month, from: self.date)) + "/" +
-//                String(calendar.component(.year, from: self.date))
-        }
+            }
     }
     
     //Get Unix (some call it EPOCH) time stamp from Date Object

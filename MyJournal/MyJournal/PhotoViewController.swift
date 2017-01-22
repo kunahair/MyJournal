@@ -21,6 +21,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Setup photo view (collection boilerplate)
         self.photoView.delegate = self
         self.photoView.dataSource = self
         self.photoView.backgroundView = UIImageView(image: UIImage(named: "background"))
@@ -45,10 +46,15 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         return Model.getInstance.journalManager.getJournalFavouriteArray().count
     }
     
-    
+    //Draw the cells for Collection View
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        //Get Cell from reusable queue
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoViewCell
+        //Get Journal entry
         let journal = Model.getInstance.journalManager.getJournalFavouriteArray()[indexPath.item]
+        
+        //Populate cell with entry data
+        //Also gets image from saved if it is set
         cell.likedDate.text = journal.date
         if journal.photo == "defaultphoto"
         {
@@ -57,12 +63,12 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
             cell.likedPhotos.image = UIImage(contentsOfFile: journal.photo)
         }
         
-        
+        //return the cell to be drawn
         cell.favorite = journal
         return cell
     }
     
-    
+    //Prepare for Segue into details view page
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "detailView"){
             let cell = sender as! PhotoViewCell

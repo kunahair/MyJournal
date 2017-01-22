@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Enum that matches mood to icon
+ **/
 enum MoodEnum: String {
     
     /* This mood enum class contains the following 5 states:

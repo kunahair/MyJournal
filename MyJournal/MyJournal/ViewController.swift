@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scheduleNotifiy(hour: hour, minute: minute)
+        //Notification for user to enter journal entry for the day (not used in submission)
+        //scheduleNotifiy(hour: hour, minute: minute)
        // UNUserNotificationCenter.current().delegate = self
     }
 
@@ -27,6 +28,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Notification for user to enter journal entry for the day (not used in submission)
+    /**
     func scheduleNotifiy(hour: Int, minute: Int) {
         let content = UNMutableNotificationContent()
         content.title = "My Journey"
@@ -42,6 +45,7 @@ class ViewController: UIViewController {
         let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler:{ error in })
     }
+ **/
 
  
    }

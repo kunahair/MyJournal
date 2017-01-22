@@ -16,10 +16,6 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     let hour:Int = 9
     let minute:Int = 0
     
-    
-    // When extracting arrays from the Model, the Model shall have a function that return a 2D array, the first array will the journals from last week, then last month, then the rest, to utilize the group function of the table view
-    // var dummyList: [[Journal]] = [[Journal(), Journal(), Journal()], [Journal(), Journal(), Journal()], [Journal(), Journal(), Journal()]]
-    
     var headers: [String] = ["This Week", "Last Month", "Previous Journals"]
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +24,8 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scheduleNotifiy(hour: hour, minute: minute)
+        //Notification scheduler (not used in final submission)
+        //scheduleNotifiy(hour: hour, minute: minute)
 
         // Do any additional setup after loading the view, typically from a nib.
 
@@ -41,10 +38,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-//        return JournalManger.journals.count
         return Model.getInstance.journalManager.getJournalEntriesCount()
-        
     }
     
      //headers
@@ -54,20 +48,15 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // cell reuse
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //Get Cell from queue
         let cell = tableView.dequeueReusableCell(withIdentifier: "recell", for: indexPath) as! CustomCell
-       // cell.textLabel?.text = dummyList[indexPath.section][indexPath.row].date
-//        let journal = JournalManger.journals[indexPath.item]
+
+        //Popluate Cell
         let journal = Model.getInstance.journalManager.getJournalEntryByIndex(id: indexPath.item)
         cell.textLabel?.text = journal.date
         cell.detailTextLabel?.text = journal.quote
         cell.journal = journal
-        
-        
-                //cell.detailTextLabel?.text = "It was a " + dummyList[indexPath.section][indexPath.row].weather + " day" + dummyList[indexPath.section][indexPath.row].weatherEmoji
-        
-        // add images
-        
-        //cell.imageView?.image = UIImage(named: "\(dummyList[indexPath.section][indexPath.row].mood)")
+       
         
         // add segue identifier
         
@@ -76,10 +65,9 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    
+    //Delete item if removed from model
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-//            JournalManger.DeleteJounal(id: indexPath.item)
             if Model.getInstance.journalManager.deleteJournalEntryByIndex(id: indexPath.item)
             {
                 tableView.deleteRows(at: [indexPath], with: .fade)
@@ -87,7 +75,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    
+    //Prepare for segue into details view page if cell selected
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "DetailViewSegue"){
             let cell = sender as! CustomCell
@@ -99,21 +87,11 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // segue to the detail page
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // print("cell selected - \(dummyList[indexPath.section][indexPath.row].date)")
-        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // prepare for segue - pass data
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let detailView = segue.destination as! DetailViewController
-        if segue.identifier == "DetailViewSegue" {
-            let selectSection: Int = (curTableView.indexPathForSelectedRow?.section)!
-            let selectRow: Int = (curTableView.indexPathForSelectedRow?.row)!
-            detailView.journalObj = dummyList[selectSection][selectRow]
-        }
-    }*/
     
+    //Notification for user to enter journal entry for the day (not used in submission)
+    /**
     func scheduleNotifiy(hour: Int, minute: Int) {
         let content = UNMutableNotificationContent()
         content.title = "My Journey"
@@ -129,6 +107,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler:{ error in })
     }
+ **/
     
 
 

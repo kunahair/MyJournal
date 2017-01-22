@@ -25,13 +25,9 @@ class OpenWeatherMap{
         //Get Weather String JSON from API
         let apiWeather = getWeatherFromAPI(lat: lat, lon: lon)
         
-        //let str = convertToDictionary(text: apiWeather)
-        
         //Convert Weather from API into JSON Object
         let weatherJSON = JSON.init(parseJSON: apiWeather)
         
-        //Create new Weather Object to store collected data
-        //var weather = loadWeatherData(weatherJSON: weatherJSON)
         
         //Return Weather Object
         return loadWeatherData(weatherJSON: weatherJSON)
@@ -72,15 +68,5 @@ class OpenWeatherMap{
         return weather
     }
     
-    //func convertToDictionary(text: String) -> [String: Any]? {
-    //    if let data = text.data(using: .utf8) {
-    //        do {
-    //            return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-    //        } catch {
-    //            print(error.localizedDescription)
-    //        }
-    //    }
-    //    return nil
-    //}
 }
     

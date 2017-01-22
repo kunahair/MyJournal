@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Struct that loads some default entries for submission and testing
+ **/
 struct FakeJournalEntries
 {
     
