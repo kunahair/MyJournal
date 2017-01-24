@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -45,19 +45,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
-    //let date = Date()
     var addressInfo = "Mark your location"
     var switchOn = false
     var photoURL: String!
     var photoPath:String!
     let today: String = Model.getInstance.getCurrentDate()
-    
     var currentLocation:Location = Location()
-    
-    /*  Change by Ryan, 21Jan, added weather result and mood picker ref here
-        To Josh: Weather API shall be called in this VC and update the Label and save in the Model, which is 
-        the func at the bottom :)
-     */
+    var currentWeather: String?
     var mood: MoodEnum = MoodEnum.happy
     
     @IBOutlet weak var moodPickerView: UIPickerView!
@@ -74,13 +68,25 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
+        
         currentDate.text = "\(today)"
         switchButton.isOn = false
         address.text = addressInfo
-        
-        // 21Jan Ryan:
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let location = try? Model.getInstance.getLocation()        
+        if location == nil{
+            self.weatherResultLabel.text = "Sunny"
+        }else{
+            self.currentLocation = location!
+            let weatherData = ParseWeatherData()
+            weatherData.getWeatherData(lat: (location?.lat)!, lon: (location?.lon)!)
+            weatherData.delegate = self
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,6 +94,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         // Dispose of any resources that can be recreated.
     }
 
+    func parseResult(data: String) {
+        self.currentWeather = data
+    }
+    
     //handle users' selection in the photo library
     @IBAction func selectPhoto(_ sender: Any) {
         photoPicker.allowsEditing = false
@@ -200,17 +210,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 if let formattedAddress = address["FormattedAddressLines"] as? [String] {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
-                    
                     //Update weather based on location
-                    let location = try? Model.getInstance.getLocation()
-                    
-                    if location == nil{
-                        self.weatherResultLabel.text = "Weather"
-                    }else{
-                        self.currentLocation = location!
-                        self.weatherResultLabel.text = Model.getInstance.getWeather(lat: (location?.lat)!, lon: (location?.lon)!).description
-                    }
-
+                    self.weatherResultLabel.text = self.currentWeather
                 }
             }
         })
@@ -273,17 +274,18 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             var photoPath:String = "defaultphoto"
             
             //Check if photo path has been set, assign if nessessary
+            
             if self.photoPath != nil
             {
                 photoPath = self.photoPath
             }
-            
+             //if user have chosen the picture for the journal
             //Save Journal entry to memory model
             Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)])
             note.text = ""
             quote.text = ""
             
-            //if user have chosen the picture for the journal
+           //start saving animation
             self.activityIndicator.startAnimating()
             
             // 1 second later, this page will be closed

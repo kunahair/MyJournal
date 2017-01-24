@@ -49,5 +49,10 @@
 	<string>Acquire current location</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Music Selection</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

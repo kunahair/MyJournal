@@ -58,16 +58,7 @@ class Model{
     
     
     
-    /**
-     User accesible function to get the weather from API
-     Returns a Weather Object
-    **/
-    func getWeather(lat:Float, lon:Float)->Weather
-    {
-        //Get current weather from OpenWeatherMap API and add to current Weather Object
-        let openWeatherMap = OpenWeatherMap()
-        return openWeatherMap.getCurrentWeather(lat: 140.0, lon: 137.0)
-    }
+  
     
     /**
      User accessible function to get a User Readable location
