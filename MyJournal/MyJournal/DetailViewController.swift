@@ -14,12 +14,24 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     var contentArray: [[String]] = []
     
+    /*
+        Menu refs
+     */
+    
+    @IBOutlet var rootView: UIView!
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var menuTrailing: NSLayoutConstraint! // open: -16; hidden: -200
+    var menuShowing = false
+    
+    /*
+        Exporting ref and render
+     */
+    // let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
+    
     //Journal Headings
-    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More"]
+    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More", "I Was at"]
     
     @IBOutlet weak var tableView: UITableView!
-    
-    
     @IBOutlet weak var favBtnOutlet: UIBarButtonItem!
 
     override func viewDidLoad() {
@@ -39,6 +51,12 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         if journalDetail!.favorite {
             favBtnOutlet.image = UIImage(named: "heartfill")
         }
+        
+        // hide menu get shadow
+        menuTrailing.constant = -200.0
+        menuView.layer.shadowOpacity = 0.5
+        menuView.layer.shadowRadius = 2.5
+        
     }
     
    
@@ -49,7 +67,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     /* Table Functions */
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     //Divide into sections for each journal heading
@@ -63,6 +81,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             return 1
         case 3:
             return 2
+        case 4:
+            return 1
         default:
             return 1
         }
@@ -132,6 +152,13 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             return cell
         }
         
+        // with map cell
+        if indexPath.section == 4 {
+            print("sec 4")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath) as! MapCell
+            cell.drawMap(id: journalDetail!.id)
+            return cell
+        }
         
         return tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
     }
@@ -195,4 +222,40 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         journalDetail!.favorite = set
     }
 
+    
+    /*
+        Slide menu funcs & actions
+     */
+    
+    @IBAction func menuSlide(_ sender: Any) {
+        menuShow()
+    }
+    
+    /*
+        Export action
+     */
+    
+    @IBAction func exportAction(_ sender: Any) {
+        // hide the menu first
+        menuShow()
+
+    }
+    
+    func menuShow() {
+        if menuShowing { // is showing
+            menuTrailing.constant = -200.0
+            menuView.alpha = 0
+            menuShowing = false
+        }
+        else {
+            menuTrailing.constant = -20.0
+            menuView.alpha = 1
+            menuShowing = true
+        }
+        
+        // add animation
+        UIView.animate(withDuration: 0.3, animations: {
+        self.view.layoutIfNeeded()
+        })
+    }
 }

@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import CoreLocation
+import MapKit
 
 class Model{
     
     static let getInstance = Model()
     
-//    var journalArray:Array<Journal> = []
-//    static var journalCurrentEntry:Journal = Journal()
-    
     var journalManager:JournalManger = JournalManger()
     private let _moodCases: [String] = ["happy", "sad", "okay", "tired", "peaceful"]
+    // for handling locations
+    let locationManager = CLLocationManager()
     
     private init()
     {
@@ -26,40 +27,7 @@ class Model{
 //        self.journalArray = Array(repeating: Journal(), count: 10)
         
     }
-    
-//    func getJournalEntriesArray()->Array<Journal>
-//    {
-//        return journalArray
-//    }
-//    
-//    func getJournalEntryByDate(date: String)->Journal?
-//    {
-//        for journalEntry in journalArray
-//        {
-//            if journalEntry.date == date
-//            {
-//                return journalEntry
-//            }
-//        }
-//        
-//        return nil
-//    }
-//    
-//    func getJournalIndexByDate(date: String)->Int
-//    {
-//        for (index, journalEntry) in journalArray.enumerated()
-//        {
-//            if journalEntry.date == date{
-//                return index
-//            }
-//        }
-//        return -1
-//    }
-    
-    
-    
-  
-    
+
     /**
      User accessible function to get a User Readable location
      Returns a Location Object
@@ -129,4 +97,34 @@ class Model{
         return deviceDate.readableDate
     }
     
+    
+    /*
+        Changes -Ryan -25Jan
+        Map display related functions
+     */
+    // return the coordinate object as the center for map display
+    func getMapCenter(location: [Double]) -> CLLocationCoordinate2D {
+        let lat = location[0]
+        let lon = location[1]
+        
+        let coordinate = CLLocationCoordinate2DMake(lat, lon)
+        
+        return coordinate
+    }
+    
+    // returns a region to load the map, gracefully handles a Journal, return a tuple with enough info to display on map
+    func getMapInfo(journal: Journal)->(MKCoordinateRegion, MKPointAnnotation) {
+        // get coord from the Journal and pass to func
+        let coordinates = getMapCenter(location: journal.coordinates)
+        // set up zoom
+        let span = MKCoordinateSpanMake(0.4, 0.4)
+        let region = MKCoordinateRegion(center: coordinates, span: span)
+        
+        // create annotation
+        let ann = MKPointAnnotation()
+        ann.coordinate = coordinates
+        ann.title = journal.date
+        ann.subtitle = journal.location
+        return (region, ann)
+    }
 }
