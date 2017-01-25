@@ -42,7 +42,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
  
     
     let photoPicker = UIImagePickerController()
-    
+    let factor: Float = 273.15
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
     var addressInfo = "Mark your location"
@@ -51,7 +51,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var photoPath:String!
     let today: String = Model.getInstance.getCurrentDate()
     var currentLocation:Location = Location()
-    var currentWeather: String?
+    var currentWeather: String = "Auto display upon activating location"
+    var currentTemp: String?
     var mood: MoodEnum = MoodEnum.happy
     
     @IBOutlet weak var moodPickerView: UIPickerView!
@@ -68,19 +69,22 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        
+        weatherResultLabel.text = currentWeather
+        weatherResultLabel.textColor = UIColor.gray
+         weatherResultLabel.font = UIFont.systemFont(ofSize: 14)
         currentDate.text = "\(today)"
         switchButton.isOn = false
         address.text = addressInfo
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
+       
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         let location = try? Model.getInstance.getLocation()        
         if location == nil{
-            self.weatherResultLabel.text = "Sunny"
+            self.weatherResultLabel.text = currentWeather
         }else{
             self.currentLocation = location!
             let weatherData = ParseWeatherData()
@@ -94,8 +98,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         // Dispose of any resources that can be recreated.
     }
 
-    func parseResult(data: String) {
-        self.currentWeather = data
+    func parseResult(dataList: Array<Weather>) {
+        let weather = Weather()
+        for weather in dataList{
+            self.currentWeather = weather.description+"   "+String(weather.temp-factor)+"°C"
+            
+        }
+        
     }
     
     //handle users' selection in the photo library
@@ -211,7 +220,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
                     //Update weather based on location
+                    self.weatherResultLabel.font = UIFont.systemFont(ofSize: 17)
+                    self.weatherResultLabel.textColor = UIColor.black
                     self.weatherResultLabel.text = self.currentWeather
+                    
                 }
             }
         })

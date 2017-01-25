@@ -52,6 +52,7 @@ class ParseWeatherData: UIViewController{
         } catch {
             print("Error :  + \(error)")
         }
+        var weatherDataList: [Weather] = []
         var weather = Weather()
         if let coord = weatherJSON!["coord"] as? NSDictionary {
             if let lat = coord["lat"] as? Float {
@@ -85,10 +86,7 @@ class ParseWeatherData: UIViewController{
             }
             if let description = weatherDir?["description"] as? String {
                 weather.description = description                
-                if delegate != nil {
-                    delegate?.parseResult(data: description)
-                    dismiss(animated: true, completion: nil)
-                }
+                
             }
         }
         if let wind = weatherJSON!["wind"] as? NSDictionary {
@@ -98,6 +96,11 @@ class ParseWeatherData: UIViewController{
             if let gust = wind["gust"] as? Float {
                 weather.wind_gust = gust
             }
+        }
+        weatherDataList.append(weather)
+        if delegate != nil {
+            delegate?.parseResult(dataList: weatherDataList)
+            dismiss(animated: true, completion: nil)
         }
     }
     

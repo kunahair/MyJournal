@@ -10,5 +10,5 @@ import Foundation
 
 
 protocol DataDelegate {
-    func parseResult(data: String)
+    func parseResult(dataList: Array<Weather>)
 }
