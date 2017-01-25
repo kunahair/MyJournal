@@ -25,7 +25,7 @@ class MapCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
     func drawMap(id: String) { // draw map with Journal ID, called in TableView
         let journal = Model.getInstance.journalManager.getJournalEntryByKey(key: id)
         let (mapRegion, mapAnnotation) = Model.getInstance.getMapInfo(journal: journal!)
