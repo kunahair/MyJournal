@@ -15,6 +15,8 @@ class Model{
     static let getInstance = Model()
     
     var journalManager:JournalManger = JournalManger()
+    var fileOpManager: FileOpManager = FileOpManager()
+    
     private let _moodCases: [String] = ["happy", "sad", "okay", "tired", "peaceful"]
     // for handling locations
     let locationManager = CLLocationManager()
@@ -85,6 +87,13 @@ class Model{
         let dateStr = formatter.string(from: currentDate)
         return dateStr
     }
+    
+    // Ryan 26Jan, added this functino to return a unique file name with given extension type and currentDateSec()
+    func getCurrentDateSecFilename(extensionType: String) -> String {
+        let filename = self.getCurrentDateSec().appending(extensionType)
+        return filename
+    }
+    
     
     // return passible mood selections in an array
     func getMoodArray()->[String] {

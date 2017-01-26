@@ -14,13 +14,6 @@ struct JournalManger {
     
     init()
     {
-        //self.journalEntries = FakeJournalEntries.getFakeJournalEntries()
-        //for i in 0...1 {
-        //    let key = String(Int(NSDate().timeIntervalSince1970*1000) + i*1000)
-            // create journal with a key that is the same with its key in the dictionary
-        //    journalEntries.updateValue(Journal(id: key), forKey: key)
-        //}
-        
         self.journalEntries = FakeJournalEntries.getFakeJournalEntries()
     }
     

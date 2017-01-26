@@ -23,6 +23,7 @@
 		9420328E1E309178005B1541 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328D1E309178005B1541 /* FooterCell.swift */; };
 		942032901E31E044005B1541 /* testDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328F1E31E044005B1541 /* testDetailView.swift */; };
 		942032921E334AF2005B1541 /* FavPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032911E334AF2005B1541 /* FavPhotos.swift */; };
+		94E25FA11E396BEC001B49AD /* FileOpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA01E396BEC001B49AD /* FileOpManager.swift */; };
 		EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */; };
 		EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */; };
 		EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */; };
@@ -87,6 +88,7 @@
 		9420328D1E309178005B1541 /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		9420328F1E31E044005B1541 /* testDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testDetailView.swift; sourceTree = "<group>"; };
 		942032911E334AF2005B1541 /* FavPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavPhotos.swift; sourceTree = "<group>"; };
+		94E25FA01E396BEC001B49AD /* FileOpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileOpManager.swift; sourceTree = "<group>"; };
 		EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDelegate.swift; sourceTree = "<group>"; };
 		EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseWeatherData.swift; sourceTree = "<group>"; };
 		EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewCell.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				EBA4BBE21E2C9FE900C1C24D /* SwiftyJSON.swift */,
 				EBA4BBD91E2C9EBC00C1C24D /* Structs */,
 				EBD31E901E341A560003D705 /* FakeJounalEntries.swift */,
+				94E25FA01E396BEC001B49AD /* FileOpManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
+				94E25FA11E396BEC001B49AD /* FileOpManager.swift in Sources */,
 				942032921E334AF2005B1541 /* FavPhotos.swift in Sources */,
 				EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */,
 				EBA4BBDE1E2C9ED800C1C24D /* OpenStreetMap.swift in Sources */,

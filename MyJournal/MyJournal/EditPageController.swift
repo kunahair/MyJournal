@@ -16,30 +16,28 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var selectPhoto: UIButton!
     @IBOutlet weak var photo: UIImageView!
-    
     @IBOutlet weak var selectMusic: UIButton!
     @IBOutlet weak var address: UITextView!
-   
     @IBOutlet weak var musicFile: UITextField!
-    
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var currentDate: UILabel!
     @IBOutlet weak var save: UIBarButtonItem!
-    
     @IBOutlet weak var quote: UITextField!
-    
     @IBOutlet weak var note: UITextView!
-    
     @IBOutlet weak var isFavorite: UISwitch!
  
+    /*
+        Ryan 26Jan; Record Audio Outlets and refs
+     */
+    @IBOutlet weak var audioPlayBtn: UIButton!
+    @IBOutlet weak var audioRecordBtn: UIButton!
     
     let photoPicker = UIImagePickerController()
     let factor: Float = 273.15
@@ -173,6 +171,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             
             let photoPaths = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(self.photoURL)
             //write data
+            print("DocPath: \(try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).absoluteString)")
+            print("PhotoPath: \(photoPaths.absoluteString)")
             do {
                 try photoData?.write(to: photoPaths, options: .atomic)
             } catch {
@@ -274,8 +274,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     // Xing : add more features to improve user experience
     // Josh: Increased code maintainability by having only one Journal entry write to the Model
     @IBAction func saveJournal(_ sender: Any) {
-        
-        
         //Show alert if user has not entered information into note (otherwise why have a journal right?)
         if note.text!.isEmpty  {
             let alert = UIAlertController (title: "No content has been added to notes", message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -284,9 +282,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             present(alert, animated: true)
         }else{
             var photoPath:String = "defaultphoto"
-            
             //Check if photo path has been set, assign if nessessary
-            
             if self.photoPath != nil
             {
                 photoPath = self.photoPath
@@ -296,7 +292,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)])
             note.text = ""
             quote.text = ""
-            
            //start saving animation
             self.activityIndicator.startAnimating()
             
@@ -308,5 +303,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             }
         }
     }
+    
+    
    
 }
