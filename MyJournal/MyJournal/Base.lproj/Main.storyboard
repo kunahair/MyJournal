@@ -254,7 +254,7 @@
                                                                 </constraints>
                                                                 <state key="normal" title="Button" image="addButton"/>
                                                                 <connections>
-                                                                    <action selector="selectMusic:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8RH-wi-FDx"/>
+                                                                    <segue destination="5Ox-0b-liZ" kind="show" identifier="WebGetSegue" id="mZK-4f-Rlx"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -290,6 +290,9 @@
                                                                     <constraint firstAttribute="width" constant="110" id="OnY-1F-LPs"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Play"/>
+                                                                <connections>
+                                                                    <action selector="audioPlayAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KQz-QN-2Hd"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMg-9q-xnJ">
                                                                 <rect key="frame" x="257" y="13" width="110" height="30"/>
@@ -297,6 +300,9 @@
                                                                     <constraint firstAttribute="width" constant="110" id="g0d-C3-E3n"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Record"/>
+                                                                <connections>
+                                                                    <action selector="audioRecordAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wTp-Zp-DRs"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -455,6 +461,7 @@
                         <outlet property="selectMusic" destination="yJC-1V-UjC" id="jhI-DD-1an"/>
                         <outlet property="selectPhoto" destination="LAw-SP-8Jz" id="rWN-tO-mNq"/>
                         <outlet property="switchButton" destination="5Wm-oR-bRt" id="WIM-4b-yYR"/>
+                        <outlet property="videoTextfield" destination="flK-Kf-1QV" id="OXj-5R-413"/>
                         <outlet property="weatherResultLabel" destination="koA-yR-1uW" id="Hok-zv-gBi"/>
                     </connections>
                 </viewController>
@@ -463,23 +470,48 @@
             </objects>
             <point key="canvasLocation" x="3576.811594202899" y="-1369.5652173913045"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="o9l-Ll-TvO">
+        <!--YouTube-->
+        <scene sceneID="ImR-42-FQs">
             <objects>
-                <viewController id="jHn-kU-vW7" sceneMemberID="viewController">
+                <viewController id="5Ox-0b-liZ" customClass="WebViewController" customModule="MyJournal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fdi-CT-JDi"/>
-                        <viewControllerLayoutGuide type="bottom" id="Gk5-93-btY"/>
+                        <viewControllerLayoutGuide type="top" id="4h2-Nr-HPN"/>
+                        <viewControllerLayoutGuide type="bottom" id="WMH-rB-tvV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OHt-FO-fqD">
+                    <view key="view" contentMode="scaleToFill" id="sU0-rL-UfA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnZ-OB-dWC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="XnZ-OB-dWC" secondAttribute="trailing" constant="-20" id="JmH-YJ-41a"/>
+                            <constraint firstItem="WMH-rB-tvV" firstAttribute="top" secondItem="XnZ-OB-dWC" secondAttribute="bottom" constant="-49" id="RSk-e0-U15"/>
+                            <constraint firstItem="XnZ-OB-dWC" firstAttribute="leading" secondItem="sU0-rL-UfA" secondAttribute="leadingMargin" constant="-20" id="ka4-Na-DC3"/>
+                            <constraint firstItem="XnZ-OB-dWC" firstAttribute="top" secondItem="4h2-Nr-HPN" secondAttribute="bottom" constant="-64" id="lLv-Hb-7Mk"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="YouTube" id="b5N-GW-NEh">
+                        <barButtonItem key="rightBarButtonItem" title="Save Video" id="5h4-Vb-bLS">
+                            <connections>
+                                <action selector="SaveVideo:" destination="5Ox-0b-liZ" id="4XU-D6-xdG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="736"/>
+                    <connections>
+                        <outlet property="saveVideoBtn" destination="5h4-Vb-bLS" id="hRp-OM-EMF"/>
+                        <outlet property="webView" destination="XnZ-OB-dWC" id="Jys-Gc-BJr"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YOO-ZX-5HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ab3-O4-Erc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4812" y="-1665"/>
+            <point key="canvasLocation" x="4340.579710144928" y="-1242.3913043478262"/>
         </scene>
         <!--My Jounal-->
         <scene sceneID="KV2-a9-qvC">
@@ -981,6 +1013,60 @@
                                             <outlet property="mapView" destination="gqq-Av-AnX" id="hyK-pD-ttt"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="QcP-dO-5JF" userLabel="Video View Cell" customClass="VideoCell" customModule="MyJournal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1022" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QcP-dO-5JF" id="0jp-ih-8la">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVh-bk-G7t">
+                                                    <rect key="frame" x="231" y="8" width="136" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Play"/>
+                                                    <connections>
+                                                        <action selector="videoPlayAction:" destination="QcP-dO-5JF" eventType="touchUpInside" id="2rV-A7-QP5"/>
+                                                        <segue destination="5Ox-0b-liZ" kind="show" identifier="WebViewSegue" id="505-Cq-t13"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kn-su-zcr">
+                                                    <rect key="frame" x="8" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordCell" id="ZKl-k9-eWq" userLabel="Record View Cell" customClass="RecordCell" customModule="MyJournal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1066" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZKl-k9-eWq" id="a3G-Di-Dvf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vj7-M0-Tpb">
+                                                    <rect key="frame" x="231" y="8" width="136" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Play"/>
+                                                    <connections>
+                                                        <action selector="recordPlayAction:" destination="ZKl-k9-eWq" eventType="touchUpInside" id="3IV-wX-kl5"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s7-wj-mUO">
+                                                    <rect key="frame" x="8" y="11" width="55" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="recordPlayBtn" destination="Vj7-M0-Tpb" id="5Wp-D6-XNT"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="3kV-eU-QMu" id="ued-Fj-oTH"/>
@@ -1075,7 +1161,8 @@
         <image name="location-pointer" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mtb-y2-dEd"/>
         <segue reference="iJS-me-IPs"/>
+        <segue reference="O5a-SZ-2zG"/>
+        <segue reference="mZK-4f-Rlx"/>
     </inferredMetricsTieBreakers>
 </document>

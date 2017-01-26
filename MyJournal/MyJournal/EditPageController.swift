@@ -52,11 +52,14 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var currentWeather: String = "Auto display upon activating location"
     var currentTemp: String?
     var mood: MoodEnum = MoodEnum.happy
+    var recordPathURL: URL!
+    var videoWebURL: URL!
     
     @IBOutlet weak var moodPickerView: UIPickerView!
     
     @IBOutlet weak var weatherResultLabel: UILabel!
     
+    @IBOutlet weak var videoTextfield: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
        
+        // Ryan 26Jan: set up the recorder when loading the page
+        Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
     }
     
     
@@ -289,7 +294,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             }
              //if user have chosen the picture for the journal
             //Save Journal entry to memory model
-            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)])
+            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL)
             note.text = ""
             quote.text = ""
            //start saving animation
@@ -303,7 +308,82 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             }
         }
     }
+    /*
+        Ryan - 26Jan; audio button actions
+     */
+
+    @IBAction func audioRecordAction(_ sender: UIButton) {
+        if sender.titleLabel?.text == "Record" { // if btn is record, start recording
+            sender.setTitle("Stop", for: UIControlState()) // change btn to Stop
+            audioPlayBtn.isEnabled = false // disable play btn
+            Model.getInstance.fileOpManager.startRecording()
+        }
+        else { // otherwise, stop recording
+            sender.setTitle("Record", for: UIControlState())
+            Model.getInstance.fileOpManager.stopRecording()
+        }
+    }
     
     
-   
+    @IBAction func audioPlayAction(_ sender: UIButton) {
+        if sender.titleLabel?.text == "Play" {
+            if self.recordPathURL == nil { // when there's no recording
+                print("NO recording Found")
+                return
+            }
+            audioRecordBtn.isEnabled = false
+            sender.setTitle("Stop", for: .normal)
+            // then prepare and play the audio player
+            if self.recordPathURL == nil {
+                print("NIL Record Path when playing")
+                return
+            }
+            else {
+                print("Trying to play: \(self.recordPathURL!)")
+                Model.getInstance.fileOpManager.startPlaying(audioURL: self.recordPathURL)
+            }
+        }
+        else {
+            sender.setTitle("Play", for: .normal)
+            audioRecordBtn.isEnabled = true
+            Model.getInstance.fileOpManager.stopPlaying()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "WebGetSegue" {
+            let destination = segue.destination as! WebViewController
+            destination.dataDelegate = self
+        }
+    }
+    
+    // record delegate funcs
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        audioPlayBtn.isEnabled = true
+        audioRecordBtn.setTitle("Record", for: .normal)
+    }
+    func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+        print("Error when recording: \(error!.localizedDescription)")
+    }
+    // player delegate funcs
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        audioRecordBtn.isEnabled = true
+        audioPlayBtn.setTitle("Play", for: .normal)
+    }
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        print("Error when playing: \(error!.localizedDescription)")
+    }
+    
+    // when recording stops, receive filepath as delegate
+    func receiveFilePath(filePathURL: URL) {
+        self.recordPathURL = filePathURL
+        print("Record Audio Path Received: \(self.recordPathURL)")
+    }
+    
+    // receive and set video url
+    func receiveVideoURL(webURL: URL) {
+        self.videoWebURL = webURL
+        videoTextfield.text = webURL.absoluteString
+        print("Video URL Received: \(self.videoWebURL)")
+    }
 }

@@ -20,6 +20,8 @@ struct Journal {
     private var _favorite:Bool
     private var _coordinates: [Double]
     private var _id: String
+    private var _recordURL: URL!
+    private var _videoURL: URL!
     // Default empty constructor for dummy data testing
     init(id: String) {
         _note = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum enim tortor. Etiam consequat fringilla velit, at sollicitudin leo pretium nec. Sed porttitor, mi in condimentum convallis, nibh dui congue nisl, ut pharetra massa nisl sit amet mauris. Ut fermentum, enim vitae fringilla eleifend, nisl ex dignissim dui, eu sollicitudin ligula ex nec diam. Curabitur elementum laoreet elit, sit amet iaculis leo eleifend eu. Curabitur vel orci ut tortor convallis bibendum. Maecenas malesuada, metus elementum vehicula luctus, purus sapien accumsan augue, a feugiat nunc velit ut elit. \nVivamus auctor congue nulla, vitae sollicitudin turpis euismod non. Pellentesque eu ullamcorper nisl, at imperdiet quam. Etiam efficitur arcu lectus, eget suscipit turpis imperdiet sit amet. Nam suscipit risus nisl, quis sodales est dignissim non. Vivamus convallis elit eget felis ornare, a rhoncus est pretium. Pellentesque ut pellentesque sem, non viverra est. Nunc rutrum lacinia justo eu facilisis. \nVivamus ut sapien fermentum nulla congue aliquet sit amet ut augue. Aliquam vel feugiat eros, a tincidunt sem. Fusce ligula elit, gravida molestie ultrices vitae, tristique ut dui. Fusce ac euismod velit. Sed aliquet sodales ligula et tincidunt. Fusce condimentum volutpat mollis. Maecenas ullamcorper mattis ex, id tempus eros rutrum non. Vivamus sed urna lectus."
@@ -44,14 +46,17 @@ struct Journal {
         
         _id = id
         
+        
     }
     
     // Sepecific constructor
-    init(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String) {
+    init(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String, record: URL?, video: URL?) {
         
         // check for nil values
         _music = music==nil ? "No Music" : music!
         _quote = quote==nil ? "No Quote" : quote!
+        _recordURL = record==nil ? nil : record!
+        _videoURL = video==nil ? nil : video!
         
         // Assignments
         _note = note; _photo = photo; _date = date; _location = location; _favorite = favorite;_coordinates = coordinates; _id = id
@@ -170,6 +175,24 @@ struct Journal {
     var id:String {
         get {
             return self._id
+        }
+    }
+    
+    var recordURL: URL {
+        get {
+            return self._recordURL
+        }
+        set(url) {
+            self._recordURL = url
+        }
+    }
+    
+    var videoURL: URL {
+        get {
+            return self._videoURL
+        }
+        set(url) {
+            self._videoURL = url
         }
     }
 
