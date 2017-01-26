@@ -29,7 +29,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     // let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
     
     //Journal Headings
-    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More", "I Was at"]
+    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More", "I Was at", "Other stuff"]
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favBtnOutlet: UIBarButtonItem!
@@ -67,7 +67,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     /* Table Functions */
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     //Divide into sections for each journal heading
@@ -83,6 +83,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             return 2
         case 4:
             return 1
+        case 5:
+            return 2
         default:
             return 1
         }
@@ -154,10 +156,25 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         // with map cell
         if indexPath.section == 4 {
-            print("sec 4")
             let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath) as! MapCell
             cell.drawMap(id: journalDetail!.id)
             return cell
+        }
+        
+        // with video and record cell
+        if indexPath.section == 5 {
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoCell
+                cell.videoURL = journalDetail!.videoURL
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! RecordCell
+                cell.recordURL = journalDetail!.recordURL
+                return cell
+            default:
+                return UITableViewCell()
+            }
         }
         
         return tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
@@ -167,6 +184,11 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailToEditSegue" {
             
+        }
+        
+        if segue.identifier == "WebViewSegue" {
+            let destination = segue.destination as! WebViewController
+            destination.webURL = journalDetail!.videoURL
         }
     }
 

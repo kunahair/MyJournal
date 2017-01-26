@@ -14,13 +14,6 @@ struct JournalManger {
     
     init()
     {
-        //self.journalEntries = FakeJournalEntries.getFakeJournalEntries()
-        //for i in 0...1 {
-        //    let key = String(Int(NSDate().timeIntervalSince1970*1000) + i*1000)
-            // create journal with a key that is the same with its key in the dictionary
-        //    journalEntries.updateValue(Journal(id: key), forKey: key)
-        //}
-        
         self.journalEntries = FakeJournalEntries.getFakeJournalEntries()
     }
     
@@ -49,10 +42,10 @@ struct JournalManger {
     //Add a Journal Entry to the JournalEntries Array
     // 19Jan Ryan: add the tiemstamp to the journal obj when this addJournal func is called
     // the Journal object is modified accordingly
-    mutating func AddJournal(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double])
+    mutating func AddJournal(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?)
     {
         let key = String(Int(NSDate().timeIntervalSince1970*1000))
-        let journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates, id: key)
+        let journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates, id: key, record: recordURL, video: videoURL)
 
         self.journalEntries.updateValue(journal, forKey: String(key))
     }
