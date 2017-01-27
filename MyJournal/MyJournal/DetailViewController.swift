@@ -46,8 +46,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.estimatedRowHeight = 140
         
         // Do any additional setup after loading the view.
-        
-        sepArray[0] = journalDetail!.date
+
         if journalDetail!.favorite {
             favBtnOutlet.image = UIImage(named: "heartfill")
         }
