@@ -12,6 +12,8 @@ class VideoCell: UITableViewCell {
     
     var videoURL: URL?
 
+    @IBOutlet weak var videoPlaybackButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

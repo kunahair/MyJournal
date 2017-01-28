@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */; };
+		2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */; };
+		2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */; };
 		2BE2C7951E3492A8004BFB2D /* testWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2C7941E3492A8004BFB2D /* testWalkthrough.swift */; };
 		3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AC25F1E2840F0009992ED /* EditPageController.swift */; };
 		3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */; };
@@ -69,6 +72,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerLocation.swift; sourceTree = "<group>"; };
+		2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerMoodPicker.swift; sourceTree = "<group>"; };
+		2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerImagePicker.swift; sourceTree = "<group>"; };
 		2BE2C7941E3492A8004BFB2D /* testWalkthrough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testWalkthrough.swift; sourceTree = "<group>"; };
 		3B0AC25F1E2840F0009992ED /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		3B95AE2C1E271EB8003C9490 /* MyJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +150,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BC94C991E3C289700009389 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */,
+				2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */,
+				2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		3B95AE231E271EB8003C9490 = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +277,7 @@
 		EBA4BBE41E2CA06400C1C24D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2BC94C991E3C289700009389 /* Extensions */,
 				3B0AC25F1E2840F0009992ED /* EditPageController.swift */,
 				EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */,
 				EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */,
@@ -422,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */,
 				EBA4BBD11E2C9E7E00C1C24D /* DeviceLocation.swift in Sources */,
 				94E25FA31E3A016B001B49AD /* WebViewController.swift in Sources */,
 				EBA4BBD71E2C9EA600C1C24D /* Weather.swift in Sources */,
@@ -448,9 +466,11 @@
 				EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */,
 				94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */,
 				EBA4BBD31E2C9E7E00C1C24D /* DeviceDate.swift in Sources */,
+				2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */,
 				94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */,
 				EBA4BBD21E2C9E7E00C1C24D /* DeviceLocationError.swift in Sources */,
 				EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */,
+				2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */,
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
 				EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */,

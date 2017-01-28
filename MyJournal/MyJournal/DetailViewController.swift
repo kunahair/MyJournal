@@ -164,12 +164,33 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         if indexPath.section == 5 {
             switch indexPath.row {
             case 0:
+                //Get reference to Cell from queue as a VideoCell
                 let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoCell
-                cell.videoURL = journalDetail!.videoURL
+                //Get the videoURL for this Journal Entry
+                //If it not nil, load the videolink
+                let videoURL:URL? = journalDetail!.videoURL
+                if videoURL != nil
+                {
+                    cell.videoURL = journalDetail!.videoURL
+                } else {
+                    //Otherwise hide the playback button
+                    cell.videoPlaybackButton.isHidden = true
+                }
+                
                 return cell
             case 1:
+                //Get reference to the Cell from queue as a RecordCell
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! RecordCell
-                cell.recordURL = journalDetail!.recordURL
+                //Get the record URL for this Journal Entry
+                //If it is not nil, load the Record Link
+                let recordURL:URL? = journalDetail!.recordURL
+                if recordURL != nil
+                {
+                    cell.recordURL = journalDetail!.recordURL
+                }else {
+                    //Otherwise hide the record playback button
+                    cell.recordPlaybackButton.isHidden = true
+                }
                 return cell
             default:
                 return UITableViewCell()

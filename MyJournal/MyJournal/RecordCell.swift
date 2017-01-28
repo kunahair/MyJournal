@@ -12,6 +12,7 @@ class RecordCell: UITableViewCell {
 
     var recordURL: URL?
     
+    @IBOutlet weak var recordPlaybackButton: UIButton!
     @IBOutlet weak var recordPlayBtn: UIButton!
     
     override func awakeFromNib() {

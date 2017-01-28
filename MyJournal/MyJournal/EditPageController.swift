@@ -81,6 +81,11 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
        
         // Ryan 26Jan: set up the recorder when loading the page
         Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
+        
+        //Set a quote and note for testing
+        //NOTE: MUST BE DELETED #######
+        note.text = "This is a test note"
+        quote.text = "This is a test quote"
     }
     
     
@@ -159,45 +164,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     }
     
     
-    //assign selected photo to the scene
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        //save selected photo data and get the url
-        DispatchQueue.global().async {
-            DispatchQueue.main.async {
-                self.photo.image = selectedPhoto
-            }
-            //get the saving time as the name of photo data
-            let dateStr = Model.getInstance.getCurrentDateSec()
-            self.photoURL = String(format: "%@.png", dateStr)
-            let photoData = UIImagePNGRepresentation(selectedPhoto!)
-            
-            let photoPaths = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(self.photoURL)
-            //write data
-            print("DocPath: \(try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).absoluteString)")
-            print("PhotoPath: \(photoPaths.absoluteString)")
-            do {
-                try photoData?.write(to: photoPaths, options: .atomic)
-            } catch {
-                print(error)
-            }
-            
-            let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let documentsDir: NSString = paths.object(at: 0) as! NSString
-            
-            self.photoPath  = documentsDir.appendingPathComponent(self.photoURL!)
-            
-            print("picture : "+"\(self.photoPath)")
-            
-        }
-        dismiss(animated: true, completion: nil)
-    }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
     
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
@@ -209,35 +176,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     }
     
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //process the location array (placeMarks)
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: { placeMarks, error in
-            guard let address = placeMarks?[0].addressDictionary else {
-                return
-            }
-            //log the message to the console when there is an error, .
-            if error != nil{
-                print("Error : "+(error?.localizedDescription)!)
-            }
-            if self.switchOn == true{
-                // get formatted address
-                if let formattedAddress = address["FormattedAddressLines"] as? [String] {
-                    self.locationManager.stopUpdatingLocation()
-                    self.address.text = formattedAddress.joined(separator: ", ")
-                    //Update weather based on location
-                    self.weatherResultLabel.font = UIFont.systemFont(ofSize: 17)
-                    self.weatherResultLabel.textColor = UIColor.black
-                    self.weatherResultLabel.text = self.currentWeather
-                    
-                }
-            }
-        })
-    }
     
-    //print errlr while updating location
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error"+error.localizedDescription)
-    }
     
     func saveButtonState(){
         if (quote.text != "" || note.text != ""){
@@ -255,22 +194,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     }
    
    
-    // Mood Picker and its funcs : Picker delegate and DataSource
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Model.getInstance.getMoodArray().count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Model.getInstance.getMoodArray()[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.mood = MoodEnum(mood: Model.getInstance.getMoodArray()[row])!
-    }
     
     
     //save data to model

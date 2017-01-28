@@ -178,7 +178,7 @@ struct Journal {
         }
     }
     
-    var recordURL: URL {
+    var recordURL: URL? {
         get {
             return self._recordURL
         }
@@ -187,7 +187,7 @@ struct Journal {
         }
     }
     
-    var videoURL: URL {
+    var videoURL: URL? {
         get {
             return self._videoURL
         }
