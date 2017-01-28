@@ -20,6 +20,27 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
         
         self.mapView.delegate = self
         
+       setupPinAnnotations()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //Before each page load, check if the model has changed, if they have then resetup the pin annotations
+        if mapView.annotations.count != Model.getInstance.journalManager.getJournalEntriesCount()
+        {
+            mapView.removeAnnotations(mapView.annotations)
+            setupPinAnnotations()
+        }
+    }
+    
+    /**
+     Setup Pin annotations on mapview, load from Model
+    **/
+    fileprivate func setupPinAnnotations(){
         var setupMapViewRegion:Bool = false
         
         //Loop through all entries, annotate with the date and the address
@@ -47,11 +68,6 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
             self.mapView.addAnnotation(objectAnn)
             
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //View loader for the Annotations on the map
