@@ -12,20 +12,26 @@ struct JournalManger {
     
     private var journalEntries:[String:Journal] = [:]
     
+    //Manager for the Database
+    fileprivate var journalDBManager:JournalDBManager = JournalDBManager()
+    
     init()
     {
-        self.journalEntries = FakeJournalEntries.getFakeJournalEntries()
+        
+        //let _ = journalDBManager.removeDatabaseFile()
+        if journalDBManager.initialiseDatabase() {
+            self.journalEntries = journalDBManager.getAllJournalEntries()!
+        }
     }
     
-    //Get the JournalEntries Array
+    //Get the JournalEntries Array, sorted by date
     func getJournalEntriesArray()->[Journal]
     {
         var journalEntryArray = [Journal](journalEntries.values)
         journalEntryArray = journalEntryArray.sorted(by: {$0.id > $1.id})
+        //Return sorted array
         return journalEntryArray
 
-        // return the values as array
-        //return [Journal](journalEntries.values)
     }
     
     //Get JournalEnties in a Dictionary, with Date as the Key
@@ -34,6 +40,7 @@ struct JournalManger {
         return journalEntries
     }
     
+    //Get count of Journal Entries in Dictionary (memory)
     func getJournalEntriesCount()-> Int
     {
         return self.journalEntries.count
@@ -42,17 +49,21 @@ struct JournalManger {
     //Add a Journal Entry to the JournalEntries Array
     // 19Jan Ryan: add the tiemstamp to the journal obj when this addJournal func is called
     // the Journal object is modified accordingly
+    // Josh: Try to add to database first, if successful, add to Dictionary
     mutating func AddJournal(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?)
     {
         let key = String(Int(NSDate().timeIntervalSince1970*1000))
         let journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates, id: key, record: recordURL, video: videoURL)
 
-        self.journalEntries.updateValue(journal, forKey: String(key))
+        if journalDBManager.saveJournalEntryToDatabase(journal: journal){
+            self.journalEntries.updateValue(journal, forKey: String(key))
+        }
     }
 
     //Delete a JournalEntry from JournalEntries Array, using the Array Index
     //Returns true if index and delete where valied, otherwise returns false
     // 19Jan Ryan: this func remains its functionality
+    // Josh: Remove from database, if successful remove from Dictionary
     mutating func deleteJournalEntryByIndex(id: Int)->Bool
     {
         let journalArray = getJournalEntriesArray()
@@ -62,17 +73,19 @@ struct JournalManger {
         {
             let journalID = journalToRemove!.id
             // means it can be removed, and is removed
-            if journalEntries.removeValue(forKey: journalID) != nil {
-                return true
-            }
+            return deleteJournalEntryByKey(key: journalID)
         }
         return false
     }
     
     // delete by journal dict key
+    //First try to delete from the database, if successful then remove from the dictionary
     mutating func deleteJournalEntryByKey(key: String)->Bool {
-        if journalEntries.removeValue(forKey: key) != nil {
-            return true
+        
+        if journalDBManager.deleteJournalEntryFromDatabaseById(id: key){
+            if journalEntries.removeValue(forKey: key) != nil {
+                return true
+            }
         }
         return false
     }
@@ -100,7 +113,6 @@ struct JournalManger {
 
     //Get a Journal Entry and its Array Index by Date
     //Returns a Tuple (index: Int, journal: Journal) returns nil if not found
-    
     func getJournalEntryAndIndexByDate(date: String)->(index: Int, journal: Journal)?
     {
         let journalArray = getJournalEntriesArray()
@@ -114,16 +126,28 @@ struct JournalManger {
         return nil
     }
  
+    //Toogle Journal Favourite in database and in Dictionary
+    //Return boolean to indicate completion
     mutating func setJournalFavouriteByKey(key: String)->Bool {
-        //let journalToLike:Journal? = journalEntries[key]
-        if journalEntries[key] != nil { // when the key is found in the dictionary
-            // set true to false, false to true
-            journalEntries[key]!.favorite ? (journalEntries[key]!.favorite=false) : (journalEntries[key]!.favorite=true)
-            return true
+        //Get Journal from Model Dictionary
+        var journalEntry:Journal? = journalEntries[key]
+        
+        //If the entry exists, toggle the favourite value of the pulled entry
+        //Then try to modify the Database first
+        //If it is successful, update the Dictionary
+        if journalEntry != nil {
+            journalEntry?.favorite = !(journalEntry?.favorite)!
+            if journalDBManager.updateJournalEntryFavourite(id: key, favourite: (journalEntry?.favorite)!)
+            {
+                journalEntries[key]?.favorite = (journalEntry?.favorite)!
+                return true
+            }
         }
         return false
     }
     
+    //Get list of Journal Entries that are favourited
+    //Return as an array
     func getJournalFavouriteArray()->[Journal] {
         let journalArray = getJournalEntriesArray()
         var favouriteArray: [Journal] = []
@@ -136,6 +160,7 @@ struct JournalManger {
         return favouriteArray
     }
     
+    //Get Journal Entry by Index convienience function
     func getJournalFavouriteByIndex(index: Int)->Journal? {
 
         // access by index

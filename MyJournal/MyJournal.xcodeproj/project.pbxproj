@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B83A3611E3C70FC0026C0DA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A3581E3C70FC0026C0DA /* FMDatabase.m */; };
+		2B83A3621E3C70FC0026C0DA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A35A1E3C70FC0026C0DA /* FMResultSet.m */; };
+		2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A35C1E3C70FC0026C0DA /* FMDatabaseQueue.m */; };
+		2B83A3641E3C70FC0026C0DA /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A35E1E3C70FC0026C0DA /* FMDatabaseAdditions.m */; };
+		2B83A3651E3C70FC0026C0DA /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A3601E3C70FC0026C0DA /* FMDatabasePool.m */; };
+		2B83A3671E3C713E0026C0DA /* JournalDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A3661E3C713E0026C0DA /* JournalDBManager.swift */; };
+		2B83A3691E3C715D0026C0DA /* JournalDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A3681E3C715D0026C0DA /* JournalDB.swift */; };
+		2B83A36B1E3C71880026C0DA /* JournalDatabaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A36A1E3C71880026C0DA /* JournalDatabaseAdapter.swift */; };
+		2B83A36E1E3C724E0026C0DA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */; };
+		2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */; };
 		2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */; };
 		2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */; };
 		2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */; };
@@ -72,6 +82,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B83A3551E3C70FC0026C0DA /* MyJournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyJournal-Bridging-Header.h"; sourceTree = "<group>"; };
+		2B83A3561E3C70FC0026C0DA /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		2B83A3571E3C70FC0026C0DA /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		2B83A3581E3C70FC0026C0DA /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		2B83A3591E3C70FC0026C0DA /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		2B83A35A1E3C70FC0026C0DA /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		2B83A35B1E3C70FC0026C0DA /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		2B83A35C1E3C70FC0026C0DA /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		2B83A35D1E3C70FC0026C0DA /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		2B83A35E1E3C70FC0026C0DA /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		2B83A35F1E3C70FC0026C0DA /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		2B83A3601E3C70FC0026C0DA /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		2B83A3661E3C713E0026C0DA /* JournalDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalDBManager.swift; sourceTree = "<group>"; };
+		2B83A3681E3C715D0026C0DA /* JournalDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalDB.swift; sourceTree = "<group>"; };
+		2B83A36A1E3C71880026C0DA /* JournalDatabaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalDatabaseAdapter.swift; sourceTree = "<group>"; };
+		2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDatabase.swift; sourceTree = "<group>"; };
 		2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerLocation.swift; sourceTree = "<group>"; };
 		2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerMoodPicker.swift; sourceTree = "<group>"; };
 		2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerImagePicker.swift; sourceTree = "<group>"; };
@@ -130,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B83A36E1E3C724E0026C0DA /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +178,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B83A3531E3C70B20026C0DA /* LocalDB */ = {
+			isa = PBXGroup;
+			children = (
+				2B83A3541E3C70C00026C0DA /* Database */,
+				2B83A3661E3C713E0026C0DA /* JournalDBManager.swift */,
+				2B83A3681E3C715D0026C0DA /* JournalDB.swift */,
+				2B83A36A1E3C71880026C0DA /* JournalDatabaseAdapter.swift */,
+			);
+			name = LocalDB;
+			sourceTree = "<group>";
+		};
+		2B83A3541E3C70C00026C0DA /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				2B83A3561E3C70FC0026C0DA /* FMDB.h */,
+				2B83A3571E3C70FC0026C0DA /* FMDatabase.h */,
+				2B83A3581E3C70FC0026C0DA /* FMDatabase.m */,
+				2B83A3591E3C70FC0026C0DA /* FMResultSet.h */,
+				2B83A35A1E3C70FC0026C0DA /* FMResultSet.m */,
+				2B83A35B1E3C70FC0026C0DA /* FMDatabaseQueue.h */,
+				2B83A35C1E3C70FC0026C0DA /* FMDatabaseQueue.m */,
+				2B83A35D1E3C70FC0026C0DA /* FMDatabaseAdditions.h */,
+				2B83A35E1E3C70FC0026C0DA /* FMDatabaseAdditions.m */,
+				2B83A35F1E3C70FC0026C0DA /* FMDatabasePool.h */,
+				2B83A3601E3C70FC0026C0DA /* FMDatabasePool.m */,
+				2B83A3551E3C70FC0026C0DA /* MyJournal-Bridging-Header.h */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		2B83A36C1E3C724E0026C0DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2BC94C991E3C289700009389 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +233,7 @@
 				3B95AE431E271EB8003C9490 /* MyJournalTests */,
 				3B95AE4E1E271EB8003C9490 /* MyJournalUITests */,
 				3B95AE2D1E271EB8003C9490 /* Products */,
+				2B83A36C1E3C724E0026C0DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,6 +263,7 @@
 		3B95AE431E271EB8003C9490 /* MyJournalTests */ = {
 			isa = PBXGroup;
 			children = (
+				2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */,
 				3B95AE441E271EB8003C9490 /* MyJournalTests.swift */,
 				3B95AE461E271EB8003C9490 /* Info.plist */,
 			);
@@ -262,6 +330,7 @@
 		EBA4BBE11E2C9EF200C1C24D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2B83A3531E3C70B20026C0DA /* LocalDB */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
 				EBA4BC231E2E39D300C1C24D /* JournalManger.swift */,
 				EBA4BC271E2F193900C1C24D /* Model.swift */,
@@ -372,6 +441,7 @@
 					3B95AE2B1E271EB8003C9490 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 54NP9FJ3DT;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					3B95AE3F1E271EB8003C9490 = {
@@ -440,12 +510,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */,
+				2B83A3671E3C713E0026C0DA /* JournalDBManager.swift in Sources */,
 				EBA4BBD11E2C9E7E00C1C24D /* DeviceLocation.swift in Sources */,
 				94E25FA31E3A016B001B49AD /* WebViewController.swift in Sources */,
 				EBA4BBD71E2C9EA600C1C24D /* Weather.swift in Sources */,
 				EBA4BBE31E2C9FE900C1C24D /* SwiftyJSON.swift in Sources */,
+				2B83A3641E3C70FC0026C0DA /* FMDatabaseAdditions.m in Sources */,
+				2B83A3691E3C715D0026C0DA /* JournalDB.swift in Sources */,
 				EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */,
 				EBA4BBCD1E2C855100C1C24D /* DetailViewController.swift in Sources */,
+				2B83A36B1E3C71880026C0DA /* JournalDatabaseAdapter.swift in Sources */,
+				2B83A3651E3C70FC0026C0DA /* FMDatabasePool.m in Sources */,
 				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
@@ -453,7 +528,9 @@
 				942032921E334AF2005B1541 /* FavPhotos.swift in Sources */,
 				EBA4BBD81E2C9EA600C1C24D /* Location.swift in Sources */,
 				EBA4BBDE1E2C9ED800C1C24D /* OpenStreetMap.swift in Sources */,
+				2B83A3621E3C70FC0026C0DA /* FMResultSet.m in Sources */,
 				9420328E1E309178005B1541 /* FooterCell.swift in Sources */,
+				2B83A3611E3C70FC0026C0DA /* FMDatabase.m in Sources */,
 				EBD31E911E341A560003D705 /* FakeJounalEntries.swift in Sources */,
 				EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */,
 				942032851E307CBE005B1541 /* ImageCell.swift in Sources */,
@@ -474,6 +551,7 @@
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
 				EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */,
+				2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */,
 				942032861E307CBE005B1541 /* MapCell.swift in Sources */,
 				EBD43BCF1E2B4747006968DB /* PhotoViewCell.swift in Sources */,
 				942032891E307CBE005B1541 /* TextbodyCell.swift in Sources */,
@@ -484,6 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */,
 				3B95AE451E271EB8003C9490 /* MyJournalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,11 +702,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 54NP9FJ3DT;
 				INFOPLIST_FILE = MyJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xing.MyJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyJournal/MyJournal-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -636,11 +718,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 54NP9FJ3DT;
 				INFOPLIST_FILE = MyJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xing.MyJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyJournal/MyJournal-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
