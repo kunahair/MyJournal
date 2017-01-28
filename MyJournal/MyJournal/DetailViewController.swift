@@ -58,6 +58,23 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //Before the view appears, check that it has not been modified in the model
+        //Get the journal entry from the model
+        let journalUpdate:Journal? = Model.getInstance.journalManager.getJournalEntryByKey(key: journalDetail!.id)
+        
+        //If it is nil, then go back one view (either main table view or collection view)
+        if journalUpdate == nil {
+           let _ = navigationController?.popViewController(animated: true)
+        }else{
+            //Otherwise check if the favourite status has been changed
+            localFavSet(set: journalUpdate!.favorite)
+        }
+        
+        
+    }
+    
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
