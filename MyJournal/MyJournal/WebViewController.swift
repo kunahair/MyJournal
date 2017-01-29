@@ -34,7 +34,7 @@ class WebViewController: UIViewController {
         webURL = webView.request!.url!
         if dataDelegate != nil && webURL != nil{
             dataDelegate?.receiveVideoURL(webURL: self.webURL!)
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
     }
 }

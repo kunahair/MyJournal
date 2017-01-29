@@ -17,6 +17,7 @@
 		2B83A36B1E3C71880026C0DA /* JournalDatabaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A36A1E3C71880026C0DA /* JournalDatabaseAdapter.swift */; };
 		2B83A36E1E3C724E0026C0DA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */; };
 		2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */; };
+		2BB20BA71E3D840F009A971A /* JournalManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */; };
 		2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */; };
 		2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */; };
 		2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */; };
@@ -99,6 +100,7 @@
 		2B83A36A1E3C71880026C0DA /* JournalDatabaseAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalDatabaseAdapter.swift; sourceTree = "<group>"; };
 		2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDatabase.swift; sourceTree = "<group>"; };
+		2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalManagerProtocol.swift; sourceTree = "<group>"; };
 		2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerLocation.swift; sourceTree = "<group>"; };
 		2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerMoodPicker.swift; sourceTree = "<group>"; };
 		2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerImagePicker.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				EBA4BBD91E2C9EBC00C1C24D /* Structs */,
 				EBD31E901E341A560003D705 /* FakeJounalEntries.swift */,
 				94E25FA01E396BEC001B49AD /* FileOpManager.swift */,
+				2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				EBA4BC281E2F193900C1C24D /* Model.swift in Sources */,
 				EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */,
 				94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */,
+				2BB20BA71E3D840F009A971A /* JournalManagerProtocol.swift in Sources */,
 				EBA4BBD31E2C9E7E00C1C24D /* DeviceDate.swift in Sources */,
 				2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */,
 				94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */,

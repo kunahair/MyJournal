@@ -12,7 +12,7 @@ import Foundation
  Struct to Handle all of the Database functionality
  Handles all conversion from Journal object to JournalDB and back again
  **/
-struct JournalDBManager {
+struct JournalDBManager: JournalManagerProtocol {
     
     //Database path where the db file is located, loaded at every call to ensure no errors
     fileprivate var databasePath = NSString()
@@ -21,14 +21,10 @@ struct JournalDBManager {
     //Name of the Table that is being used in the databse
     fileprivate let tableName:String = "JOURNALS"
     
-    init(){
-        //initialiseDatabase()
-    }
-    
     /**
      Conveinience function that ensures that the database path is set correctly
      Called at the start of every database function in this struct to ensure no errors, mostly in testing
-    **/
+     **/
     fileprivate mutating func setDatabasePath(){
         
         //Get all directories in document path
@@ -46,7 +42,7 @@ struct JournalDBManager {
     /**
      Initialse the database
      This includes creating the database file, creating the table/s and loading the default data
-    **/
+     **/
     mutating func initialiseDatabase()->Bool
     {
         //Ensure the database path is set
@@ -93,11 +89,11 @@ struct JournalDBManager {
                 {
                     //If at any point there is an error inserting the default values,
                     //Return false right away as it cant be trusted
-                    if !saveJournalEntryToDatabase(journal: journalIndexPair.value)
+                    if !addJournal(journal: journalIndexPair.value)
                     {
                         return false
                     }
-                 }
+                }
                 
                 //If all went well, return true
                 return true
@@ -116,7 +112,7 @@ struct JournalDBManager {
      Function to drop the Journals table and delete the file
      Mostly for testing but might be good if a user wanted to "start again", not implimented at this stage
      Returns status of delete in the form of a boolean
-    **/
+     **/
     mutating func removeDatabaseFile()->Bool
     {
         //Ensure the database path is set
@@ -128,57 +124,56 @@ struct JournalDBManager {
         //Check if the file exists
         if filemgr.fileExists(atPath: databasePath as String)
         {
-                // Get a reference to the database
-                let journalDB = FMDatabase(path: databasePath as String)
+            // Get a reference to the database
+            let journalDB = FMDatabase(path: databasePath as String)
             
-                //If there is no reference the print message and return false
-                if journalDB == nil {
-                    print("Error: \(journalDB?.lastErrorMessage())")
-                    return false
-                }
-                
-                // Open the database
-                if (journalDB?.open())!
-                {
-                    
-                    // Prepare a drop statement of the table
-                    let sql_stmt = "DROP TABLE " + tableName
-                    
-                    // Execute the statement
-                    if !(journalDB?.executeStatements(sql_stmt))! {
-                        print("Error: \(journalDB?.lastErrorMessage())")
-                    }else {
-                        //Otherwise, YAY it worked
-                        print("Journals Database Dropped")
-                    }
-                    
-                    // Close the database
-                    journalDB?.close()
-                    
-                    
-                } else {
-                    //If the database is unable to be opened then print message and return false
-                    print("Error: \(journalDB?.lastErrorMessage())")
-                    return false
-                }
-            }
-            
-            do{
-                //Try to delete the database file, if it succeeded return true, otherwise return false
-                try filemgr.removeItem(atPath: databasePath as String)
-                return true
-            }catch {
+            //If there is no reference the print message and return false
+            if journalDB == nil {
+                print("Error: \(journalDB?.lastErrorMessage())")
                 return false
             }
+            
+            // Open the database
+            if (journalDB?.open())!
+            {
+                
+                // Prepare a drop statement of the table
+                let sql_stmt = "DROP TABLE " + tableName
+                
+                // Execute the statement
+                if !(journalDB?.executeStatements(sql_stmt))! {
+                    print("Error: \(journalDB?.lastErrorMessage())")
+                }else {
+                    //Otherwise, YAY it worked
+                    print("Journals Database Dropped")
+                }
+                
+                // Close the database
+                journalDB?.close()
+                
+                
+            } else {
+                //If the database is unable to be opened then print message and return false
+                print("Error: \(journalDB?.lastErrorMessage())")
+                return false
+            }
+        }
+        
+        do{
+            //Try to delete the database file, if it succeeded return true, otherwise return false
+            try filemgr.removeItem(atPath: databasePath as String)
+            return true
+        }catch {
+            return false
+        }
         
     }
     
     /**
      Save a Journal Entry into the Database
      Return boolean to indicate success of insertion, false by default, that is just good practice :P
-    **/
-    mutating func saveJournalEntryToDatabase(journal: Journal)->Bool
-    {
+     **/
+    mutating func addJournal(journal: Journal) -> Bool {
         //Ensure the database path is set
         setDatabasePath()
         
@@ -222,85 +217,9 @@ struct JournalDBManager {
     }
     
     /**
-     Get a Journal from the database and return as a Journal object
-     Returns found Journal object or nil if not found or on error
-    **/
-    mutating func getJournalEntryFromDatabase(id timestamp: String)->Journal?
-    {
-        //Ensure the database path is set
-        setDatabasePath()
-        
-        // Get a reference to the database
-        let journalDB = FMDatabase(path: databasePath as String)
-        
-        //Open the database
-        if (journalDB?.open())!
-        {
-            // Prepare a statement for operating on the database
-            let querySQL = "SELECT * FROM " + tableName + " WHERE TIMESTAMP='\(timestamp)'"
-            
-            //Execute the query
-            let resultSet:FMResultSet? = journalDB?.executeQuery(querySQL,
-                                                                 withArgumentsIn: nil)
-            //If the result is nil, return nil and print an error
-            if resultSet == nil {
-                print("Failed to get Journal Entry")
-                // Close the database
-                journalDB?.close()
-                return nil
-            }else {
-                //If there is at least one result, get the first one and load into JournalDB for conversion
-                if (resultSet?.next())! {
-                    var journalFromDatabase:JournalDB = JournalDB()
-                    journalFromDatabase.id = resultSet!.string(forColumn: "timestamp")
-                    journalFromDatabase.note = resultSet!.string(forColumn: "note")
-                    journalFromDatabase.date = resultSet!.string(forColumn: "date")
-                    journalFromDatabase.coordinates = resultSet!.string(forColumn: "coordinates")
-                    journalFromDatabase.location = resultSet!.string(forColumn: "location")
-                    journalFromDatabase.mood = resultSet!.string(forColumn: "mood")
-                    journalFromDatabase.music = resultSet!.string(forColumn: "music")
-                    journalFromDatabase.weather = resultSet!.string(forColumn: "weather")
-                    journalFromDatabase.photo = resultSet!.string(forColumn: "photo")
-                    journalFromDatabase.quote = resultSet!.string(forColumn: "quote")
-                    journalFromDatabase.favorite = Int(resultSet!.int(forColumn: "favourite"))
-                    journalFromDatabase.recordURL = resultSet!.string(forColumn: "recordurl")
-                    journalFromDatabase.videoURL = resultSet!.string(forColumn: "videourl")
-                    
-                    //Convert the JournalDB into a Journal object
-                    let journal:Journal? = JournalDatabaseAdapter.convertFromDatabase(journalDB: journalFromDatabase)
-                    
-                    //Test if the converted Journal is nil, print an error if so
-                    if journal != nil {
-                        print("Journal Entry Retrieved")
-                    }
-                    
-                    // Close the database
-                    journalDB?.close()
-                    
-                    //Return the journal
-                    return journal
-                }else {
-                    //if there was no result, print error, close DB and return nil
-                    print("Failed to get Journal Entry :( \(journalDB?.lastErrorMessage())")
-                    // Close the database
-                    journalDB?.close()
-                    return nil
-                }
-                
-            }
-            
-        } else {
-            //If the file failed to open print message
-            print("Error: \(journalDB?.lastErrorMessage())")
-        }
-        //Return nil by default
-        return nil
-    }
-    
-    /**
      Get all Journal Entries from database and return as a Dictionary
      Return Dictionary of results if found, nil if nothing or error
-    **/
+     **/
     mutating func getAllJournalEntries()->[String: Journal]?
     {
         //Ensure the database path is set
@@ -377,11 +296,87 @@ struct JournalDBManager {
     }
     
     /**
+     Get a Journal from the database and return as a Journal object
+     Returns found Journal object or nil if not found or on error
+     **/
+    mutating func getJournalEntryByKey(key: String) -> Journal? {
+        //Ensure the database path is set
+        setDatabasePath()
+        
+        // Get a reference to the database
+        let journalDB = FMDatabase(path: databasePath as String)
+        
+        //Open the database
+        if (journalDB?.open())!
+        {
+            // Prepare a statement for operating on the database
+            let querySQL = "SELECT * FROM " + tableName + " WHERE TIMESTAMP='\(key)'"
+            
+            //Execute the query
+            let resultSet:FMResultSet? = journalDB?.executeQuery(querySQL,
+                                                                 withArgumentsIn: nil)
+            //If the result is nil, return nil and print an error
+            if resultSet == nil {
+                print("Failed to get Journal Entry")
+                // Close the database
+                journalDB?.close()
+                return nil
+            }else {
+                //If there is at least one result, get the first one and load into JournalDB for conversion
+                if (resultSet?.next())! {
+                    var journalFromDatabase:JournalDB = JournalDB()
+                    journalFromDatabase.id = resultSet!.string(forColumn: "timestamp")
+                    journalFromDatabase.note = resultSet!.string(forColumn: "note")
+                    journalFromDatabase.date = resultSet!.string(forColumn: "date")
+                    journalFromDatabase.coordinates = resultSet!.string(forColumn: "coordinates")
+                    journalFromDatabase.location = resultSet!.string(forColumn: "location")
+                    journalFromDatabase.mood = resultSet!.string(forColumn: "mood")
+                    journalFromDatabase.music = resultSet!.string(forColumn: "music")
+                    journalFromDatabase.weather = resultSet!.string(forColumn: "weather")
+                    journalFromDatabase.photo = resultSet!.string(forColumn: "photo")
+                    journalFromDatabase.quote = resultSet!.string(forColumn: "quote")
+                    journalFromDatabase.favorite = Int(resultSet!.int(forColumn: "favourite"))
+                    journalFromDatabase.recordURL = resultSet!.string(forColumn: "recordurl")
+                    journalFromDatabase.videoURL = resultSet!.string(forColumn: "videourl")
+                    
+                    //Convert the JournalDB into a Journal object
+                    let journal:Journal? = JournalDatabaseAdapter.convertFromDatabase(journalDB: journalFromDatabase)
+                    
+                    //Test if the converted Journal is nil, print an error if so
+                    if journal != nil {
+                        print("Journal Entry Retrieved")
+                    }
+                    
+                    // Close the database
+                    journalDB?.close()
+                    
+                    //Return the journal
+                    return journal
+                }else {
+                    //if there was no result, print error, close DB and return nil
+                    print("Failed to get Journal Entry :( \(journalDB?.lastErrorMessage())")
+                    // Close the database
+                    journalDB?.close()
+                    return nil
+                }
+                
+            }
+            
+        } else {
+            //If the file failed to open print message
+            print("Error: \(journalDB?.lastErrorMessage())")
+        }
+        //Return nil by default
+        return nil
+    }
+    
+    
+    /**
      Function to update a change favourite state of a Journal entry into the databse
      Returns success status of update as a boolean
-    **/
-    mutating func updateJournalEntryFavourite(id timestamp: String, favourite: Bool)->Bool
-    {
+     **/
+    mutating func toggleJournalFavouriteByKey(key: String, favourite: Bool) -> Bool {
+        
         //Ensure the database path is set
         setDatabasePath()
         
@@ -398,7 +393,7 @@ struct JournalDBManager {
             
             do{
                 //Update the database with the changed value
-                try journalDB?.executeUpdate(updateFavSQL, values: [favouriteValue, timestamp])
+                try journalDB?.executeUpdate(updateFavSQL, values: [favouriteValue, key])
                 
                 //If successful, print result
                 print("Journal Entry Updated")
@@ -421,15 +416,14 @@ struct JournalDBManager {
         }
         //Return false by default
         return false
-        
     }
     
     /**
      Function to delete a Journal entry (by timestamp, ID in Model) from the database
      Return the successfulness of the deletion as a boolean
-    **/
-    mutating func deleteJournalEntryFromDatabaseById(id timestamp: String)->Bool
-    {
+     **/
+    mutating func deleteJournalEntryByKey(key: String) -> Bool {
+        
         //Ensure the database path is set
         setDatabasePath()
         
@@ -440,7 +434,7 @@ struct JournalDBManager {
         if (journalDB?.open())!
         {
             // Prepare a statement for operating on the database
-            let deleteSQL = "DELETE from " + tableName + " WHERE TIMESTAMP='\(timestamp)'"
+            let deleteSQL = "DELETE from " + tableName + " WHERE TIMESTAMP='\(key)'"
             
             // Execute the update statement
             let result = journalDB?.executeUpdate(deleteSQL, withArgumentsIn: nil)
@@ -466,4 +460,7 @@ struct JournalDBManager {
         //Return false by default
         return false
     }
+    
+    
+    
 }

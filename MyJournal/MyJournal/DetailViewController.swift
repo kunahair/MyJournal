@@ -10,9 +10,9 @@ import UIKit
 
 class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    //Local Journal Entry that is being viewed, and also is updated in sympathy with the Model
     var journalDetail:Journal?
     
-    var contentArray: [[String]] = []
     
     /*
         Menu refs
@@ -241,19 +241,15 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     //btns
     
+    /**
+     When favourite button is pressed, toggle the value in the database and memory model
+     On success update the button view and change the local value
+    **/
     @IBAction func favBtn(_ sender: Any) {
         if journalDetail != nil {
-            if journalDetail!.favorite { // when it is true - favourite
-                // modify the model and then local copy
-                if Model.getInstance.journalManager.setJournalFavouriteByKey(key: journalDetail!.id) {
-                    // on successful fav-set, change local copy
-                    localFavSet(set: false)
-                }
-            }
-            else { // when it is false, not favourite
-                if Model.getInstance.journalManager.setJournalFavouriteByKey(key: journalDetail!.id) {
-                    localFavSet(set: true)
-                }
+            if Model.getInstance.journalManager.toggleJournalFavouriteByKey(key: journalDetail!.id, favourite: journalDetail!.favorite)
+            {
+                localFavSet(set: !journalDetail!.favorite)
             }
         }
     }
@@ -262,13 +258,17 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func delBtn(_ sender: Any) {
         // on successful deletion
         if Model.getInstance.journalManager.deleteJournalEntryByKey(key: journalDetail!.id) { // success
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
         else {
             print("deletion failed on: " + "\(journalDetail!.id)")
         }
     }
     
+    /**
+     Update the Favourite button view to be filled or empty when user toggles the value
+     Set the local variable to keep in line with Model
+    **/
     func localFavSet(set: Bool) {
         if set { // when set to fav
             // set btn appearence

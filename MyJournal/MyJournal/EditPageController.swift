@@ -107,7 +107,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     }
 
     func parseResult(dataList: Array<Weather>) {
-        let weather = Weather()
         for weather in dataList{
             self.currentWeather = weather.description+"   "+String(weather.temp-factor)+"°C"
             
@@ -197,18 +196,18 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     
     
-    //save data to model
-    // Notes-> Ryan 21Jan: waiting for weather & Location API calls when save to model
-    // correct params waiting to be passed: weather, location, coordinates
-    // Xing : add more features to improve user experience
-    // Josh: Increased code maintainability by having only one Journal entry write to the Model
+    /**
+     Save Journal Entry
+     Notes-> Ryan 21Jan: waiting for weather & Location API calls when save to model
+     correct params waiting to be passed: weather, location, coordinates
+     Xing : add more features to improve user experience
+     Josh: Increased code maintainability by having only one Journal entry write to the Model
+     Josh: Do a check that the save was successful both in the database and the model, if not, show user error but do not delete their work.
+    **/
     @IBAction func saveJournal(_ sender: Any) {
         //Show alert if user has not entered information into note (otherwise why have a journal right?)
         if note.text!.isEmpty  {
-            let alert = UIAlertController (title: "No content has been added to notes", message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSheetController) -> Void in
-            }))
-            present(alert, animated: true)
+            showAlert(message: "No content has been added to the notes section")
         }else{
             var photoPath:String = "defaultphoto"
             //Check if photo path has been set, assign if nessessary
@@ -216,19 +215,27 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             {
                 photoPath = self.photoPath
             }
-             //if user have chosen the picture for the journal
-            //Save Journal entry to memory model
-            Model.getInstance.journalManager.AddJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL)
-            note.text = ""
-            quote.text = ""
-           //start saving animation
-            self.activityIndicator.startAnimating()
             
-            // 1 second later, this page will be closed
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1))
+            //Save Journal Entry to database and Model
+            //If the save was successful, then go back to initial view (the calling view) with some fancy animation
+            if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL)
             {
-                self.activityIndicator.stopAnimating()
-                self.navigationController?.popViewController(animated: true)
+                //Clear not and quote to show user actions are happening
+                note.text = ""
+                quote.text = ""
+                
+                //start saving animation
+                self.activityIndicator.startAnimating()
+            
+                // 1 second later, this page will be closed
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1))
+                {
+                    self.activityIndicator.stopAnimating()
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            }else {
+                //Otherwise, tell the user that the save was not successful, without deleting their work
+                showAlert(message: "Failed to save Journal Entry, please try again")
             }
         }
     }
@@ -309,5 +316,15 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.videoWebURL = webURL
         videoTextfield.text = webURL.absoluteString
         print("Video URL Received: \(self.videoWebURL)")
+    }
+    
+    /**
+     Abstracted function to display an alert with a custom message
+    **/
+    func showAlert(message: String){
+        let alert = UIAlertController (title: message, message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSheetController) -> Void in
+        }))
+        present(alert, animated: true)
     }
 }

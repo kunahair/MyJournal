@@ -40,7 +40,7 @@ class FileOpManager {
     func setupRecorder(avDelegate: AVAudioRecorderDelegate, dataDelegate: DataDelegate) {
         // set up everthing in the recorder
         // audio file needs: format, quality, bitrate
-        var recordSetting = [AVFormatIDKey : kAudioFormatAppleLossless, AVEncoderAudioQualityKey : AVAudioQuality.medium.rawValue, AVEncoderBitRateKey : 320000, AVNumberOfChannelsKey : 2, AVSampleRateKey : 44100.0 ] as [String : Any]
+        let recordSetting = [AVFormatIDKey : kAudioFormatAppleLossless, AVEncoderAudioQualityKey : AVAudioQuality.medium.rawValue, AVEncoderBitRateKey : 320000, AVNumberOfChannelsKey : 2, AVSampleRateKey : 44100.0 ] as [String : Any]
         // for error display
         //var error: NSError?
         
