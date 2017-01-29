@@ -88,7 +88,8 @@ struct JournalManger: JournalManagerProtocol {
         return journalEntries[key]
     }
     
-    /**Get a Journal Entry from Array by index
+    /**
+     Get a Journal Entry from Array by index
      Returns a Journal Entry if found, returns a Blank Journal if not found
      NOTE: Should change to Optional
      19Jan Ryan: this func remains its functionality,
@@ -144,7 +145,7 @@ struct JournalManger: JournalManagerProtocol {
      Toogle Journal Favourite in database and in Dictionary
      Return boolean to indicate completion
      **/
-    mutating func toggleJournalFavouriteByKey(key: String, favourite: Bool) -> Bool {
+    mutating func toggleJournalFavouriteByKey(key: String) -> Bool {
         //Get Journal from Model Dictionary
         var journalEntry:Journal? = journalEntries[key]
         
@@ -152,10 +153,10 @@ struct JournalManger: JournalManagerProtocol {
         //Then try to modify the Database first
         //If it is successful, update the Dictionary
         if journalEntry != nil {
-            journalEntry?.favorite = !(journalEntry?.favorite)!
-            if journalDBManager.toggleJournalFavouriteByKey(key: key, favourite: (journalEntry?.favorite)!)
+            //journalEntry?.favorite = !(journalEntry?.favorite)!
+            if journalDBManager.toggleJournalFavouriteByKey(key: key)
             {
-                journalEntries[key]?.favorite = (journalEntry?.favorite)!
+                journalEntries[key]?.favorite = !(journalEntry?.favorite)!
                 return true
             }
         }

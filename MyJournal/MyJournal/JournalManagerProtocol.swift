@@ -23,8 +23,8 @@ protocol JournalManagerProtocol {
     //Get a single entry from the Model by key (id/timestamp)
     mutating func getJournalEntryByKey(key: String)->Journal?
     
-    //Toogle the value of a given Journal Entry (by key), also passing the current value of the favourite
-    mutating func toggleJournalFavouriteByKey(key: String, favourite: Bool)->Bool
+    //Toogle the value of a given Journal Entry (by key)
+    mutating func toggleJournalFavouriteByKey(key: String)->Bool
     
     //Delte a Journal entry from the Model by key (id/timestamp)
     mutating func deleteJournalEntryByKey(key: String)->Bool

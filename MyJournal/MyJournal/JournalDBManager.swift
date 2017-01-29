@@ -375,10 +375,21 @@ struct JournalDBManager: JournalManagerProtocol {
      Function to update a change favourite state of a Journal entry into the databse
      Returns success status of update as a boolean
      **/
-    mutating func toggleJournalFavouriteByKey(key: String, favourite: Bool) -> Bool {
+    mutating func toggleJournalFavouriteByKey(key: String) -> Bool {
         
         //Ensure the database path is set
         setDatabasePath()
+        
+        //Get Journal Entry from Database
+        var journalEntry:Journal? = getJournalEntryByKey(key: key)
+        
+        //Test that the Journal Entry is not nil
+        if journalEntry == nil {
+            return false
+        }
+        
+        //Flip the value of the Journal Entry Favourite
+        journalEntry!.favorite = !journalEntry!.favorite
         
         // Get a reference to the database
         let journalDB = FMDatabase(path: databasePath as String)
@@ -387,7 +398,7 @@ struct JournalDBManager: JournalManagerProtocol {
         if (journalDB?.open())!
         {
             //Convert the Journal Entry favourite into an Int for the databse
-            let favouriteValue:Int = JournalDatabaseAdapter.convertFavourite(favorite: favourite)
+            let favouriteValue:Int = JournalDatabaseAdapter.convertFavourite(favorite: journalEntry!.favorite)
             // Prepare a statement for operating on the database
             let updateFavSQL = "UPDATE " + tableName + " SET favourite = ? WHERE TIMESTAMP= ?"
             

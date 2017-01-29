@@ -247,7 +247,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     **/
     @IBAction func favBtn(_ sender: Any) {
         if journalDetail != nil {
-            if Model.getInstance.journalManager.toggleJournalFavouriteByKey(key: journalDetail!.id, favourite: journalDetail!.favorite)
+            if Model.getInstance.journalManager.toggleJournalFavouriteByKey(key: journalDetail!.id)
             {
                 localFavSet(set: !journalDetail!.favorite)
             }

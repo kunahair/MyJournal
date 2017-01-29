@@ -30,6 +30,8 @@ class TestDatabase: XCTestCase {
         super.tearDown()
     }
     
+    
+    
     //Remove Database file from device and initialise a clean database
     func testDatabase(){
         
@@ -43,7 +45,9 @@ class TestDatabase: XCTestCase {
         insertJournalIntoDatabase()
         getNewInsertedJournalEntry()
         getAllEntriesInDatabase()
-        
+        deleteJournalEntryFromDatabase()
+        toogleJournalEntryFavouriteToDatabase()
+        removeTestDataFromDatabase()
     }
     
     //Test that the defaults are retrievable from the database
@@ -62,7 +66,7 @@ class TestDatabase: XCTestCase {
         //Create new JournalDBManager instance
         var journalDBManager:JournalDBManager = JournalDBManager()
         //Check that Journal Entry is successfully inserted into Database
-        XCTAssert(journalDBManager.saveJournalEntryToDatabase(journal: journal))
+        XCTAssert(journalDBManager.addJournal(journal: journal))
     }
     
     //Test that the above Journal Entry is able to be retrieved from the Database
@@ -70,7 +74,7 @@ class TestDatabase: XCTestCase {
         //Create new JournalDBManager instance
         var journalDBManager:JournalDBManager = JournalDBManager()
         
-        let journalEntry:Journal? = journalDBManager.getJournalEntryFromDatabase(id: journalID)
+        let journalEntry:Journal? = journalDBManager.getJournalEntryByKey(key: journalID)
         
         //Check that there is a result from the database
         XCTAssert(journalEntry != nil)
@@ -86,7 +90,7 @@ class TestDatabase: XCTestCase {
         
         //Insert another new Journal Entry
         let journal:Journal = Journal(id: journalID2)
-        XCTAssert(journalDBManager.saveJournalEntryToDatabase(journal: journal))
+        XCTAssert(journalDBManager.addJournal(journal: journal))
         
         //Get Journal Dictionary
         let journalEntries:[String: Journal]? = journalDBManager.getAllJournalEntries()
@@ -100,6 +104,43 @@ class TestDatabase: XCTestCase {
         //Check that the other entry contains the correct journalID
         XCTAssert(journalEntries![journalID2]?.id == journalID2)
         
+    }
+    
+    /**
+     Test deletion of a Journal Entry from the database
+     **/
+    func deleteJournalEntryFromDatabase()
+    {
+        var journalDBManager:JournalDBManager = JournalDBManager()
+        //Make sure that the entry is in the database
+        XCTAssert(journalDBManager.getJournalEntryByKey(key: journalID)!.id == journalID)
+        //Remove the first Test inserted Journal entry from the database
+        XCTAssert(journalDBManager.deleteJournalEntryByKey(key: journalID))
+        //Make sure that the removed Journal Entry is not present in the database
+        XCTAssert(journalDBManager.getJournalEntryByKey(key: journalID) == nil)
+    }
+    
+    func toogleJournalEntryFavouriteToDatabase()
+    {
+        var journalDBManager:JournalDBManager = JournalDBManager()
+        //Get Journal Entry from Database
+        let journalEntry:Journal? = journalDBManager.getJournalEntryByKey(key: journalID2)
+        //Test that the Journal Entry is not nil
+        XCTAssert(journalEntry != nil)
+        //Change the Journal Entry Favourite in the Database and test the result
+        XCTAssert(journalDBManager.toggleJournalFavouriteByKey(key: journalID2))
+        //Make sure that the Database Journal Entry favourite value does not equal the original value
+        XCTAssert(journalDBManager.getJournalEntryByKey(key: journalID2)!.favorite != journalEntry!.favorite)
+    }
+    
+    /**
+     Remove the journal entries that the tests inserted, test along the way for good practice
+     **/
+    func removeTestDataFromDatabase()
+    {
+        var journalDBManager:JournalDBManager = JournalDBManager()
+        //Remove any entries inserted by test
+        XCTAssert(journalDBManager.deleteJournalEntryByKey(key: journalID2))
     }
     
     func testPerformanceExample() {
