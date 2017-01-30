@@ -942,6 +942,7 @@
                                                     <rect key="frame" x="8" y="4" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="VBX-9r-LkL"/>
+                                                        <constraint firstAttribute="height" constant="50" id="haw-iD-cuH"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2x-xi-nAq" userLabel="Location Label">
@@ -953,7 +954,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dej-gP-Yig" firstAttribute="top" secondItem="R9w-EA-0Nl" secondAttribute="topMargin" constant="-4" id="9Op-v6-p5I"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="dej-gP-Yig" secondAttribute="bottom" constant="-3" id="KlK-5J-u9j"/>
                                                 <constraint firstItem="M2x-xi-nAq" firstAttribute="leading" secondItem="dej-gP-Yig" secondAttribute="trailing" constant="40" id="M7b-mL-8W1"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="M2x-xi-nAq" secondAttribute="trailing" id="b5t-15-hgC"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="M2x-xi-nAq" secondAttribute="bottom" constant="26" id="f79-RV-cQ1"/>
