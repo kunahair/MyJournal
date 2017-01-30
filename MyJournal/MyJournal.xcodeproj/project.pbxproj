@@ -43,7 +43,6 @@
 		94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA61E3A1021001B49AD /* RecordCell.swift */; };
 		EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */; };
 		EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */; };
-		EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */; };
 		EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */; };
 		EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */; };
 		EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBC31E2C7D9100C1C24D /* Journal.swift */; };
@@ -132,7 +131,6 @@
 		94E25FA61E3A1021001B49AD /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDelegate.swift; sourceTree = "<group>"; };
 		EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseWeatherData.swift; sourceTree = "<group>"; };
-		EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewCell.swift; sourceTree = "<group>"; };
 		EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
 		EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		EBA4BBC31E2C7D9100C1C24D /* Journal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 				EBD43BCE1E2B4747006968DB /* PhotoViewCell.swift */,
 				EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */,
 				3B95AE331E271EB8003C9490 /* Main.storyboard */,
-				EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -554,7 +551,6 @@
 				2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */,
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
-				EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */,
 				2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */,
 				942032861E307CBE005B1541 /* MapCell.swift in Sources */,
 				EBD43BCF1E2B4747006968DB /* PhotoViewCell.swift in Sources */,

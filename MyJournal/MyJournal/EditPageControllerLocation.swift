@@ -29,10 +29,9 @@ extension EditPageController {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
                     //Update weather based on location
-                    self.weatherResultLabel.font = UIFont.systemFont(ofSize: 17)
                     self.weatherResultLabel.textColor = UIColor.black
                     self.weatherResultLabel.text = self.currentWeather
-                    
+                   
                 }
             }
         })

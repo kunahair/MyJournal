@@ -54,6 +54,7 @@ class ParseWeatherData: UIViewController{
         }
         var weatherDataList: [Weather] = []
         var weather = Weather()
+     
         if let coord = weatherJSON!["coord"] as? NSDictionary {
             if let lat = coord["lat"] as? Float {
                 weather.lat = lat
@@ -85,8 +86,7 @@ class ParseWeatherData: UIViewController{
                 weather.conditions = conditions
             }
             if let description = weatherDir?["description"] as? String {
-                weather.description = description                
-                
+                weather.description = description
             }
         }
         if let wind = weatherJSON!["wind"] as? NSDictionary {
