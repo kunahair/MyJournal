@@ -10,9 +10,7 @@ import Foundation
 
 
 protocol DataDelegate {
-    func parseResult(dataList: Array<Weather>)
-    
-    // Ryan 26Jan: added some more stuff here to pass arround data :)
+    func parseResult(dataList: Array<Weather>) //to receive weather data
     
     func receiveFilePath(filePathURL: URL) // to receive file dir after recording
     
