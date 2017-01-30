@@ -257,12 +257,25 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func delBtn(_ sender: Any) {
         // on successful deletion
-        if Model.getInstance.journalManager.deleteJournalEntryByKey(key: journalDetail!.id) { // success
-            _ = self.navigationController?.popViewController(animated: true)
-        }
-        else {
-            print("deletion failed on: " + "\(journalDetail!.id)")
-        }
+        // create the alert
+        let alert = UIAlertController(title: "Warning", message: "Do you wnat to proceed to delete this journal?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionDelete) -> Void in
+            if Model.getInstance.journalManager.deleteJournalEntryByKey(key: self.journalDetail!.id) { // success
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            else {
+                print("deletion failed on: " + "\(self.journalDetail!.id)")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+        
+       
+       
     }
     
     /**

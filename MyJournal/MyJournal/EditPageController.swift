@@ -323,7 +323,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     **/
     func showAlert(message: String){
         let alert = UIAlertController (title: message, message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSheetController) -> Void in
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSave) -> Void in
         }))
         present(alert, animated: true)
     }
