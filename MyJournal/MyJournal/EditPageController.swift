@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate, ViewUpdateFromAPIDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -87,9 +87,11 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         //NOTE: MUST BE DELETED #######
         note.text = "This is a test note"
         quote.text = "This is a test quote"
+        
+        
     }
     
-    
+    /**
     override func viewWillAppear(_ animated: Bool) {
         let location = try? Model.getInstance.getLocation()        
         if location == nil{
@@ -102,6 +104,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             weatherData.delegate = self
         }
     }
+ **/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -341,5 +344,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSave) -> Void in
         }))
         present(alert, animated: true)
+    }
+    
+    /**
+     Delgate callback to update the weather information to be displayed in the View
+     Checks for errors, changes Weather label to an error if there was a problem with API GET
+     Has parameter Weather Object that holds weather information returned from the chosen WeatherAPI
+    **/
+    func updateWeather(weather: Weather) {
+        if weather.code == 200{
+            self.weatherResultLabel.textColor = UIColor.black
+                self.weatherResultLabel.text = weather.conditions
+        }else
+        {
+            self.weatherResultLabel.text = weather.message
+        }
+        
     }
 }

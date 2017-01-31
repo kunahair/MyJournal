@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "OpenWeatherMap.(getWeatherFromAPI(lat : Float, lon : Float) -&gt; Weather?).(closure #1):OpenWeatherMap.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parsedJSON.rawDictionary">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OpenWeatherMap.(getWeatherFromAPI(lat : Double, lon : Double) -&gt; Weather?).(closure #1):OpenWeatherMap.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parsedResult[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OpenWeatherMap.loadWeatherData(weatherJSON : JSON) -&gt; Weather:OpenWeatherMap.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weatherJSON[&quot;coord&quot;]">
+            </PersistentString>
+            <PersistentString
+               value = "weatherJSON.dictionary()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
