@@ -16,8 +16,6 @@ struct OpenWeatherMap {
     //Delegate callback that updates a View
     var delegate:ViewUpdateFromAPIDelegate?
     
-    
-    
     /**
      Function that is called to get the Weather information from the OpenWeatherMap API
      Takes a lat and lon argument, makes call to API with given params and on success updates the delegate view

@@ -28,4 +28,7 @@ protocol JournalManagerProtocol {
     
     //Delte a Journal entry from the Model by key (id/timestamp)
     mutating func deleteJournalEntryByKey(key: String)->Bool
+    
+    //Update a Journal Entry parsing the entire Journal to update
+    mutating func updateJournalyEntry(journal: Journal)->Bool
 }

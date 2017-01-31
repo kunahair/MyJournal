@@ -141,6 +141,41 @@ struct JournalManger: JournalManagerProtocol {
         return getJournalEntriesArray()[index]
     }
     
+    mutating func updateJournalEntry(id: String, note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?) -> Bool
+    {
+        var journal:Journal = Journal(id: id)
+        journal.note = note
+        journal.photo = photo
+        journal.weather = weather
+        journal.mood = mood
+        journal.date = date
+        journal.location = location
+        journal.favorite = favorite
+        journal.coordinates = coordinates
+        journal.recordURL = recordURL
+        journal.videoURL = videoURL
+        
+        if music != nil {
+            journal.music = music!
+        }
+        
+        if quote != nil {
+            journal.quote =  quote!
+        }
+        
+        
+        return updateJournalyEntry(journal: journal)
+    }
+    
+    mutating func updateJournalyEntry(journal: Journal) -> Bool {
+        if journalDBManager.updateJournalyEntry(journal: journal)
+        {
+            journalEntries[journal.id] = journal
+            return true
+        }
+        return false
+    }
+    
     /**
      Toogle Journal Favourite in database and in Dictionary
      Return boolean to indicate completion

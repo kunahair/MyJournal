@@ -19,7 +19,7 @@
 		2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */; };
 		2BB20BA71E3D840F009A971A /* JournalManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */; };
 		2BC57B0A1E4015F6005198CE /* OpenWeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57B091E4015F6005198CE /* OpenWeatherMap.swift */; };
-		2BC57B0C1E403428005198CE /* ViewUpdateFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57B0B1E403428005198CE /* ViewUpdateFromAPI.swift */; };
+		2BC57B0C1E403428005198CE /* ViewUpdateFromAPIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57B0B1E403428005198CE /* ViewUpdateFromAPIDelegate.swift */; };
 		2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */; };
 		2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */; };
 		2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */; };
@@ -103,7 +103,7 @@
 		2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDatabase.swift; sourceTree = "<group>"; };
 		2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalManagerProtocol.swift; sourceTree = "<group>"; };
 		2BC57B091E4015F6005198CE /* OpenWeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMap.swift; sourceTree = "<group>"; };
-		2BC57B0B1E403428005198CE /* ViewUpdateFromAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateFromAPI.swift; sourceTree = "<group>"; };
+		2BC57B0B1E403428005198CE /* ViewUpdateFromAPIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateFromAPIDelegate.swift; sourceTree = "<group>"; };
 		2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerLocation.swift; sourceTree = "<group>"; };
 		2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerMoodPicker.swift; sourceTree = "<group>"; };
 		2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerImagePicker.swift; sourceTree = "<group>"; };
@@ -220,6 +220,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2B87D2C21E405C9D006C3699 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */,
+				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
+				2BC57B0B1E403428005198CE /* ViewUpdateFromAPIDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		2BC94C991E3C289700009389 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,7 +338,6 @@
 				EBA4BBD41E2C9E8E00C1C24D /* DeviceAPI */,
 				EBA4BBDB1E2C9ED800C1C24D /* OpenStreetMap.swift */,
 				2BC57B091E4015F6005198CE /* OpenWeatherMap.swift */,
-				2BC57B0B1E403428005198CE /* ViewUpdateFromAPI.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -336,6 +345,7 @@
 		EBA4BBE11E2C9EF200C1C24D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2B87D2C21E405C9D006C3699 /* Delegates */,
 				2B83A3531E3C70B20026C0DA /* LocalDB */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
 				EBA4BC231E2E39D300C1C24D /* JournalManger.swift */,
@@ -360,8 +370,6 @@
 				3B95AE311E271EB8003C9490 /* ViewController.swift */,
 				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
-				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
-				EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */,
 				94E25FA21E3A016B001B49AD /* WebViewController.swift */,
 			);
 			name = Controller;
@@ -545,7 +553,7 @@
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 				EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
-				2BC57B0C1E403428005198CE /* ViewUpdateFromAPI.swift in Sources */,
+				2BC57B0C1E403428005198CE /* ViewUpdateFromAPIDelegate.swift in Sources */,
 				EBA4BBC81E2C7D9100C1C24D /* MoodEnum.swift in Sources */,
 				EBA4BC281E2F193900C1C24D /* Model.swift in Sources */,
 				EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */,
