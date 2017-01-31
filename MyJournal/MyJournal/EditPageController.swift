@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate, ViewUpdateFromAPIDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -54,6 +54,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var mood: MoodEnum = MoodEnum.happy
     var recordPathURL: URL!
     var videoWebURL: URL!
+    var weatherDes = WeatherEnum()
     
     @IBOutlet weak var moodPickerView: UIPickerView!
     
@@ -72,7 +73,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.locationManager.requestWhenInUseAuthorization()
         weatherResultLabel.text = currentWeather
         weatherResultLabel.textColor = UIColor.gray
-         weatherResultLabel.font = UIFont.systemFont(ofSize: 14)
+        weatherResultLabel.font = UIFont.systemFont(ofSize: 14)
         currentDate.text = "\(today)"
         switchButton.isOn = false
         address.text = addressInfo
@@ -86,9 +87,11 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         //NOTE: MUST BE DELETED #######
         note.text = "This is a test note"
         quote.text = "This is a test quote"
+        
+        
     }
     
-    
+    /**
     override func viewWillAppear(_ animated: Bool) {
         let location = try? Model.getInstance.getLocation()        
         if location == nil{
@@ -96,10 +99,12 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }else{
             self.currentLocation = location!
             let weatherData = ParseWeatherData()
+            
             weatherData.getWeatherData(lat: (location?.lat)!, lon: (location?.lon)!)
             weatherData.delegate = self
         }
     }
+ **/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -109,9 +114,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     func parseResult(dataList: Array<Weather>) {
         for weather in dataList{
             self.currentWeather = weather.description+"   "+String(weather.temp-factor)+"°C"
-            
+            //check the keyword from weather data
+            if(weather.description.contains("clouds")){
+                self.weatherDes = WeatherEnum(weather: "cloudy")!
+            }else if (weather.description.contains("clear")){
+                self.weatherDes = WeatherEnum(weather: "sunny")!
+            }else if (weather.description.contains("clear")){
+                self.weatherDes = WeatherEnum(weather: "sunny")!
+            }else if (weather.description.contains("rain")||weather.description.contains("drizzle")||weather.description.contains("thunderstorm")){
+                self.weatherDes = WeatherEnum(weather: "rainy")!
+            }else if (weather.description.contains("snow")){
+                self.weatherDes = WeatherEnum(weather: "snowy")!
+            }
         }
         
+       
     }
     
     //handle users' selection in the photo library
@@ -218,7 +235,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             
             //Save Journal Entry to database and Model
             //If the save was successful, then go back to initial view (the calling view) with some fancy animation
-            if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherResultLabel.text!, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL)
+            //Xing: change the value that pass to weather
+            if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL)
             {
                 //Clear not and quote to show user actions are happening
                 note.text = ""
@@ -326,5 +344,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSave) -> Void in
         }))
         present(alert, animated: true)
+    }
+    
+    /**
+     Delgate callback to update the weather information to be displayed in the View
+     Checks for errors, changes Weather label to an error if there was a problem with API GET
+     Has parameter Weather Object that holds weather information returned from the chosen WeatherAPI
+    **/
+    func updateWeather(weather: Weather) {
+        if weather.code == 200{
+            self.weatherResultLabel.textColor = UIColor.black
+                self.weatherResultLabel.text = weather.conditions
+        }else
+        {
+            self.weatherResultLabel.text = weather.message
+        }
+        
     }
 }

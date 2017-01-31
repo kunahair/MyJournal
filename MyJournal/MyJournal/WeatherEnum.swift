@@ -13,7 +13,7 @@ import Foundation
  **/
 enum WeatherEnum: String {
     
-    case rainy, sunny, cloudy, smog, windy
+    case rainy, sunny, cloudy, snowy, windy
     
     
     // default init
@@ -26,7 +26,7 @@ enum WeatherEnum: String {
         case "sunny": self = .sunny
         case "rainy": self = .rainy
         case "cloudy": self = .cloudy
-        case "smog" : self = .smog
+        case "snowy" : self = .snowy
         case "windy" : self = .windy
         default: self = .sunny
         }
@@ -38,7 +38,7 @@ enum WeatherEnum: String {
             case .sunny: return "sunny"
             case .rainy: return "rainy"
             case .cloudy: return "cloudy"
-            case .smog: return "smog"
+            case .snowy: return "snowy"
             case .windy: return "windy"
             }
         }
@@ -48,7 +48,7 @@ enum WeatherEnum: String {
             case "sunny": self = .sunny
             case "rainy": self = .rainy
             case "cloudy": self = .cloudy
-            case "smog" : self = .smog
+            case "snowy" : self = .snowy
             case "windy" : self = .windy
             default: self = .sunny
             }
@@ -61,7 +61,7 @@ enum WeatherEnum: String {
             case .sunny: return "☀️"
             case .rainy: return "☔️"
             case .cloudy: return "☁️"
-            case .smog: return "🌫"
+            case .snowy: return "🌫"
             case .windy: return "💨"
             }
         }

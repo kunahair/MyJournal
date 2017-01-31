@@ -18,6 +18,8 @@
 		2B83A36E1E3C724E0026C0DA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */; };
 		2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */; };
 		2BB20BA71E3D840F009A971A /* JournalManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */; };
+		2BC57B0A1E4015F6005198CE /* OpenWeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57B091E4015F6005198CE /* OpenWeatherMap.swift */; };
+		2BC57B0C1E403428005198CE /* ViewUpdateFromAPIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57B0B1E403428005198CE /* ViewUpdateFromAPIDelegate.swift */; };
 		2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */; };
 		2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */; };
 		2BC94C9F1E3C297200009389 /* EditPageControllerImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */; };
@@ -43,7 +45,6 @@
 		94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA61E3A1021001B49AD /* RecordCell.swift */; };
 		EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */; };
 		EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */; };
-		EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */; };
 		EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */; };
 		EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */; };
 		EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBC31E2C7D9100C1C24D /* Journal.swift */; };
@@ -101,6 +102,8 @@
 		2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDatabase.swift; sourceTree = "<group>"; };
 		2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalManagerProtocol.swift; sourceTree = "<group>"; };
+		2BC57B091E4015F6005198CE /* OpenWeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMap.swift; sourceTree = "<group>"; };
+		2BC57B0B1E403428005198CE /* ViewUpdateFromAPIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateFromAPIDelegate.swift; sourceTree = "<group>"; };
 		2BC94C9A1E3C28B500009389 /* EditPageControllerLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerLocation.swift; sourceTree = "<group>"; };
 		2BC94C9C1E3C291200009389 /* EditPageControllerMoodPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerMoodPicker.swift; sourceTree = "<group>"; };
 		2BC94C9E1E3C297200009389 /* EditPageControllerImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageControllerImagePicker.swift; sourceTree = "<group>"; };
@@ -132,7 +135,6 @@
 		94E25FA61E3A1021001B49AD /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDelegate.swift; sourceTree = "<group>"; };
 		EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseWeatherData.swift; sourceTree = "<group>"; };
-		EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteViewCell.swift; sourceTree = "<group>"; };
 		EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
 		EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		EBA4BBC31E2C7D9100C1C24D /* Journal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
@@ -216,6 +218,16 @@
 				2B83A36D1E3C724E0026C0DA /* libsqlite3.0.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B87D2C21E405C9D006C3699 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */,
+				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
+				2BC57B0B1E403428005198CE /* ViewUpdateFromAPIDelegate.swift */,
+			);
+			name = Delegates;
 			sourceTree = "<group>";
 		};
 		2BC94C991E3C289700009389 /* Extensions */ = {
@@ -325,6 +337,7 @@
 			children = (
 				EBA4BBD41E2C9E8E00C1C24D /* DeviceAPI */,
 				EBA4BBDB1E2C9ED800C1C24D /* OpenStreetMap.swift */,
+				2BC57B091E4015F6005198CE /* OpenWeatherMap.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -332,6 +345,7 @@
 		EBA4BBE11E2C9EF200C1C24D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2B87D2C21E405C9D006C3699 /* Delegates */,
 				2B83A3531E3C70B20026C0DA /* LocalDB */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
 				EBA4BC231E2E39D300C1C24D /* JournalManger.swift */,
@@ -356,8 +370,6 @@
 				3B95AE311E271EB8003C9490 /* ViewController.swift */,
 				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
-				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
-				EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */,
 				94E25FA21E3A016B001B49AD /* WebViewController.swift */,
 			);
 			name = Controller;
@@ -370,7 +382,6 @@
 				EBD43BCE1E2B4747006968DB /* PhotoViewCell.swift */,
 				EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */,
 				3B95AE331E271EB8003C9490 /* Main.storyboard */,
-				EB90C82D1E2C49D600B50A07 /* QuoteViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -524,6 +535,7 @@
 				EBA4BBCD1E2C855100C1C24D /* DetailViewController.swift in Sources */,
 				2B83A36B1E3C71880026C0DA /* JournalDatabaseAdapter.swift in Sources */,
 				2B83A3651E3C70FC0026C0DA /* FMDatabasePool.m in Sources */,
+				2BC57B0A1E4015F6005198CE /* OpenWeatherMap.swift in Sources */,
 				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
 				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
@@ -541,6 +553,7 @@
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 				EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
+				2BC57B0C1E403428005198CE /* ViewUpdateFromAPIDelegate.swift in Sources */,
 				EBA4BBC81E2C7D9100C1C24D /* MoodEnum.swift in Sources */,
 				EBA4BC281E2F193900C1C24D /* Model.swift in Sources */,
 				EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */,
@@ -554,7 +567,6 @@
 				2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */,
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
-				EB90C82E1E2C49D600B50A07 /* QuoteViewCell.swift in Sources */,
 				2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */,
 				942032861E307CBE005B1541 /* MapCell.swift in Sources */,
 				EBD43BCF1E2B4747006968DB /* PhotoViewCell.swift in Sources */,

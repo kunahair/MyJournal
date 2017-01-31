@@ -14,6 +14,10 @@ import Foundation
  **/
 struct Weather {
     
+    //System information (does not relate to Weather directly, admin purposes
+    var code:Int = 0
+    var message:String = ""
+    
     //Coords
     var lat:Float = 0.0
     var lon:Float = 0.0

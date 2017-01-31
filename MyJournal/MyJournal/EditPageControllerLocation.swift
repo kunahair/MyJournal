@@ -28,11 +28,26 @@ extension EditPageController {
                 if let formattedAddress = address["FormattedAddressLines"] as? [String] {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
-                    //Update weather based on location
-                    self.weatherResultLabel.font = UIFont.systemFont(ofSize: 17)
-                    self.weatherResultLabel.textColor = UIColor.black
-                    self.weatherResultLabel.text = self.currentWeather
                     
+                    //Set text to show that the Weather info is loading
+                    self.weatherResultLabel.textColor = UIColor.gray
+                    self.weatherResultLabel.text = "Loading..."
+                    
+                    //Get Weather info from API, so errors if needed
+                    do {
+                        //Get Location from Model conveinience function
+                        let location:Location? = try Model.getInstance.getLocation()
+                        //If location is recieved with no errors, then get weather from API
+                        var openWeatherMap:OpenWeatherMap = OpenWeatherMap()
+                        openWeatherMap.delegate = self
+                        openWeatherMap.getWeatherFromAPI(lat: location!.lat, lon: location!.lon)
+                    }catch {
+                        //If there was an error, tell user
+                        self.weatherResultLabel.text = "An Error Occured"
+                    }
+                    
+                    
+                   
                 }
             }
         })
