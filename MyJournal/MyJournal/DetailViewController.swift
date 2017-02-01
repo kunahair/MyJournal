@@ -30,7 +30,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     // let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
     
     //Journal Headings
-    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "I Was at", "Other stuff"]
+    var sepArray: [String] = ["How I Felt", "Journal", "A Bit More", "I Was at", "Other stuff"]
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favBtnOutlet: UIBarButtonItem!

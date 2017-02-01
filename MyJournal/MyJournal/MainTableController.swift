@@ -20,12 +20,11 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         curTableView.reloadData()
+        //show alert if there is no internet connection
         if ReachabilityStatus.isConnected() == false{
-            let alert = UIAlertController(title: "No Internet Connection", message: "Please check the network connection", preferredStyle: UIAlertControllerStyle.alert)
-            
+            let alert = UIAlertController(title: "No Internet Connection", message: "Please check with your service provider", preferredStyle: UIAlertControllerStyle.alert)
             // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))            
             // show the alert
             self.present(alert, animated: true, completion: nil)
         }

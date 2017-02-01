@@ -742,16 +742,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Cz-yMz">
-                                <rect key="frame" x="0.0" y="18" width="1024" height="1330"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MGl-Cz-yMz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MGl-Cz-yMz" firstAttribute="leading" secondItem="irw-lK-OvG" secondAttribute="leading" id="3OT-pX-HS3"/>
-                            <constraint firstAttribute="trailing" secondItem="MGl-Cz-yMz" secondAttribute="trailing" id="Def-nt-Kvm"/>
-                            <constraint firstAttribute="bottom" secondItem="MGl-Cz-yMz" secondAttribute="bottom" constant="18" id="myI-o7-QjU"/>
-                            <constraint firstItem="MGl-Cz-yMz" firstAttribute="top" secondItem="irw-lK-OvG" secondAttribute="top" constant="18" id="myL-vl-tVd"/>
+                            <constraint firstItem="MGl-Cz-yMz" firstAttribute="top" secondItem="irw-lK-OvG" secondAttribute="top" id="WJt-Yf-E5A"/>
+                            <constraint firstAttribute="trailing" secondItem="MGl-Cz-yMz" secondAttribute="trailing" id="ceq-9f-qdi"/>
+                            <constraint firstAttribute="bottom" secondItem="MGl-Cz-yMz" secondAttribute="bottom" id="d8z-ZU-tHJ"/>
+                            <constraint firstItem="MGl-Cz-yMz" firstAttribute="leading" secondItem="irw-lK-OvG" secondAttribute="leading" id="gM2-hd-njt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vZA-MN-WzQ"/>
@@ -1416,7 +1416,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="505-Cq-t13"/>
-        <segue reference="P7E-Qq-Xqe"/>
+        <segue reference="Mtb-y2-dEd"/>
         <segue reference="U5r-DG-cqK"/>
     </inferredMetricsTieBreakers>
 </document>

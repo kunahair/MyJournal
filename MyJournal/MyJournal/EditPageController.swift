@@ -43,6 +43,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     let factor: Float = 273.15
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
+    let placeholderText: String = "What's new about today?"
     var addressInfo = "Mark your location"
     var switchOn = false
     var photoURL: String!
@@ -95,6 +96,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     
     override func viewWillAppear(_ animated: Bool) {
+        //check the internet connection first
         if ReachabilityStatus.isConnected() == true{
             let location = try? Model.getInstance.getLocation()
             if location == nil{
@@ -110,7 +112,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             print("No Internet Connection")
         }
         self.note.text = noteText
-        if(noteText == "What's new about today?") {
+        if(noteText == placeholderText) {
             self.note.textColor = UIColor.gray
         } else {
             self.note.textColor = UIColor.black
@@ -122,7 +124,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         // Dispose of any resources that can be recreated.
     }
     
-    
+    //if users start to type, placeholderText dispears
     func textViewDidBeginEditing(_ textView: UITextView) {
         if self.note.text == noteText{
             self.note.text = ""
@@ -130,7 +132,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }
         self.note.becomeFirstResponder()
     }
-    
+    //if users finish editing without entering anything, placeholderText will reappear
     func textViewDidEndEditing(_ textView: UITextView) {
         if self.note.text == ""{
             self.note.text = noteText
@@ -255,6 +257,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
      Josh: Do a check that the save was successful both in the database and the model, if not, show user error but do not delete their work.
     **/
     @IBAction func saveJournal(_ sender: Any) {
+        //placeHolderText is not the content typed by users, so cannot be saved as note
+        if(note.text == placeholderText){
+            note.text = ""
+        }
         //Show alert if user has not entered information into note (otherwise why have a journal right?)
         if note.text!.isEmpty  {
             showAlert(message: "No content has been added to the notes section")
