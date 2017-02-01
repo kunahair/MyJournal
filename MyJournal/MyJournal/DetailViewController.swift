@@ -30,7 +30,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     // let renderer = UIGraphicsImageRenderer(size: view.bounds.size)
     
     //Journal Headings
-    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "A Bit More", "I Was at", "Other stuff"]
+    var sepArray: [String] = ["How I Felt", "Journal", "Shot of the Day", "I Was at", "Other stuff"]
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favBtnOutlet: UIBarButtonItem!
@@ -84,7 +84,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     /* Table Functions */
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 5
     }
     
     //Divide into sections for each journal heading
@@ -95,12 +95,10 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         case 1:
             return 1
         case 2:
-            return 1
-        case 3:
             return 2
-        case 4:
+        case 3:
             return 1
-        case 5:
+        case 4:
             return 2
         default:
             return 1
@@ -136,16 +134,11 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 return cell
         }
         
-        // with body section
-        if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TextbodyCell", for: indexPath) as! TextbodyCell
-            cell.label.text = journalDetail!.note
-            return cell
-        }
         
         // with image section
-        if indexPath.section == 2 {
+        if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+            cell.noteBody.text = journalDetail!.note
             if journalDetail!.photo == "defaultphoto"
             {
                 cell.imageBody.image = UIImage(named: "defaultphoto")!
@@ -156,7 +149,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         // with quote and music 
-        if indexPath.section == 3 {
+        if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
             switch indexPath.row {
             case 0:
@@ -172,14 +165,14 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         // with map cell
-        if indexPath.section == 4 {
+        if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath) as! MapCell
             cell.drawMap(id: journalDetail!.id)
             return cell
         }
         
         // with video and record cell
-        if indexPath.section == 5 {
+        if indexPath.section == 4 {
             switch indexPath.row {
             case 0:
                 //Get reference to Cell from queue as a VideoCell
@@ -234,16 +227,20 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             let editView = segue.destination as! EditPageController
             editView.noteText = (journalDetail?.note)!
             editView.quoteText = (journalDetail?.quote)!
-            editView.currentWeather = (journalDetail?.weather)!
             editView.musicFileInfo = (journalDetail?.music)!
             editView.today = (journalDetail?.date)!
             editView.favoriteStatus = (journalDetail?.favorite)!
             editView.videoWebURL = journalDetail?.videoURL
             editView.recordPathURL = journalDetail?.recordURL
             editView.id = journalDetail?.id
-           
             let locationInfo = journalDetail?.location
             let photoPath = journalDetail?.photo
+            let weatherInfo = journalDetail?.weather
+            if weatherInfo == "No Internet Connection"{
+                editView.currentWeather = "sunny"
+            }else{
+                editView.currentWeather = weatherInfo!
+            }
             if locationInfo == "Mark your location"{
                 editView.locationStatus = false
             }else{

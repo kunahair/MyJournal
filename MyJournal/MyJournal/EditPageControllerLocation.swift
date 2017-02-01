@@ -28,10 +28,10 @@ extension EditPageController {
                 if let formattedAddress = address["FormattedAddressLines"] as? [String] {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
-                    //Update weather based on location
                     self.weatherResultLabel.textColor = UIColor.black
+                    //Update weather based on location
                     self.weatherResultLabel.text = self.currentWeather
-                   
+                    
                 }
             }
         })

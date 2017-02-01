@@ -32,7 +32,6 @@
 		942032841E307CBE005B1541 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327D1E307CBE005B1541 /* HeaderCell.swift */; };
 		942032851E307CBE005B1541 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327E1E307CBE005B1541 /* ImageCell.swift */; };
 		942032861E307CBE005B1541 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420327F1E307CBE005B1541 /* MapCell.swift */; };
-		942032891E307CBE005B1541 /* TextbodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032821E307CBE005B1541 /* TextbodyCell.swift */; };
 		9420328E1E309178005B1541 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328D1E309178005B1541 /* FooterCell.swift */; };
 		942032901E31E044005B1541 /* testDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328F1E31E044005B1541 /* testDetailView.swift */; };
 		942032921E334AF2005B1541 /* FavPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032911E334AF2005B1541 /* FavPhotos.swift */; };
@@ -42,6 +41,7 @@
 		94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA61E3A1021001B49AD /* RecordCell.swift */; };
 		EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */; };
 		EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */; };
+		EB7988C71E41A27A00BA8D47 /* ReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7988C61E41A27A00BA8D47 /* ReachabilityStatus.swift */; };
 		EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */; };
 		EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */; };
 		EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBC31E2C7D9100C1C24D /* Journal.swift */; };
@@ -119,7 +119,6 @@
 		9420327D1E307CBE005B1541 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		9420327E1E307CBE005B1541 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		9420327F1E307CBE005B1541 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
-		942032821E307CBE005B1541 /* TextbodyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextbodyCell.swift; sourceTree = "<group>"; };
 		9420328D1E309178005B1541 /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		9420328F1E31E044005B1541 /* testDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testDetailView.swift; sourceTree = "<group>"; };
 		942032911E334AF2005B1541 /* FavPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavPhotos.swift; sourceTree = "<group>"; };
@@ -129,6 +128,7 @@
 		94E25FA61E3A1021001B49AD /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
 		EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDelegate.swift; sourceTree = "<group>"; };
 		EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseWeatherData.swift; sourceTree = "<group>"; };
+		EB7988C61E41A27A00BA8D47 /* ReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityStatus.swift; sourceTree = "<group>"; };
 		EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
 		EBA4BBC01E2C7D7000C1C24D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		EBA4BBC31E2C7D9100C1C24D /* Journal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
@@ -286,7 +286,6 @@
 				9420327D1E307CBE005B1541 /* HeaderCell.swift */,
 				9420327E1E307CBE005B1541 /* ImageCell.swift */,
 				9420327F1E307CBE005B1541 /* MapCell.swift */,
-				942032821E307CBE005B1541 /* TextbodyCell.swift */,
 				9420328D1E309178005B1541 /* FooterCell.swift */,
 				94E25FA41E3A1015001B49AD /* VideoCell.swift */,
 				94E25FA61E3A1021001B49AD /* RecordCell.swift */,
@@ -328,6 +327,7 @@
 		EBA4BBE11E2C9EF200C1C24D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */,
 				2B83A3531E3C70B20026C0DA /* LocalDB */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
 				EBA4BC231E2E39D300C1C24D /* JournalManger.swift */,
@@ -352,8 +352,8 @@
 				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
 				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
-				EB5918AF1E380D74009FC2F7 /* ParseWeatherData.swift */,
 				94E25FA21E3A016B001B49AD /* WebViewController.swift */,
+				EB7988C61E41A27A00BA8D47 /* ReachabilityStatus.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -550,7 +550,7 @@
 				2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */,
 				942032861E307CBE005B1541 /* MapCell.swift in Sources */,
 				EBD43BCF1E2B4747006968DB /* PhotoViewCell.swift in Sources */,
-				942032891E307CBE005B1541 /* TextbodyCell.swift in Sources */,
+				EB7988C71E41A27A00BA8D47 /* ReachabilityStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

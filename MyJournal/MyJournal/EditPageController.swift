@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate,UITextViewDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -56,8 +56,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var videoWebURL: URL!
     var weatherDes = WeatherEnum()
     var journalDetail:Journal?
-    var quoteText: String = "This is a test quote"
-    var noteText: String = "This is a test note"
+    var quoteText: String = ""
+    var noteText: String = "What's new about today?"
     var photoDefault: UIImage?
     var musicFileInfo: String = ""
     var favoriteStatus: Bool = true
@@ -80,7 +80,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.locationManager.requestWhenInUseAuthorization()
         weatherResultLabel.text = currentWeather
         weatherResultLabel.textColor = UIColor.gray
-        weatherResultLabel.font = UIFont.systemFont(ofSize: 14)
         currentDate.text = "\(today)"
         switchButton.isOn = locationStatus
         address.text = addressInfo
@@ -88,26 +87,33 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         moodPickerView.delegate = self
         photo.image = photoDefault
         musicFile.text = musicFileInfo
-        // Ryan 26Jan: set up the recorder when loading the page
         Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
         isFavorite.isOn = favoriteStatus
-        //Set a quote and note for testing
-        //NOTE: MUST BE DELETED #######
-        note.text = noteText
+        note.delegate = self
         quote.text =  quoteText
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        let location = try? Model.getInstance.getLocation()        
-        if location == nil{
-            self.weatherResultLabel.text = currentWeather
-        }else{
-            self.currentLocation = location!
-            let weatherData = ParseWeatherData()
+        if ReachabilityStatus.isConnected() == true{
+            let location = try? Model.getInstance.getLocation()
+            if location == nil{
+                self.weatherResultLabel.text = currentWeather
+            }else{
+                self.currentLocation = location!
+                let weatherData = ParseWeatherData()
             
-            weatherData.getWeatherData(lat: (location?.lat)!, lon: (location?.lon)!)
-            weatherData.delegate = self
+                weatherData.getWeatherData(lat: (location?.lat)!, lon: (location?.lon)!)
+                weatherData.delegate = self
+            }
+        }else{
+            print("No Internet Connection")
+        }
+        self.note.text = noteText
+        if(noteText == "What's new about today?") {
+            self.note.textColor = UIColor.gray
+        } else {
+            self.note.textColor = UIColor.black
         }
     }
     
@@ -115,7 +121,25 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if self.note.text == noteText{
+            self.note.text = ""
+            self.note.textColor = UIColor.black
+        }
+        self.note.becomeFirstResponder()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if self.note.text == ""{
+            self.note.text = noteText
+            self.note.textColor = UIColor.gray
+        }
+        self.note.resignFirstResponder()
 
+    }
+   
     func parseResult(dataList: Array<Weather>) {
         for weather in dataList{
             self.currentWeather = weather.description+"   "+String(weather.temp-factor)+"°C"
@@ -154,9 +178,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
 
     @IBAction func getCurrentLocation(_ sender: Any) {
         if switchButton.isOn == true{
-            self.switchOn = true
+            if ReachabilityStatus.isConnected() == false{
+                address.text = "No Internet Connection"
+                weatherResultLabel.text = "No Internet Connection"
+            }else{
+                self.switchOn = true
             //start receiving location updates from CoreLocation
-            self.locationManager.startUpdatingLocation()
+                self.locationManager.startUpdatingLocation()}
         }else{
             address.text = addressInfo
         }

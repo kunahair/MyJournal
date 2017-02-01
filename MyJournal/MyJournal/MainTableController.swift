@@ -20,6 +20,16 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         curTableView.reloadData()
+        if ReachabilityStatus.isConnected() == false{
+            let alert = UIAlertController(title: "No Internet Connection", message: "Please check the network connection", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+
     }
     
     override func viewDidLoad() {
@@ -28,8 +38,7 @@ class MainTableViewController: UIViewController, UITableViewDataSource, UITableV
         //scheduleNotifiy(hour: hour, minute: minute)
 
         // Do any additional setup after loading the view, typically from a nib.
-
-    }
+            }
     
     // number of sections
     func numberOfSections(in tableView: UITableView) -> Int {

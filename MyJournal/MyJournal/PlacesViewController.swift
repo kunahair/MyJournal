@@ -117,8 +117,7 @@ class PlacesViewController: UIViewController, MKMapViewDelegate {
         let detailView = segue.destination as! DetailViewController
         if segue.identifier == "DetailViewSegue" {
             let senderbutton = sender as! UIButton
-            let journalIndex:Int = senderbutton.tag
-            
+            let journalIndex:Int = senderbutton.tag            
             detailView.journalDetail = Model.getInstance.journalManager.getJournalEntryByIndex(id: journalIndex)
             
         }
