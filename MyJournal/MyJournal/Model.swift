@@ -83,7 +83,7 @@ class Model{
     func getCurrentDate()->String{
         let currentDate = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "DD-MM-YY"
+        formatter.dateFormat = "dd-MM-YY"
         let dateStr = formatter.string(from: currentDate)
         return dateStr
     }

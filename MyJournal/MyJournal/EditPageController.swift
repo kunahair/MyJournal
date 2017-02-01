@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate, ViewUpdateFromAPIDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -81,6 +81,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         weatherResultLabel.text = currentWeather
         weatherResultLabel.textColor = UIColor.gray
         weatherResultLabel.font = UIFont.systemFont(ofSize: 14)
+        
         currentDate.text = "\(today)"
         switchButton.isOn = locationStatus
         address.text = addressInfo
@@ -88,16 +89,19 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         moodPickerView.delegate = self
         photo.image = photoDefault
         musicFile.text = musicFileInfo
+        
         // Ryan 26Jan: set up the recorder when loading the page
         Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
         isFavorite.isOn = favoriteStatus
+        
+        
         //Set a quote and note for testing
         //NOTE: MUST BE DELETED #######
         note.text = noteText
         quote.text =  quoteText
     }
     
-    
+    /**
     override func viewWillAppear(_ animated: Bool) {
         let location = try? Model.getInstance.getLocation()        
         if location == nil{
@@ -110,6 +114,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             weatherData.delegate = self
         }
     }
+ **/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -359,5 +364,19 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSave) -> Void in
         }))
         present(alert, animated: true)
+    }
+    
+    /**
+     Update the Weather information in the Edit Page with the information parsed from the API
+     Shows an error to the user if something went wrong.
+    **/
+    func updateWeather(weather: Weather) {
+        if weather.code == 200{
+            self.weatherResultLabel.textColor = UIColor.black
+            self.weatherResultLabel.text = weather.conditions
+        }else
+        {
+            self.weatherResultLabel.text = weather.message
+        }
     }
 }

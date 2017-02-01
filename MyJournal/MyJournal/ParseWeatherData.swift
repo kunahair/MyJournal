@@ -7,6 +7,7 @@
 //
 
 import Foundation
+/**
 import UIKit
 
 class ParseWeatherData{
@@ -105,3 +106,4 @@ class ParseWeatherData{
     }
     
 }
+ **/

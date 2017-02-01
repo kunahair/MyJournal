@@ -79,12 +79,13 @@ struct JournalManger: JournalManagerProtocol {
      Returns nil if not in dictionary, otherwise returns the valid Journal Entry
      **/
     mutating func getJournalEntryByKey(key: String) -> Journal? {
-        
-        if journalDBManager.getJournalEntryByKey(key: key) == nil{
-            return nil
-        }
-        
-        return journalEntries[key]
+
+        return journalDBManager.getJournalEntryByKey(key: key)
+//        if journalDBManager.getJournalEntryByKey(key: key) == nil{
+//            return nil
+//        }
+//        
+//        return journalEntries[key]
     }
     
     /**

@@ -370,8 +370,80 @@ struct JournalDBManager: JournalManagerProtocol {
         return nil
     }
     
-    func updateJournalyEntry(journal: Journal) -> Bool {
-        return true
+    /**
+     Update all the values of a Journal that already exists in the database by id (timestamp in the database)
+     Return a boolean indicating whether or not the update was successful
+    **/
+    mutating func updateJournalyEntry(journal: Journal) -> Bool {
+        //Ensure the database path is set
+        setDatabasePath()
+        
+        
+        //Convert Journal Entry into Database ready Journal Entry
+        let journalDBEntry:JournalDB = JournalDatabaseAdapter.convertForDatabase(journal: journal)
+        
+        // Get a reference to the database
+        let journalDB = FMDatabase(path: databasePath as String)
+        
+        //Open the database
+        if (journalDB?.open())!
+        {
+            //Convert the Journal Entry favourite into an Int for the databse
+            // Prepare a statement for operating on the database
+            let updateFavSQL = "UPDATE " + tableName + " SET " +
+                "note = ?, " +
+                "music = ?, " +
+                "quote = ?, " +
+                "photo = ?, " +
+                "weather = ?, " +
+                "mood = ?, " +
+                "date = ?, " +
+                "location = ?, " +
+                "favourite = ?, " +
+                "coordinates = ?, " +
+                "videourl = ?, " +
+                "recordurl = ? " +
+                "WHERE TIMESTAMP= ?"
+            
+            do{
+                //Update the database with the changed value
+                try journalDB?.executeUpdate(updateFavSQL, values:
+                    [journalDBEntry.note,
+                     journalDBEntry.music,
+                     journalDBEntry.quote,
+                     journalDBEntry.photo,
+                     journalDBEntry.weather,
+                     journalDBEntry.mood,
+                     journalDBEntry.date,
+                     journalDBEntry.location,
+                     journalDBEntry.favorite,
+                     journalDBEntry.coordinates,
+                     journalDBEntry.videoURL,
+                     journalDBEntry.recordURL,
+                     journalDBEntry.id]
+                )
+                
+                //If successful, print result
+                print("Journal Entry Updated")
+                // Close the database
+                journalDB?.close()
+                //Tell caller that update was successful
+                return true
+                
+            }catch {
+                //If there was an error, print it, close the database and return false
+                print("Failed to update Journal Entry")
+                // Close the database
+                journalDB?.close()
+                return false
+            }
+            
+        } else {
+            //If there was an error opening the database, print error message
+            print("Error: \(journalDB?.lastErrorMessage())")
+        }
+        //Return false by default
+        return false
     }
     
     

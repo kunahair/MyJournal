@@ -71,6 +71,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }else{
             //Otherwise check if the favourite status has been changed
             localFavSet(set: journalUpdate!.favorite)
+            journalDetail = journalUpdate
+            tableView.reloadData()
         }
         
         
