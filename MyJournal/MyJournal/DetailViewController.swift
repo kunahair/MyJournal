@@ -19,6 +19,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
      */
     
     @IBOutlet var rootView: UIView!
+    @IBOutlet weak var edit: UIButton!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuTrailing: NSLayoutConstraint! // open: -16; hidden: -200
     var menuShowing = false
@@ -75,6 +76,9 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    @IBAction func Edit(_ sender: Any) {
+       // performSegue(withIdentifier: "EditJournalSegue", sender: sender)
+    }
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -217,16 +221,47 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         return tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
     }
     
+    
+   
+    
     // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailToEditSegue" {
-            
-        }
         
         if segue.identifier == "WebViewSegue" {
             let destination = segue.destination as! WebViewController
             destination.webURL = journalDetail!.videoURL
         }
+        
+        
+        if segue.identifier == "EditJournalSegue" {
+            let editView = segue.destination as! EditPageController
+            editView.noteText = (journalDetail?.note)!
+            editView.quoteText = (journalDetail?.quote)!
+            editView.currentWeather = (journalDetail?.weather)!
+            editView.musicFileInfo = (journalDetail?.music)!
+            editView.today = (journalDetail?.date)!
+            editView.favoriteStatus = (journalDetail?.favorite)!
+            editView.videoWebURL = journalDetail?.videoURL
+            editView.recordPathURL = journalDetail?.recordURL
+            editView.id = journalDetail?.id
+            let locationInfo = journalDetail?.location
+            let photoPath = journalDetail?.photo
+            if locationInfo == "Mark your location"{
+                editView.locationStatus = false
+            }else{
+                editView.locationStatus = true
+                editView.addressInfo = (journalDetail?.location)!
+            }
+            if photoPath == "defaultphoto"{
+                editView.photoDefault = UIImage(named: photoPath!)
+            }else{
+                editView.photoDefault = UIImage(contentsOfFile: photoPath!)
+            }
+            
+            
+
+        }
+      
     }
 
     /*
@@ -257,7 +292,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func delBtn(_ sender: Any) {
         // on successful deletion
-        // create the alert
+        // Xing: create the alert
         let alert = UIAlertController(title: "Warning", message: "Do you wnat to proceed to delete this journal?", preferredStyle: UIAlertControllerStyle.alert)
         
         // add the actions (buttons)

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ParseWeatherData: UIViewController{
+class ParseWeatherData{
     
     fileprivate let apiKey: String = "23ab6085c0b41e09efcf10995f55da15"
     private let openWeatherMapURL = "http://api.openweathermap.org/data/2.5/weather"
@@ -100,7 +100,7 @@ class ParseWeatherData: UIViewController{
         weatherDataList.append(weather)
         if delegate != nil {
             delegate?.parseResult(dataList: weatherDataList)
-            dismiss(animated: true, completion: nil)
+            
         }
     }
     

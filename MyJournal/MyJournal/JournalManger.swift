@@ -5,7 +5,6 @@
 //  Created by XING ZHAO on 17/01/2017.
 //  Copyright © 2017 Xing. All rights reserved.
 //
-
 import UIKit
 
 struct JournalManger: JournalManagerProtocol {
@@ -27,7 +26,7 @@ struct JournalManger: JournalManagerProtocol {
     /**
      Protocol function to add journal to database, then when completed, add to Dictionary
      Returns success of insertion with a boolean
-    **/
+     **/
     mutating func addJournal(journal: Journal) -> Bool {
         if journalDBManager.addJournal(journal: journal){
             self.journalEntries.updateValue(journal, forKey: String(journal.id))
@@ -42,7 +41,7 @@ struct JournalManger: JournalManagerProtocol {
      the Journal object is modified accordingly
      Josh: Try to add to database first, if successful, add to Dictionary
      Josh: Use protocol function to do insertion, this is a overloaded function that takes raw data and converts to Journal
-    **/
+     **/
     mutating func addJournal(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?) -> Bool
     {
         //Generate key and create Journal Entry
@@ -78,7 +77,7 @@ struct JournalManger: JournalManagerProtocol {
      Get journal entry from Dict by key
      Check that the entry exists in the database, then get the Dictionary Journal entry if it does
      Returns nil if not in dictionary, otherwise returns the valid Journal Entry
-    **/
+     **/
     mutating func getJournalEntryByKey(key: String) -> Journal? {
         
         if journalDBManager.getJournalEntryByKey(key: key) == nil{
@@ -100,11 +99,11 @@ struct JournalManger: JournalManagerProtocol {
         if(self.journalEntries.count > 0)
         {
             let journalArray = getJournalEntriesArray()
-                return journalArray[id]
+            return journalArray[id]
         }
         return Journal(id: String(Int(NSDate().timeIntervalSince1970)))
     }
-
+    
     //Get a Journal Entry and its Array Index by Date
     //Returns a Tuple (index: Int, journal: Journal) returns nil if not found
     func getJournalEntryAndIndexByDate(date: String)->(index: Int, journal: Journal)?
@@ -119,7 +118,7 @@ struct JournalManger: JournalManagerProtocol {
         }
         return nil
     }
- 
+    
     //Get list of Journal Entries that are favourited
     //Return as an array
     func getJournalFavouriteArray()->[Journal] {
@@ -136,9 +135,44 @@ struct JournalManger: JournalManagerProtocol {
     
     //Get Journal Entry by Index convienience function
     func getJournalFavouriteByIndex(index: Int)->Journal? {
-
+        
         // access by index
         return getJournalEntriesArray()[index]
+    }
+    
+    mutating func updateJournalEntry(id: String, note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?) -> Bool
+    {
+        var journal:Journal = Journal(id: id)
+        journal.note = note
+        journal.photo = photo
+        journal.weather = weather
+        journal.mood = mood
+        journal.date = date
+        journal.location = location
+        journal.favorite = favorite
+        journal.coordinates = coordinates
+        journal.recordURL = recordURL
+        journal.videoURL = videoURL
+        
+        if music != nil {
+            journal.music = music!
+        }
+        
+        if quote != nil {
+            journal.quote =  quote!
+        }
+        
+        
+        return updateJournalyEntry(journal: journal)
+    }
+    
+    mutating func updateJournalyEntry(journal: Journal) -> Bool {
+        if journalDBManager.updateJournalyEntry(journal: journal)
+        {
+            journalEntries[journal.id] = journal
+            return true
+        }
+        return false
     }
     
     /**
@@ -169,7 +203,7 @@ struct JournalManger: JournalManagerProtocol {
      19Jan Ryan: this func remains its functionality
      Josh: Remove from database, if successful remove from Dictionary
      Josh: conveinience function to remove by index from converted Dictionary to Array
-    **/
+     **/
     mutating func deleteJournalEntryByIndex(id: Int)->Bool
     {
         let journalArray = getJournalEntriesArray()
@@ -184,11 +218,11 @@ struct JournalManger: JournalManagerProtocol {
         return false
     }
     
-    /** 
+    /**
      Delete Journal Entry by Key (timestamp)
      First try to delete from the database, if successful then remove from the dictionary
      Uses protocol delete function
-    **/
+     **/
     mutating func deleteJournalEntryByKey(key: String)->Bool {
         
         if journalDBManager.deleteJournalEntryByKey(key: key){
@@ -198,5 +232,5 @@ struct JournalManger: JournalManagerProtocol {
         }
         return false
     }
-
+    
 }

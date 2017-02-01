@@ -47,7 +47,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var switchOn = false
     var photoURL: String!
     var photoPath:String!
-    let today: String = Model.getInstance.getCurrentDate()
+    var today: String = Model.getInstance.getCurrentDate()
     var currentLocation:Location = Location()
     var currentWeather: String = "Auto display upon activating location"
     var currentTemp: String?
@@ -55,7 +55,14 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var recordPathURL: URL!
     var videoWebURL: URL!
     var weatherDes = WeatherEnum()
-    
+    var journalDetail:Journal?
+    var quoteText: String = "This is a test quote"
+    var noteText: String = "This is a test note"
+    var photoDefault: UIImage?
+    var musicFileInfo: String = ""
+    var favoriteStatus: Bool = true
+    var locationStatus: Bool = false
+    var id: String?
     @IBOutlet weak var moodPickerView: UIPickerView!
     
     @IBOutlet weak var weatherResultLabel: UILabel!
@@ -75,18 +82,19 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         weatherResultLabel.textColor = UIColor.gray
         weatherResultLabel.font = UIFont.systemFont(ofSize: 14)
         currentDate.text = "\(today)"
-        switchButton.isOn = false
+        switchButton.isOn = locationStatus
         address.text = addressInfo
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
-       
+        photo.image = photoDefault
+        musicFile.text = musicFileInfo
         // Ryan 26Jan: set up the recorder when loading the page
         Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
-        
+        isFavorite.isOn = favoriteStatus
         //Set a quote and note for testing
         //NOTE: MUST BE DELETED #######
-        note.text = "This is a test note"
-        quote.text = "This is a test quote"
+        note.text = noteText
+        quote.text =  quoteText
     }
     
     
@@ -233,8 +241,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             //Save Journal Entry to database and Model
             //If the save was successful, then go back to initial view (the calling view) with some fancy animation
             //Xing: change the value that pass to weather
-            if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text,favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL)
-            {
+            
+            if(self.id == nil){
+                if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                }else{
+                    //Otherwise, tell the user that the save was not successful, without deleting their work
+                    showAlert(message: "Failed to save Journal Entry, please try again")
+                }
+            }else{
+                if  Model.getInstance.journalManager.updateJournalEntry(id: id!, note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                }else{
+                    //Otherwise, tell the user that the save was not successful, without deleting their work
+                    showAlert(message: "Failed to save Journal Entry, please try again")
+                }
+                
+            }
                 //Clear not and quote to show user actions are happening
                 note.text = ""
                 quote.text = ""
@@ -248,10 +269,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                     self.activityIndicator.stopAnimating()
                     _ = self.navigationController?.popViewController(animated: true)
                 }
-            }else {
-                //Otherwise, tell the user that the save was not successful, without deleting their work
-                showAlert(message: "Failed to save Journal Entry, please try again")
-            }
+        
         }
     }
     /*

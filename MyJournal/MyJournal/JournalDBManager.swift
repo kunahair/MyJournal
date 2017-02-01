@@ -370,6 +370,10 @@ struct JournalDBManager: JournalManagerProtocol {
         return nil
     }
     
+    func updateJournalyEntry(journal: Journal) -> Bool {
+        return true
+    }
+    
     
     /**
      Function to update a change favourite state of a Journal entry into the databse
