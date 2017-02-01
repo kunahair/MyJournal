@@ -1155,7 +1155,6 @@
                                         <rect key="frame" x="8" y="8" width="137" height="30"/>
                                         <state key="normal" title="Edit"/>
                                         <connections>
-                                            <action selector="Edit:" destination="3kV-eU-QMu" eventType="touchUpInside" id="KkK-j5-ZP2"/>
                                             <segue destination="BYZ-38-t0r" kind="show" identifier="EditJournalSegue" id="U5r-DG-cqK"/>
                                         </connections>
                                     </button>
@@ -1241,8 +1240,8 @@
         <image name="location-pointer" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mZK-4f-Rlx"/>
-        <segue reference="iJS-me-IPs"/>
+        <segue reference="505-Cq-t13"/>
         <segue reference="O5a-SZ-2zG"/>
+        <segue reference="U5r-DG-cqK"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -241,17 +241,17 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             //Save Journal Entry to database and Model
             //If the save was successful, then go back to initial view (the calling view) with some fancy animation
             //Xing: change the value that pass to weather
-            
+            //Xing: if the journal exists, then update to memory model and database, otherwise add a new journal
             if(self.id == nil){
                 if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
                 }else{
-                    //Otherwise, tell the user that the save was not successful, without deleting their work
+                    //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
                 }
             }else{
-                if  Model.getInstance.journalManager.updateJournalEntry(id: id!, note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                if  Model.getInstance.journalManager.updateJournalEntry(id: id!, note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
                 }else{
-                    //Otherwise, tell the user that the save was not successful, without deleting their work
+                    //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
                 }
                 

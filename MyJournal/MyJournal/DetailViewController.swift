@@ -76,9 +76,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    @IBAction func Edit(_ sender: Any) {
-       // performSegue(withIdentifier: "EditJournalSegue", sender: sender)
-    }
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -232,7 +229,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             destination.webURL = journalDetail!.videoURL
         }
         
-        
+        //Xing : pass the data to edit page
         if segue.identifier == "EditJournalSegue" {
             let editView = segue.destination as! EditPageController
             editView.noteText = (journalDetail?.note)!
@@ -244,6 +241,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             editView.videoWebURL = journalDetail?.videoURL
             editView.recordPathURL = journalDetail?.recordURL
             editView.id = journalDetail?.id
+           
             let locationInfo = journalDetail?.location
             let photoPath = journalDetail?.photo
             if locationInfo == "Mark your location"{

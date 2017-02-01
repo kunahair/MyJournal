@@ -24,7 +24,6 @@
 		2BE2C7951E3492A8004BFB2D /* testWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE2C7941E3492A8004BFB2D /* testWalkthrough.swift */; };
 		3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AC25F1E2840F0009992ED /* EditPageController.swift */; };
 		3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */; };
-		3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE311E271EB8003C9490 /* ViewController.swift */; };
 		3B95AE351E271EB8003C9490 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE331E271EB8003C9490 /* Main.storyboard */; };
 		3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B95AE361E271EB8003C9490 /* Assets.xcassets */; };
 		3B95AE451E271EB8003C9490 /* MyJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B95AE441E271EB8003C9490 /* MyJournalTests.swift */; };
@@ -107,7 +106,6 @@
 		3B0AC25F1E2840F0009992ED /* EditPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageController.swift; sourceTree = "<group>"; };
 		3B95AE2C1E271EB8003C9490 /* MyJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B95AE2F1E271EB8003C9490 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B95AE311E271EB8003C9490 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B95AE341E271EB8003C9490 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B95AE361E271EB8003C9490 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B95AE3B1E271EB8003C9490 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -351,7 +349,6 @@
 				3B0AC25F1E2840F0009992ED /* EditPageController.swift */,
 				EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */,
 				EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */,
-				3B95AE311E271EB8003C9490 /* ViewController.swift */,
 				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
 				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
@@ -522,7 +519,6 @@
 				2B83A36B1E3C71880026C0DA /* JournalDatabaseAdapter.swift in Sources */,
 				2B83A3651E3C70FC0026C0DA /* FMDatabasePool.m in Sources */,
 				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
-				3B95AE321E271EB8003C9490 /* ViewController.swift in Sources */,
 				EBA4BC241E2E39D300C1C24D /* JournalManger.swift in Sources */,
 				94E25FA11E396BEC001B49AD /* FileOpManager.swift in Sources */,
 				942032921E334AF2005B1541 /* FavPhotos.swift in Sources */,
