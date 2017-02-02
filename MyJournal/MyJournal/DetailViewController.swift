@@ -56,11 +56,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         // hide menu get shadow
-        menuView.isHidden = true
-        
-        //menuTrailing.constant = -200.0
-        //menuView.layer.shadowOpacity = 0.5
-        //menuView.layer.shadowRadius = 2.5
+        hideMenu()
         
     }
     
@@ -83,10 +79,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         //If the menu is showing when view is being reloaded, then hide it, looks nicer
         if menuShowing {
-            //menuTrailing.constant = -200.0
-            //menuView.alpha = 0
-            menuShowing = false
-            menuView.isHidden = true
+            hideMenu()
         }
     }
     
@@ -95,138 +88,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /* Table Functions */
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
-    }
-    
-    //Divide into sections for each journal heading
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 4
-        case 1:
-            return 1
-        case 2:
-            return 2
-        case 3:
-            return 1
-        case 4:
-            return 2
-        default:
-            return 1
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sepArray[section]
-    }
-    
-    //Populate cells
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // with header section
-        if indexPath.section == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
-                switch indexPath.row {
-                case 0:
-                    cell.icon.image = UIImage(named: "calendar")
-                    cell.label.text = journalDetail!.date
-                case 1:
-                    cell.icon.image = UIImage(named: journalDetail!.weather)
-                    cell.label.text = "It was a " + journalDetail!.weather + " day"
-                case 2:
-                    cell.icon.image = UIImage(named: "location-pointer")
-                    cell.label.text = "I was at " + journalDetail!.location
-                case 3:
-                    cell.icon.image = UIImage(named: journalDetail!.mood)
-                    cell.label.text = "I was feeling " + journalDetail!.mood
-                default:
-                    return cell
-                }
-                return cell
-        }
-        
-        
-        // with image section
-        if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
-            cell.noteBody.text = journalDetail!.note
-            if journalDetail!.photo == "defaultphoto"
-            {
-                cell.imageBody.image = UIImage(named: "defaultphoto")!
-            }else{
-                cell.imageBody.image = UIImage(contentsOfFile: journalDetail!.photo)
-            }
-            return cell
-        }
-        
-        // with quote and music 
-        if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
-            switch indexPath.row {
-            case 0:
-                cell.titleLabel.text = "Quote of the Day"
-                cell.label.text = journalDetail!.quote
-            case 1:
-                cell.titleLabel.text = "Music of the Day"
-                cell.label.text = journalDetail!.music
-            default:
-                return cell
-            }
-            return cell
-        }
-        
-        // with map cell
-        if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath) as! MapCell
-            cell.drawMap(id: journalDetail!.id)
-            return cell
-        }
-        
-        // with video and record cell
-        if indexPath.section == 4 {
-            switch indexPath.row {
-            case 0:
-                //Get reference to Cell from queue as a VideoCell
-                let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoCell
-                //Get the videoURL for this Journal Entry
-                //If it not nil, load the videolink
-                let videoURL:URL? = journalDetail!.videoURL
-                if videoURL != nil
-                {
-                    cell.videoURL = journalDetail!.videoURL
-                } else {
-                    //Otherwise hide the playback button
-                    cell.videoPlaybackButton.isHidden = true
-                }
-                
-                return cell
-            case 1:
-                //Get reference to the Cell from queue as a RecordCell
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! RecordCell
-                //Get the record URL for this Journal Entry
-                //If it is not nil, load the Record Link
-                let recordURL:URL? = journalDetail!.recordURL
-                if recordURL != nil
-                {
-                    cell.recordURL = journalDetail!.recordURL
-                }else {
-                    //Otherwise hide the record playback button
-                    cell.recordPlaybackButton.isHidden = true
-                }
-                return cell
-            default:
-                return UITableViewCell()
-            }
-        }
-        
-        return tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
-    }
-    
-    
-   
     
     // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -337,44 +198,214 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         // finally set the local copy
         journalDetail!.favorite = set
     }
+}
 
+
+/**
+ TableView Delegate and custom functions
+ **/
+extension DetailViewController {
     
+    /* Table Functions */
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sepArray.count
+    }
+    
+    //Divide into sections for each journal heading
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 4
+        case 1:
+            return 1
+        case 2:
+            return 2
+        case 3:
+            return 1
+        case 4:
+            return 2
+        default:
+            return 1
+        }
+    }
+    
+    /**
+     Populate headings of each section
+     **/
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sepArray[section]
+    }
+    
+    //Populate cells
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // with header section
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell", for: indexPath) as! HeaderCell
+            switch indexPath.row {
+            case 0:
+                cell.icon.image = UIImage(named: "calendar")
+                cell.label.text = journalDetail!.date
+            case 1:
+                cell.icon.image = UIImage(named: journalDetail!.weather)
+                cell.label.text = "It was a " + journalDetail!.weather + " day"
+            case 2:
+                cell.icon.image = UIImage(named: "location-pointer")
+                cell.label.text = "I was at " + journalDetail!.location
+            case 3:
+                cell.icon.image = UIImage(named: journalDetail!.mood)
+                cell.label.text = "I was feeling " + journalDetail!.mood
+            default:
+                return cell
+            }
+            return cell
+        }
+        
+        
+        // with image section
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+            cell.noteBody.text = journalDetail!.note
+            if journalDetail!.photo == "defaultphoto"
+            {
+                cell.imageBody.image = UIImage(named: "defaultphoto")!
+            }else{
+                cell.imageBody.image = UIImage(contentsOfFile: journalDetail!.photo)
+            }
+            return cell
+        }
+        
+        // with quote and music
+        if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
+            switch indexPath.row {
+            case 0:
+                cell.titleLabel.text = "Quote of the Day"
+                cell.label.text = journalDetail!.quote
+            case 1:
+                cell.titleLabel.text = "Music of the Day"
+                cell.label.text = journalDetail!.music
+            default:
+                return cell
+            }
+            return cell
+        }
+        
+        // with map cell
+        if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath) as! MapCell
+            cell.drawMap(id: journalDetail!.id)
+            return cell
+        }
+        
+        // with video and record cell
+        if indexPath.section == 4 {
+            switch indexPath.row {
+            case 0:
+                //Get reference to Cell from queue as a VideoCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoCell
+                //Get the videoURL for this Journal Entry
+                //If it not nil, load the videolink
+                let videoURL:URL? = journalDetail!.videoURL
+                if videoURL != nil
+                {
+                    cell.videoURL = journalDetail!.videoURL
+                } else {
+                    //Otherwise hide the playback button
+                    cell.videoPlaybackButton.isHidden = true
+                }
+                
+                return cell
+            case 1:
+                //Get reference to the Cell from queue as a RecordCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RecordCell", for: indexPath) as! RecordCell
+                //Get the record URL for this Journal Entry
+                //If it is not nil, load the Record Link
+                let recordURL:URL? = journalDetail!.recordURL
+                if recordURL != nil
+                {
+                    cell.recordURL = journalDetail!.recordURL
+                }else {
+                    //Otherwise hide the record playback button
+                    cell.recordPlaybackButton.isHidden = true
+                }
+                return cell
+            default:
+                return UITableViewCell()
+            }
+        }
+        
+        return tableView.dequeueReusableCell(withIdentifier: "FooterCell", for: indexPath) as! FooterCell
+    }
+    
+    //If the menu is showing when user selects away from the menu, hide the menu
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if menuShowing{
+            hideMenu()
+        }
+    }
+}
+
+/**
+ Custom Menu Functions and related button listeners
+ **/
+extension DetailViewController {
     /*
-        Slide menu funcs & actions
+     Slide menu funcs & actions
      */
     
     @IBAction func menuSlide(_ sender: Any) {
-        menuShow()
+        toggleMenu()
     }
     
     /*
-        Export action
+     Export action
      */
     
     @IBAction func exportAction(_ sender: Any) {
         // hide the menu first
-        menuShow()
-
+        hideMenu()
+        
     }
     
-    func menuShow() {
-       
-        if menuShowing { // is showing
-            menuTrailing.constant = -200.0
-            menuView.alpha = 0
-            menuShowing = false
-            menuView.isHidden = false
-        }
-        else {
-            menuTrailing.constant = -20.0
-            menuView.alpha = 1
-            menuShowing = true
-            menuView.isHidden = false
-        }
+    /**
+     Hide the Custom Menu
+     **/
+    fileprivate func hideMenu(){
+        menuTrailing.constant = -200.0
+        menuView.alpha = 1
+        menuShowing = false
         
         // add animation
         UIView.animate(withDuration: 0.3, animations: {
-        self.view.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         })
+        
+    }
+    
+    /**
+     Show the Custom Menu with animation
+     **/
+    fileprivate func showMenu(){
+        menuTrailing.constant = -20.0
+        menuView.alpha = 1
+        menuShowing = true
+        
+        // add animation
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    /**
+     Toggle the Custom Menu with animation
+     **/
+    fileprivate func toggleMenu() {
+        if menuShowing { // is showing
+            hideMenu()
+        }
+        else {
+            showMenu()
+        }
     }
 }
