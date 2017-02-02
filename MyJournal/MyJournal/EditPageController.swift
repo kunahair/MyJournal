@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate,UITextViewDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate,UITextViewDelegate, WeatherViewUpdateDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -72,30 +72,57 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Hide the keyboard when the view is first loaded
+        self.hideKeyboard()
+        
+        //Assign all nessary delegates
         photoPicker.delegate = self
         musicPicker.delegate = self
-        self.hideKeyboard()
-        //sets the class as delegate for locationManager, specifies the location accuracy
+        note.delegate = self
+        
+        
+        //sets the class as delegate for locationManager, specifies the location accuracy and user request
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
+        
+        //Set weather label and grey for no weather info
         weatherResultLabel.text = currentWeather
         weatherResultLabel.textColor = UIColor.gray
+        
+        //Set the current day label text
         currentDate.text = "\(today)"
+        
         switchButton.isOn = locationStatus
         address.text = addressInfo
+        
+        //Set mood picker delgate and datasource
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
+        
+        //If we are in edit mode, then set the Mood Picker from the Journal Entry
+        if journalDetail != nil {
+            //Get the array index value for the mood
+            let moodInt:Int = Model.getInstance.getMoodByName(name: journalDetail!.mood)
+            //If the index is valid, then set the mood picker
+            if moodInt != -1 {
+                moodPickerView.selectRow(moodInt, inComponent: 0, animated: true)
+            }
+            
+        }
+        
         photo.image = photoDefault
         musicFile.text = musicFileInfo
         Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
         isFavorite.isOn = favoriteStatus
-        note.delegate = self
+        
+        //Set the quote text to default
         quote.text =  quoteText
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        /**
         //check the internet connection first
         if ReachabilityStatus.isConnected() == true{
             let location = try? Model.getInstance.getLocation()
@@ -111,12 +138,21 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }else{
             print("No Internet Connection")
         }
-        self.note.text = noteText
-        if(noteText == placeholderText) {
-            self.note.textColor = UIColor.gray
-        } else {
-            self.note.textColor = UIColor.black
+         **/
+        
+        //
+        //self.note.text = noteText
+        if journalDetail == nil {
+            if(self.note.text == placeholderText || self.note.text == "") {
+                self.note.text = placeholderText
+                self.note.textColor = UIColor.gray
+            } else {
+                self.note.textColor = UIColor.black
+            }
+        }else{
+            self.note.text = journalDetail!.note
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,7 +162,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     //if users start to type, placeholderText dispears
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if self.note.text == noteText{
+        if self.note.text == placeholderText{
             self.note.text = ""
             self.note.textColor = UIColor.black
         }
@@ -135,13 +171,14 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     //if users finish editing without entering anything, placeholderText will reappear
     func textViewDidEndEditing(_ textView: UITextView) {
         if self.note.text == ""{
-            self.note.text = noteText
+            self.note.text = placeholderText
             self.note.textColor = UIColor.gray
         }
         self.note.resignFirstResponder()
 
     }
    
+    
     func parseResult(dataList: Array<Weather>) {
         for weather in dataList{
             self.currentWeather = weather.description+"   "+String(weather.temp-factor)+"°C"
@@ -393,5 +430,20 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSave) -> Void in
         }))
         present(alert, animated: true)
+    }
+    
+    /**
+     Delgate callback to update the weather information to be displayed in the View
+     Checks for errors, changes Weather label to an error if there was a problem with API GET
+     Has parameter Weather Object that holds weather information returned from the chosen WeatherAPI
+     **/
+    func updateWeather(weather: Weather) {
+        if weather.code == 200{
+            self.weatherResultLabel.textColor = UIColor.black
+            self.weatherResultLabel.text = weather.conditions
+        }else
+        {
+            self.weatherResultLabel.text = weather.message
+        }
     }
 }

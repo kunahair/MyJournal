@@ -28,9 +28,35 @@ extension EditPageController {
                 if let formattedAddress = address["FormattedAddressLines"] as? [String] {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
-                    self.weatherResultLabel.textColor = UIColor.black
+                    
+                    
+                    //self.weatherResultLabel.textColor = UIColor.black
                     //Update weather based on location
-                    self.weatherResultLabel.text = self.currentWeather
+                    //self.weatherResultLabel.text = self.currentWeather
+                    
+                    //Set text to show that the Weather info is loading
+                    self.weatherResultLabel.textColor = UIColor.gray
+                    self.weatherResultLabel.text = "Loading..."
+                    
+                    //Check if device is connected to internet before doing API call
+                    if ReachabilityStatus.isConnected()
+                    {
+                        //Get Weather info from API, so errors if needed
+                        do {
+                            //Get Location from Model conveinience function
+                            let location:Location? = try Model.getInstance.getLocation()
+                            //If location is recieved with no errors, then get weather from API
+                            var openWeatherMap:OpenWeatherMap = OpenWeatherMap()
+                            openWeatherMap.delegate = self
+                            openWeatherMap.getWeatherFromAPI(lat: location!.lat, lon: location!.lon)
+                        }catch {
+                            //If there was an error, tell user
+                            self.weatherResultLabel.text = "An Error Occured"
+                        }
+                    }else {
+                        //Tell user that there is no internet connection
+                        self.weatherResultLabel.text = "No Internet Connection"
+                    }
                     
                 }
             }

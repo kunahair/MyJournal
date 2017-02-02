@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/**
 class ParseWeatherData{
     
     fileprivate let apiKey: String = "23ab6085c0b41e09efcf10995f55da15"
@@ -105,3 +106,5 @@ class ParseWeatherData{
     }
     
 }
+ 
+ **/

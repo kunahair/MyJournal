@@ -75,15 +75,19 @@ class Model{
     func getCurrentDateSec()->String{
         let currentDate = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "YY-MM-DD-HH-MM-SS"
+        formatter.dateFormat = "YY-MM-dd-HH-MM-SS"
         let dateStr = formatter.string(from: currentDate)
         return dateStr
     }
     
+    /**
+     Get current device date that is User Readable
+     Return a String that is a User Readable representation of the device date
+    **/
     func getCurrentDate()->String{
         let currentDate = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "DD-MM-YY"
+        formatter.dateFormat = "dd-MM-YY"
         let dateStr = formatter.string(from: currentDate)
         return dateStr
     }
@@ -98,6 +102,26 @@ class Model{
     // return passible mood selections in an array
     func getMoodArray()->[String] {
         return self._moodCases
+    }
+    
+    /**
+     Get a moods index in the Mood Array by name
+     Return the index that the mood is in as an Integer, returns -1 if no mood was found that matches name
+     
+     NOTE: Could be made an optional, but you have to keep track of, unpack and do extra tests, easier and faster to test an Int and not for nil
+    **/
+    func getMoodByName(name: String)->Int
+    {
+        //Get the Mood Array
+        let moodArray = getMoodArray()
+        //Loop through each mood in array and test for the name provided, when it is found, return the index
+        for (index, mood) in moodArray.enumerated() {
+            if mood == name {
+                return index
+            }
+        }
+        //Return -1, error, as default
+        return -1
     }
     
     static func getUserReadableDate(date: Date)->String

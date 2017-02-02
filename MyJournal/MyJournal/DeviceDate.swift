@@ -25,7 +25,7 @@ struct DeviceDate
     {
         get{
             let formatter = DateFormatter()
-            formatter.dateFormat = "DD-MM-YYYY"
+            formatter.dateFormat = "dd-MM-YYYY"
             return formatter.string(from: date)
 
             }

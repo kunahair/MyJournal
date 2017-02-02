@@ -40,7 +40,10 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.title = ""
         //just in case, grab it again from the model by key
-        journalDetail = Model.getInstance.journalManager.getJournalEntryByKey(key: journalDetail!.id)
+        if journalDetail != nil{
+            journalDetail = Model.getInstance.journalManager.getJournalEntryByKey(key: journalDetail!.id)
+        }
+        
         
         // enable auto layout
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -53,9 +56,11 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         // hide menu get shadow
-        menuTrailing.constant = -200.0
-        menuView.layer.shadowOpacity = 0.5
-        menuView.layer.shadowRadius = 2.5
+        menuView.isHidden = true
+        
+        //menuTrailing.constant = -200.0
+        //menuView.layer.shadowOpacity = 0.5
+        //menuView.layer.shadowRadius = 2.5
         
     }
     
@@ -65,15 +70,24 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         //Get the journal entry from the model
         let journalUpdate:Journal? = Model.getInstance.journalManager.getJournalEntryByKey(key: journalDetail!.id)
         
+        //Check status of Journal Entry, if it has been deleted then go back a page, or update view for any changes
         //If it is nil, then go back one view (either main table view or collection view)
         if journalUpdate == nil {
-           let _ = navigationController?.popViewController(animated: true)
+            let _ = navigationController?.popViewController(animated: true)
         }else{
-            //Otherwise check if the favourite status has been changed
+            //Otherwise set the favourite, change Journal Detail Entry to include new changes, and reload the view
             localFavSet(set: journalUpdate!.favorite)
+            journalDetail = journalUpdate
+            tableView.reloadData()
         }
         
-        
+        //If the menu is showing when view is being reloaded, then hide it, looks nicer
+        if menuShowing {
+            //menuTrailing.constant = -200.0
+            //menuView.alpha = 0
+            menuShowing = false
+            menuView.isHidden = true
+        }
     }
     
    
@@ -253,7 +267,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
                 editView.photoDefault = UIImage(contentsOfFile: photoPath!)
             }
             
-            
+            editView.journalDetail = journalDetail
 
         }
       
@@ -344,15 +358,18 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func menuShow() {
+       
         if menuShowing { // is showing
             menuTrailing.constant = -200.0
             menuView.alpha = 0
             menuShowing = false
+            menuView.isHidden = false
         }
         else {
             menuTrailing.constant = -20.0
             menuView.alpha = 1
             menuShowing = true
+            menuView.isHidden = false
         }
         
         // add animation
