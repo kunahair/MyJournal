@@ -41,7 +41,7 @@ extension EditPageController {
             let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
             let documentsDir: NSString = paths.object(at: 0) as! NSString
             
-            self.photoPath  = documentsDir.appendingPathComponent(self.photoURL!)
+            self.photoPath  = self.photoURL! //documentsDir.appendingPathComponent(self.photoURL!)
             
             print("picture : "+"\(self.photoPath)")
             

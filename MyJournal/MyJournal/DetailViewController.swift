@@ -270,7 +270,9 @@ extension DetailViewController {
             {
                 cell.imageBody.image = UIImage(named: "defaultphoto")!
             }else{
-                cell.imageBody.image = UIImage(contentsOfFile: journalDetail!.photo)
+                let docsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                
+                cell.imageBody.image = UIImage(named: docsPath.appendingPathComponent(journalDetail!.photo).path)
             }
             return cell
         }

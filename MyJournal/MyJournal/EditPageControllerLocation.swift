@@ -45,6 +45,8 @@ extension EditPageController {
                         do {
                             //Get Location from Model conveinience function
                             let location:Location? = try Model.getInstance.getLocation()
+                            
+                            self.currentLocation = location!
                             //If location is recieved with no errors, then get weather from API
                             var openWeatherMap:OpenWeatherMap = OpenWeatherMap()
                             openWeatherMap.delegate = self
