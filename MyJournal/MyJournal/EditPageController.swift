@@ -40,7 +40,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     @IBOutlet weak var audioRecordBtn: UIButton!
     
     let photoPicker = UIImagePickerController()
-    let factor: Float = 273.15
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
     let placeholderText: String = "What's new about today?"
@@ -181,7 +180,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     func parseResult(dataList: Array<Weather>) {
         for weather in dataList{
-            self.currentWeather = weather.description+"   "+String(weather.temp-factor)+"°C"
+            self.currentWeather = weather.description+"   "+String(weather.temp)+"°C"
             //check the keyword from weather data
             if(weather.description.contains("clouds")){
                 self.weatherDes = WeatherEnum(weather: "cloudy")!
@@ -443,7 +442,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     func updateWeather(weather: Weather) {
         if weather.code == 200{
             self.weatherResultLabel.textColor = UIColor.black
-            self.weatherResultLabel.text = weather.conditions
+            self.weatherResultLabel.text = weather.conditions+"   "+String(weather.temp)+"°C"
+            
         }else
         {
             self.weatherResultLabel.text = weather.message

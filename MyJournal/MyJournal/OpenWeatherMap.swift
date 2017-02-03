@@ -73,6 +73,9 @@ struct OpenWeatherMap {
                                     weather = self.loadWeatherData(weatherJSON: parsedJSON)
                                     if weather.code == 200 { //200 means success in HTTP world
                                         self.delegate!.updateWeather(weather: weather)
+                                        //print json data
+                                        let dataStr = String(data: data!, encoding: .utf8)!
+                                        print(dataStr)
                                     }
                                     else
                                     {
