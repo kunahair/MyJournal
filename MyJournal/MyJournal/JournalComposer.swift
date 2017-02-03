@@ -71,19 +71,9 @@ class JournalComposer: NSObject {
         // custom function to return drawn PDF, also pass in a UIImage from the journal
         // read the String to UIImage first
         let photo = UIImage(contentsOfFile: journal.photo)
-        var pdfData: NSData!
-        //threading
-        DispatchQueue.global(qos: .background).async {
-            pdfData = self.drawPDFUsingRenderer(renderer: journalPrintRenderer, photo: photo!) // actual drawing func
-        }
-        
-        // file name to pass and save
+        var pdfData = drawPDFUsingRenderer(renderer: journalPrintRenderer, photo: photo!)        // file name to pass and save
         let pdfFilename = Model.getInstance.fileOpManager.getFilePath(filename: Model.getInstance.fileOpManager.createFileName(type: ".pdf"))
-        //threading
-        DispatchQueue.global(qos: .background).async {
-            pdfData.write(toFile: pdfFilename, atomically: true)
-        }
-        
+        pdfData.write(toFile: pdfFilename, atomically: true)
         print("PDF SAVED: " + pdfFilename)
         return pdfFilename
     }
