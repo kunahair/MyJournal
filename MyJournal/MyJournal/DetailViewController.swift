@@ -173,7 +173,9 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         // with map cell
         if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MapCell", for: indexPath) as! MapCell
-            cell.drawMap(id: journalDetail!.id)
+            DispatchQueue.global(qos: .background).async{
+                cell.drawMap(id: self.journalDetail!.id)
+            }
             return cell
         }
         
@@ -226,6 +228,11 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         if segue.identifier == "WebViewSegue" {
             let destination = segue.destination as! WebViewController
             destination.webURL = journalDetail!.videoURL
+        }
+        
+        if segue.identifier == "ExportPreviewSegue" {
+            let destination = segue.destination as! ExportViewController
+            destination.journal = self.journalDetail!
         }
     }
 
@@ -307,10 +314,23 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         Export action
      */
     
-    @IBAction func exportAction(_ sender: Any) {
+    @IBAction func exportAction(_ sender: UIButton) {
         // hide the menu first
         menuShow()
-
+        
+        // start full screen shot
+        // create a bitmap context and push it onto the graphics stack, with the same size of the current root view
+//        UIGraphicsBeginImageContext(view.frame.size)
+//        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        let sourceImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        UIImageWriteToSavedPhotosAlbum(sourceImage!, nil, nil, nil)
+//        
+//        // feed back
+//        let alert = UIAlertController(title: "Success", message: "Your journal has just been exported to your Photo Library", preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "Awesome!", style: UIAlertActionStyle.cancel, handler: nil))
+//        // show the alert
+//        self.present(alert, animated: true, completion: nil)
     }
     
     func menuShow() {
@@ -326,7 +346,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         // add animation
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
         self.view.layoutIfNeeded()
         })
     }

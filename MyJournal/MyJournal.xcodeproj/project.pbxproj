@@ -39,6 +39,10 @@
 		9420328E1E309178005B1541 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328D1E309178005B1541 /* FooterCell.swift */; };
 		942032901E31E044005B1541 /* testDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328F1E31E044005B1541 /* testDetailView.swift */; };
 		942032921E334AF2005B1541 /* FavPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032911E334AF2005B1541 /* FavPhotos.swift */; };
+		94D879461E4161830064C0AC /* JournalComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D879451E4161830064C0AC /* JournalComposer.swift */; };
+		94D879481E41A6B60064C0AC /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D879471E41A6B60064C0AC /* ExportViewController.swift */; };
+		94D8794A1E41B2320064C0AC /* journal.html in Resources */ = {isa = PBXBuildFile; fileRef = 94D879491E41B2320064C0AC /* journal.html */; };
+		94D8794C1E41C47D0064C0AC /* JournalPrintRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D8794B1E41C47D0064C0AC /* JournalPrintRenderer.swift */; };
 		94E25FA11E396BEC001B49AD /* FileOpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA01E396BEC001B49AD /* FileOpManager.swift */; };
 		94E25FA31E3A016B001B49AD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA21E3A016B001B49AD /* WebViewController.swift */; };
 		94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA41E3A1015001B49AD /* VideoCell.swift */; };
@@ -129,6 +133,10 @@
 		9420328D1E309178005B1541 /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		9420328F1E31E044005B1541 /* testDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testDetailView.swift; sourceTree = "<group>"; };
 		942032911E334AF2005B1541 /* FavPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavPhotos.swift; sourceTree = "<group>"; };
+		94D879451E4161830064C0AC /* JournalComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalComposer.swift; sourceTree = "<group>"; };
+		94D879471E41A6B60064C0AC /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		94D879491E41B2320064C0AC /* journal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = journal.html; sourceTree = "<group>"; };
+		94D8794B1E41C47D0064C0AC /* JournalPrintRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalPrintRenderer.swift; sourceTree = "<group>"; };
 		94E25FA01E396BEC001B49AD /* FileOpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileOpManager.swift; sourceTree = "<group>"; };
 		94E25FA21E3A016B001B49AD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		94E25FA41E3A1015001B49AD /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
@@ -243,6 +251,7 @@
 		3B95AE231E271EB8003C9490 = {
 			isa = PBXGroup;
 			children = (
+				94D879491E41B2320064C0AC /* journal.html */,
 				3B95AE2E1E271EB8003C9490 /* MyJournal */,
 				3B95AE431E271EB8003C9490 /* MyJournalTests */,
 				3B95AE4E1E271EB8003C9490 /* MyJournalUITests */,
@@ -356,6 +365,8 @@
 				EBD31E901E341A560003D705 /* FakeJounalEntries.swift */,
 				94E25FA01E396BEC001B49AD /* FileOpManager.swift */,
 				2BB20BA61E3D840F009A971A /* JournalManagerProtocol.swift */,
+				94D879451E4161830064C0AC /* JournalComposer.swift */,
+				94D8794B1E41C47D0064C0AC /* JournalPrintRenderer.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -371,6 +382,7 @@
 				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
 				94E25FA21E3A016B001B49AD /* WebViewController.swift */,
+				94D879471E41A6B60064C0AC /* ExportViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -499,6 +511,7 @@
 			files = (
 				3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */,
 				3B95AE351E271EB8003C9490 /* Main.storyboard in Resources */,
+				94D8794A1E41B2320064C0AC /* journal.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,12 +563,14 @@
 				EBA4BBC61E2C7D9100C1C24D /* Journal.swift in Sources */,
 				942032851E307CBE005B1541 /* ImageCell.swift in Sources */,
 				3B95AE301E271EB8003C9490 /* AppDelegate.swift in Sources */,
+				94D8794C1E41C47D0064C0AC /* JournalPrintRenderer.swift in Sources */,
 				3B0AC2601E2840F0009992ED /* EditPageController.swift in Sources */,
 				EBA4BC261E2F057A00C1C24D /* PlacesViewController.swift in Sources */,
 				EBA4BBC71E2C7D9100C1C24D /* WeatherEnum.swift in Sources */,
 				2BC57B0C1E403428005198CE /* ViewUpdateFromAPIDelegate.swift in Sources */,
 				EBA4BBC81E2C7D9100C1C24D /* MoodEnum.swift in Sources */,
 				EBA4BC281E2F193900C1C24D /* Model.swift in Sources */,
+				94D879461E4161830064C0AC /* JournalComposer.swift in Sources */,
 				EB5918B01E380D74009FC2F7 /* ParseWeatherData.swift in Sources */,
 				94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */,
 				2BB20BA71E3D840F009A971A /* JournalManagerProtocol.swift in Sources */,
@@ -566,6 +581,7 @@
 				EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */,
 				2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */,
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
+				94D879481E41A6B60064C0AC /* ExportViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
 				2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */,
 				942032861E307CBE005B1541 /* MapCell.swift in Sources */,

@@ -28,9 +28,14 @@ class MapCell: UITableViewCell {
     
     func drawMap(id: String) { // draw map with Journal ID, called in TableView
         let journal = Model.getInstance.journalManager.getJournalEntryByKey(key: id)
-        let (mapRegion, mapAnnotation) = Model.getInstance.getMapInfo(journal: journal!)
         
-        mapView.region = mapRegion
-        mapView.addAnnotation(mapAnnotation)
+        DispatchQueue.global(qos: .background).async {
+            let (mapRegion, mapAnnotation) = Model.getInstance.getMapInfo(journal: journal!)
+            
+            DispatchQueue.main.async {
+                self.mapView.region = mapRegion
+                self.mapView.addAnnotation(mapAnnotation)
+            }
+        }
     }
 }
