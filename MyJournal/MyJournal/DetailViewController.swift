@@ -131,7 +131,10 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             editView.journalDetail = journalDetail
 
         }
-      
+        if segue.identifier == "ExportPreviewSegue" {
+            let destination = segue.destination as! ExportViewController
+            destination.journal = self.journalDetail!
+        }
     }
 
     /*

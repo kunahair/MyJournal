@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QjC-qa-648">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1656"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="1651"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tm-LL-1Xf">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1523"/>
@@ -483,7 +483,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnZ-OB-dWC">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="741"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
@@ -1324,7 +1324,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-ef-Pjf" userLabel="Menu View">
-                                <rect key="frame" x="261" y="64" width="153" height="134"/>
+                                <rect key="frame" x="261" y="64" width="153" height="89"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKv-Bw-80g">
                                         <rect key="frame" x="8" y="8" width="137" height="30"/>
@@ -1338,25 +1338,19 @@
                                         <state key="normal" title="Export"/>
                                         <connections>
                                             <action selector="exportAction:" destination="3kV-eU-QMu" eventType="touchUpInside" id="DNh-uL-bQr"/>
+                                            <segue destination="qrK-6l-vDo" kind="show" identifier="ExportPreviewSegue" id="nIg-dP-liz"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akE-FX-gP5">
-                                        <rect key="frame" x="8" y="84" width="137" height="30"/>
-                                        <state key="normal" title="More..."/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.71641264907766145" green="1" blue="0.81874818665549476" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="akE-FX-gP5" firstAttribute="top" secondItem="iA6-Y1-Wyt" secondAttribute="bottom" constant="8" id="01R-aH-DPo"/>
                                     <constraint firstAttribute="trailing" secondItem="IKv-Bw-80g" secondAttribute="trailing" constant="8" id="AcT-jh-R9f"/>
                                     <constraint firstItem="IKv-Bw-80g" firstAttribute="top" secondItem="gjE-ef-Pjf" secondAttribute="top" constant="8" id="Iw5-qu-V6N"/>
                                     <constraint firstAttribute="trailing" secondItem="iA6-Y1-Wyt" secondAttribute="trailing" constant="8" id="KOh-S4-bXC"/>
                                     <constraint firstItem="iA6-Y1-Wyt" firstAttribute="top" secondItem="IKv-Bw-80g" secondAttribute="bottom" constant="8" id="M5E-Hh-nio"/>
-                                    <constraint firstAttribute="trailing" secondItem="akE-FX-gP5" secondAttribute="trailing" constant="8" id="RMO-h0-xo2"/>
                                     <constraint firstItem="iA6-Y1-Wyt" firstAttribute="leading" secondItem="gjE-ef-Pjf" secondAttribute="leading" constant="8" id="UZf-Ji-nRw"/>
                                     <constraint firstAttribute="width" constant="153" id="VE9-YD-hAS"/>
-                                    <constraint firstAttribute="height" constant="134" id="cbr-tp-eXm"/>
-                                    <constraint firstItem="akE-FX-gP5" firstAttribute="leading" secondItem="gjE-ef-Pjf" secondAttribute="leading" constant="8" id="sng-FQ-Phs"/>
+                                    <constraint firstAttribute="height" constant="89" id="cbr-tp-eXm"/>
                                     <constraint firstItem="IKv-Bw-80g" firstAttribute="leading" secondItem="gjE-ef-Pjf" secondAttribute="leading" constant="8" id="tZI-eL-Cym"/>
                                 </constraints>
                             </view>
@@ -1403,7 +1397,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="507-sW-2Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2269.3359375" y="-1917.7159590043923"/>
+            <point key="canvasLocation" x="2268.1159420289855" y="-1918.2065217391305"/>
+        </scene>
+        <!--Preview-->
+        <scene sceneID="9Zs-sh-9ld">
+            <objects>
+                <viewController id="qrK-6l-vDo" customClass="ExportViewController" customModule="MyJournal" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="npP-YC-RZ5"/>
+                        <viewControllerLayoutGuide type="bottom" id="VkQ-Ps-1Qf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7ni-KV-1ab">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GVR-Y5-gaG">
+                                <rect key="frame" x="0.0" y="-44" width="375" height="824"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VkQ-Ps-1Qf" firstAttribute="top" secondItem="GVR-Y5-gaG" secondAttribute="bottom" constant="-44" id="MEM-ng-ugl"/>
+                            <constraint firstItem="GVR-Y5-gaG" firstAttribute="top" secondItem="npP-YC-RZ5" secondAttribute="bottom" constant="-64" id="dAc-2g-S4z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GVR-Y5-gaG" secondAttribute="trailing" constant="-16" id="jMz-sf-cM5"/>
+                            <constraint firstItem="GVR-Y5-gaG" firstAttribute="leading" secondItem="7ni-KV-1ab" secondAttribute="leadingMargin" constant="-16" id="p9d-Fk-6kD"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Preview" id="nDE-bG-qXW">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="hMY-fy-uQ0">
+                            <connections>
+                                <action selector="saveAction:" destination="qrK-6l-vDo" id="F51-ef-cE8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="736"/>
+                    <connections>
+                        <outlet property="webView" destination="GVR-Y5-gaG" id="ttu-CC-VCV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCq-1l-gcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3356" y="-2592"/>
         </scene>
     </scenes>
     <resources>

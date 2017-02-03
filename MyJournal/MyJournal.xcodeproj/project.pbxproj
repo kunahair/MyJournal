@@ -41,6 +41,10 @@
 		94E25FA31E3A016B001B49AD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA21E3A016B001B49AD /* WebViewController.swift */; };
 		94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA41E3A1015001B49AD /* VideoCell.swift */; };
 		94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA61E3A1021001B49AD /* RecordCell.swift */; };
+		94E935121E4454310070987D /* journal.html in Resources */ = {isa = PBXBuildFile; fileRef = 94E935111E4454310070987D /* journal.html */; };
+		94E935141E4455F30070987D /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E935131E4455F30070987D /* ExportViewController.swift */; };
+		94E935171E4456090070987D /* JournalComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E935151E4456090070987D /* JournalComposer.swift */; };
+		94E935181E4456090070987D /* JournalPrintRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E935161E4456090070987D /* JournalPrintRenderer.swift */; };
 		EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */; };
 		EB7988C71E41A27A00BA8D47 /* ReachabilityStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7988C61E41A27A00BA8D47 /* ReachabilityStatus.swift */; };
 		EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */; };
@@ -129,6 +133,10 @@
 		94E25FA21E3A016B001B49AD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		94E25FA41E3A1015001B49AD /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		94E25FA61E3A1021001B49AD /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		94E935111E4454310070987D /* journal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = journal.html; sourceTree = "<group>"; };
+		94E935131E4455F30070987D /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
+		94E935151E4456090070987D /* JournalComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalComposer.swift; sourceTree = "<group>"; };
+		94E935161E4456090070987D /* JournalPrintRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalPrintRenderer.swift; sourceTree = "<group>"; };
 		EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataDelegate.swift; sourceTree = "<group>"; };
 		EB7988C61E41A27A00BA8D47 /* ReachabilityStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityStatus.swift; sourceTree = "<group>"; };
 		EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableController.swift; sourceTree = "<group>"; };
@@ -238,6 +246,7 @@
 		3B95AE231E271EB8003C9490 = {
 			isa = PBXGroup;
 			children = (
+				94E935111E4454310070987D /* journal.html */,
 				3B95AE2E1E271EB8003C9490 /* MyJournal */,
 				3B95AE431E271EB8003C9490 /* MyJournalTests */,
 				3B95AE4E1E271EB8003C9490 /* MyJournalUITests */,
@@ -339,6 +348,8 @@
 		EBA4BBE11E2C9EF200C1C24D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				94E935151E4456090070987D /* JournalComposer.swift */,
+				94E935161E4456090070987D /* JournalPrintRenderer.swift */,
 				2B3064091E42C3C3001C20D3 /* Delegates */,
 				2B83A3531E3C70B20026C0DA /* LocalDB */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
@@ -358,6 +369,7 @@
 		EBA4BBE41E2CA06400C1C24D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				94E935131E4455F30070987D /* ExportViewController.swift */,
 				2BC94C991E3C289700009389 /* Extensions */,
 				3B0AC25F1E2840F0009992ED /* EditPageController.swift */,
 				EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */,
@@ -493,6 +505,7 @@
 			files = (
 				3B95AE371E271EB8003C9490 /* Assets.xcassets in Resources */,
 				3B95AE351E271EB8003C9490 /* Main.storyboard in Resources */,
+				94E935121E4454310070987D /* journal.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +540,7 @@
 				2B83A3691E3C715D0026C0DA /* JournalDB.swift in Sources */,
 				EB5918AE1E3807D0009FC2F7 /* DataDelegate.swift in Sources */,
 				EBA4BBCD1E2C855100C1C24D /* DetailViewController.swift in Sources */,
+				94E935141E4455F30070987D /* ExportViewController.swift in Sources */,
 				2B83A36B1E3C71880026C0DA /* JournalDatabaseAdapter.swift in Sources */,
 				2B83A3651E3C70FC0026C0DA /* FMDatabasePool.m in Sources */,
 				942032841E307CBE005B1541 /* HeaderCell.swift in Sources */,
@@ -551,11 +565,13 @@
 				94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */,
 				2BB20BA71E3D840F009A971A /* JournalManagerProtocol.swift in Sources */,
 				EBA4BBD31E2C9E7E00C1C24D /* DeviceDate.swift in Sources */,
+				94E935171E4456090070987D /* JournalComposer.swift in Sources */,
 				2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */,
 				2B30640B1E42C3E2001C20D3 /* WeatherViewUpdateDelegate.swift in Sources */,
 				94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */,
 				EBA4BBD21E2C9E7E00C1C24D /* DeviceLocationError.swift in Sources */,
 				EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */,
+				94E935181E4456090070987D /* JournalPrintRenderer.swift in Sources */,
 				2BC94C9D1E3C291200009389 /* EditPageControllerMoodPicker.swift in Sources */,
 				EBD43BCD1E2B4501006968DB /* PhotoViewController.swift in Sources */,
 				EBA4BBC11E2C7D7000C1C24D /* MainTableController.swift in Sources */,
