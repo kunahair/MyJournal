@@ -221,6 +221,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 address.text = "No Internet Connection"
                 weatherResultLabel.text = "No Internet Connection"
             }else{
+                self.weatherResultLabel.text = "Loading..."
                 self.switchOn = true
             //start receiving location updates from CoreLocation
                 self.locationManager.startUpdatingLocation()}
@@ -297,6 +298,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         //placeHolderText is not the content typed by users, so cannot be saved as note
         if(note.text == placeholderText){
             note.text = ""
+            self.note.textColor = UIColor.black
         }
         //Show alert if user has not entered information into note (otherwise why have a journal right?)
         if note.text!.isEmpty  {
@@ -320,7 +322,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                     showAlert(message: "Failed to save Journal Entry, please try again")
                 }
             }else{
-                if  Model.getInstance.journalManager.updateJournalEntry(id: id!, note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                if  Model.getInstance.journalManager.updateJournalEntry(id: id!, note: note.text, music: musicFile.text, quote: quote.text, photo:photoURL, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
                 }else{
                     //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
@@ -426,11 +428,12 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
      Abstracted function to display an alert with a custom message
     **/
     func showAlert(message: String){
-        let alert = UIAlertController (title: message, message: "",     preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alert = UIAlertController (title: message, message: "",  preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (actionSave) -> Void in
         }))
         present(alert, animated: true)
-    }
+        
+            }
     
     /**
      Delgate callback to update the weather information to be displayed in the View

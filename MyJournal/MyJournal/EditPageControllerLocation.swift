@@ -36,7 +36,7 @@ extension EditPageController {
                     
                     //Set text to show that the Weather info is loading
                     self.weatherResultLabel.textColor = UIColor.gray
-                    self.weatherResultLabel.text = "Loading..."
+                    
                     
                     //Check if device is connected to internet before doing API call
                     if ReachabilityStatus.isConnected()

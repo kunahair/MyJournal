@@ -73,7 +73,7 @@ struct JournalManger: JournalManagerProtocol {
         return self.journalEntries.count
     }
     
-    /**
+        /**
      Get journal entry from Dict by key
      Check that the entry exists in the database, then get the Dictionary Journal entry if it does
      Returns nil if not in dictionary, otherwise returns the valid Journal Entry

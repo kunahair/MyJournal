@@ -104,6 +104,15 @@ class Model{
         return self._moodCases
     }
     
+    //Get current directory path
+    func getCurrntDirectory(photoName: String)->String{
+        let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+        let documentsDir: NSString = paths.object(at: 0) as! NSString
+        
+        let photoPath  = documentsDir.appendingPathComponent(photoName)
+        return photoPath
+    }
+
     /**
      Get a moods index in the Mood Array by name
      Return the index that the mood is in as an Integer, returns -1 if no mood was found that matches name

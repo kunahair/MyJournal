@@ -60,7 +60,8 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         {
             cell.likedPhotos.image = UIImage(named: "defaultphoto")!
         }else{
-            cell.likedPhotos.image = UIImage(contentsOfFile: journal.photo)
+            
+            cell.likedPhotos.image = UIImage(contentsOfFile: Model.getInstance.getCurrntDirectory(photoName: journal.photo) )
         }
         
         //return the cell to be drawn
