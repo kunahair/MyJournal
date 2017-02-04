@@ -20,7 +20,7 @@ struct Journal {
     private var _favorite:Bool
     private var _coordinates: [Double]
     private var _id: String
-    private var _recordURL: URL!
+    private var _recordName: String!
     private var _videoURL: URL!
     // Default empty constructor for dummy data testing
     init(id: String) {
@@ -50,12 +50,12 @@ struct Journal {
     }
     
     // Sepecific constructor
-    init(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String, record: URL?, video: URL?) {
+    init(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool,coordinates:[Double], id: String, record: String?, video: URL?) {
         
         // check for nil values
         _music = music==nil ? "No Music" : music!
         _quote = quote==nil ? "No Quote" : quote!
-        _recordURL = record==nil ? nil : record!
+        _recordName = record==nil ? nil : record!
         _videoURL = video==nil ? nil : video!
         
         // Assignments
@@ -178,12 +178,12 @@ struct Journal {
         }
     }
     
-    var recordURL: URL? {
+    var recordName: String? {
         get {
-            return self._recordURL
+            return self._recordName
         }
         set(url) {
-            self._recordURL = url
+            self._recordName = url
         }
     }
     

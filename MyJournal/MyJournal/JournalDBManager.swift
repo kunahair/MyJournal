@@ -68,7 +68,7 @@ struct JournalDBManager: JournalManagerProtocol {
             {
                 
                 // Prepare a statement for operating on the database
-                let sql_stmt = "CREATE TABLE " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TIMESTAMP TEXT, NOTE TEXT, MUSIC TEXT, QUOTE TEXT, PHOTO TEXT, WEATHER TEXT, MOOD TEXT, DATE TEXT, LOCATION STRING, FAVOURITE INTEGER, COORDINATES TEXT, RECORDURL TEXT, VIDEOURL TEXT, UNIQUE(TIMESTAMP))"
+                let sql_stmt = "CREATE TABLE " + tableName + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, TIMESTAMP TEXT, NOTE TEXT, MUSIC TEXT, QUOTE TEXT, PHOTO TEXT, WEATHER TEXT, MOOD TEXT, DATE TEXT, LOCATION STRING, FAVOURITE INTEGER, COORDINATES TEXT, RECORDNAME TEXT, VIDEOURL TEXT, UNIQUE(TIMESTAMP))"
                 
                 // Execute the statement
                 if !(journalDB?.executeStatements(sql_stmt))! {
@@ -187,11 +187,11 @@ struct JournalDBManager: JournalManagerProtocol {
         if (journalDB?.open())!
         {
             // Prepare a statement for operating on the database
-            let insertSQL = "INSERT INTO " + tableName + " (timestamp, note, music, quote, photo, weather, mood, date, location, favourite, coordinates, recordurl, videourl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            let insertSQL = "INSERT INTO " + tableName + " (timestamp, note, music, quote, photo, weather, mood, date, location, favourite, coordinates, recordname, videourl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             
             // Execute the update statement
             do{
-                try journalDB?.executeUpdate(insertSQL, values: [journalDBEntry.id, journalDBEntry.note, journalDBEntry.music, journalDBEntry.quote, journalDBEntry.photo, journalDBEntry.weather, journalDBEntry.mood, journalDBEntry.date, journalDBEntry.location, journalDBEntry.favorite, journalDBEntry.coordinates, journalDBEntry.recordURL, journalDBEntry.videoURL])
+                try journalDB?.executeUpdate(insertSQL, values: [journalDBEntry.id, journalDBEntry.note, journalDBEntry.music, journalDBEntry.quote, journalDBEntry.photo, journalDBEntry.weather, journalDBEntry.mood, journalDBEntry.date, journalDBEntry.location, journalDBEntry.favorite, journalDBEntry.coordinates, journalDBEntry.recordName, journalDBEntry.videoURL])
                 
                 //Print successful result
                 print("Journal Entry Added")
@@ -240,7 +240,7 @@ struct JournalDBManager: JournalManagerProtocol {
         journalFromDatabase.photo = resultSet!.string(forColumn: "photo")
         journalFromDatabase.quote = resultSet!.string(forColumn: "quote")
         journalFromDatabase.favorite = Int(resultSet!.int(forColumn: "favourite"))
-        journalFromDatabase.recordURL = resultSet!.string(forColumn: "recordurl")
+        journalFromDatabase.recordName = resultSet!.string(forColumn: "recordname")
         journalFromDatabase.videoURL = resultSet!.string(forColumn: "videourl")
         
         //Convert from JournalDB object to a Journal object
@@ -298,7 +298,7 @@ struct JournalDBManager: JournalManagerProtocol {
                     journalFromDatabase.photo = resultSet!.string(forColumn: "photo")
                     journalFromDatabase.quote = resultSet!.string(forColumn: "quote")
                     journalFromDatabase.favorite = Int(resultSet!.int(forColumn: "favourite"))
-                    journalFromDatabase.recordURL = resultSet!.string(forColumn: "recordurl")
+                    journalFromDatabase.recordName = resultSet!.string(forColumn: "recordname")
                     journalFromDatabase.videoURL = resultSet!.string(forColumn: "videourl")
                     
                     //Convert from JournalDB object to a Journal object
@@ -367,7 +367,7 @@ struct JournalDBManager: JournalManagerProtocol {
                     journalFromDatabase.photo = resultSet!.string(forColumn: "photo")
                     journalFromDatabase.quote = resultSet!.string(forColumn: "quote")
                     journalFromDatabase.favorite = Int(resultSet!.int(forColumn: "favourite"))
-                    journalFromDatabase.recordURL = resultSet!.string(forColumn: "recordurl")
+                    journalFromDatabase.recordName = resultSet!.string(forColumn: "recordname")
                     journalFromDatabase.videoURL = resultSet!.string(forColumn: "videourl")
                     
                     //Convert the JournalDB into a Journal object
@@ -433,7 +433,7 @@ struct JournalDBManager: JournalManagerProtocol {
                 "favourite = ?, " +
                 "coordinates = ?, " +
                 "videourl = ?, " +
-                "recordurl = ? " +
+                "recordname = ? " +
             "WHERE TIMESTAMP= ?"
             
             do{
@@ -450,7 +450,7 @@ struct JournalDBManager: JournalManagerProtocol {
                      journalDBEntry.favorite,
                      journalDBEntry.coordinates,
                      journalDBEntry.videoURL,
-                     journalDBEntry.recordURL,
+                     journalDBEntry.recordName,
                      journalDBEntry.id]
                 )
                 

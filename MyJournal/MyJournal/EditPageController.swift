@@ -58,7 +58,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var currentWeather: String = "Auto display upon activating location"
     var currentTemp: String?
     var mood: MoodEnum = MoodEnum.happy
-    var recordPathURL: URL!
+    var recordFileName: String!
     var videoWebURL: URL!
     var weatherDes = WeatherEnum()
     var journalDetail:Journal?
@@ -116,7 +116,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             
             
             videoWebURL = journalDetail!.videoURL
-            recordPathURL = journalDetail!.recordURL
+            recordFileName = journalDetail!.recordName
             
             let locationInfo = journalDetail?.location
             let photoPath = journalDetail?.photo
@@ -333,13 +333,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             //Xing: change the value that pass to weather
             //Xing: if the journal exists, then update to memory model and database, otherwise add a new journal
             if(self.journalDetail == nil){
-                if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordName: recordFileName, videoURL: self.videoWebURL){
                 }else{
                     //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
                 }
             }else{
-                if  Model.getInstance.journalManager.updateJournalEntry(id: journalDetail!.id, note: note.text, music: musicFile.text, quote: quote.text, photo:photoURL, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                if  Model.getInstance.journalManager.updateJournalEntry(id: journalDetail!.id, note: note.text, music: musicFile.text, quote: quote.text, photo:photoURL, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordName: self.recordFileName, videoURL: self.videoWebURL){
                 }else{
                     //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
@@ -381,20 +381,20 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     @IBAction func audioPlayAction(_ sender: UIButton) {
         if sender.titleLabel?.text == "Play" {
-            if self.recordPathURL == nil { // when there's no recording
+            if self.recordFileName == nil { // when there's no recording
                 print("NO recording Found")
                 return
             }
             audioRecordBtn.isEnabled = false
             sender.setTitle("Stop", for: .normal)
             // then prepare and play the audio player
-            if self.recordPathURL == nil {
+            if self.recordFileName == nil {
                 print("NIL Record Path when playing")
                 return
             }
             else {
-                print("Trying to play: \(self.recordPathURL!)")
-                Model.getInstance.fileOpManager.startPlaying(audioURL: self.recordPathURL)
+                print("Trying to play: \(self.recordFileName!)")
+                Model.getInstance.fileOpManager.startPlaying(audioName: self.recordFileName)
             }
         }
         else {
@@ -428,10 +428,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         print("Error when playing: \(error!.localizedDescription)")
     }
     
-    // when recording stops, receive filepath as delegate
-    func receiveFilePath(filePathURL: URL) {
-        self.recordPathURL = URL(fileURLWithPath: filePathURL.relativePath)
-        print("Record Audio Path Received: \(self.recordPathURL)")
+    // when recording stops, receive file name rather than file path
+    func receiveFileName(fileName: String) {
+        self.recordFileName = fileName
+        print("Record Audio FileName Received: \(self.recordFileName)")
     }
     
     // receive and set video url

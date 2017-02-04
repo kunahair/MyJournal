@@ -26,7 +26,7 @@ struct JournalDB {
         private var _coordinates: String
         private var _id: String
         private var _videoURL: String
-        private var _recordURL: String
+        private var _recordName: String
         
         init()
         {
@@ -42,7 +42,7 @@ struct JournalDB {
             self._favorite = 0
             self._coordinates = ""
             self._videoURL = ""
-            self._recordURL = ""
+            self._recordName = ""
             
         }
         
@@ -152,12 +152,12 @@ struct JournalDB {
             }
         }
         
-        var recordURL: String {
+        var recordName: String {
             get {
-                return self._recordURL
+                return self._recordName
             }
-            set(url) {
-                self._recordURL = url
+            set(name) {
+                self._recordName = name
             }
         }
         

@@ -21,6 +21,7 @@ class FileOpManager {
     let filemanager = FileManager.default
     
     var audioFileType = ".m4a"
+    var audioFileName: String? // default is nil, will be set to filename when recording stops
     
     var dataDelegate : DataDelegate!
     
@@ -44,8 +45,11 @@ class FileOpManager {
         // for error display
         //var error: NSError?
         
-        
-        audioRecorder = try! AVAudioRecorder(url: getFileURL(filename: createFileName(type: self.audioFileType)), settings: recordSetting as [String : Any])
+        self.audioFileName = self.createFileName(type: self.audioFileType)
+        // register the audio file name
+
+        let fileURL = URL(fileURLWithPath: Model.getInstance.getFilePathFromDocumentsDirectory(filename: self.audioFileName!))
+        audioRecorder = try! AVAudioRecorder(url: fileURL, settings: recordSetting as [String : Any])
         
         print("Trying to create recorder at: \(audioRecorder!.url.absoluteString)")
         
@@ -94,10 +98,11 @@ class FileOpManager {
             return
         }
         audioRecorder!.stop()
-        dataDelegate.receiveFilePath(filePathURL: audioRecorder!.url) // returns the URL
+        dataDelegate.receiveFileName(fileName: self.audioFileName == nil ? "EMPTY FILE NAME":self.audioFileName!) // returns the URL
     }
     
-    func startPlaying(audioURL: URL) {
+    func startPlaying(audioName: String) {
+        let audioURL: URL = URL(fileURLWithPath: Model.getInstance.getFilePathFromDocumentsDirectory(filename: audioName))
         preparePlayer(audioURL: audioURL)
         audioPlayer!.play()
     }

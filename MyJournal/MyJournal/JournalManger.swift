@@ -42,11 +42,11 @@ struct JournalManger: JournalManagerProtocol {
      Josh: Try to add to database first, if successful, add to Dictionary
      Josh: Use protocol function to do insertion, this is a overloaded function that takes raw data and converts to Journal
      **/
-    mutating func addJournal(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?) -> Bool
+    mutating func addJournal(note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordName: String?, videoURL: URL?) -> Bool
     {
         //Generate key and create Journal Entry
         let key = String(Int(NSDate().timeIntervalSince1970*1000))
-        let journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates, id: key, record: recordURL, video: videoURL)
+        let journal = Journal(note: note, music: music, quote: quote, photo: photo, weather: weather, mood: mood, date: date, location: location, favorite: favorite, coordinates: coordinates, id: key, record: recordName, video: videoURL)
         
         //Add to database and Dictionary, return the result
         return addJournal(journal: journal)
@@ -141,7 +141,7 @@ struct JournalManger: JournalManagerProtocol {
         return getJournalEntriesArray()[index]
     }
     
-    mutating func updateJournalEntry(id: String, note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordURL: URL?, videoURL: URL?) -> Bool
+    mutating func updateJournalEntry(id: String, note: String, music: String?, quote: String?, photo: String, weather: String, mood: String, date: String, location: String, favorite: Bool, coordinates: [Double], recordName: String?, videoURL: URL?) -> Bool
     {
         var journal:Journal = Journal(id: id)
         journal.note = note
@@ -152,7 +152,7 @@ struct JournalManger: JournalManagerProtocol {
         journal.location = location
         journal.favorite = favorite
         journal.coordinates = coordinates
-        journal.recordURL = recordURL
+        journal.recordName = recordName
         journal.videoURL = videoURL
         
         if music != nil {

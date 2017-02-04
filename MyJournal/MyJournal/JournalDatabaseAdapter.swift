@@ -45,9 +45,9 @@ struct JournalDatabaseAdapter {
             journalDB.videoURL = journal.videoURL!.absoluteString
         }
         
-        //Check if there is a recordURL, if there is, save the string value into the database
-        if journal.recordURL != nil {
-            journalDB.recordURL = journal.recordURL!.absoluteString
+        //Check if there is a recordName, if there is, save the string value into the database
+        if journal.recordName != nil {
+            journalDB.recordName = journal.recordName!
         }
         
         //Return the database ready object
@@ -79,9 +79,9 @@ struct JournalDatabaseAdapter {
             journal.videoURL = NSURL(string: journalDB.videoURL) as URL?
         }
         
-        //If present, get the recordURL
-        if journalDB.recordURL != "" {
-            journal.recordURL = NSURL(string: journalDB.recordURL) as URL?
+        //If present, get the recordName
+        if journalDB.recordName != "" {
+            journal.recordName = journalDB.recordName
         }
         
         //Return the converted Journal object

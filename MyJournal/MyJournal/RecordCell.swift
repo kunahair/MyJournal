@@ -10,7 +10,7 @@ import UIKit
 
 class RecordCell: UITableViewCell {
 
-    var recordURL: URL?
+    var recordName: String?
     
     @IBOutlet weak var recordPlaybackButton: UIButton!
     @IBOutlet weak var recordPlayBtn: UIButton!
@@ -29,11 +29,11 @@ class RecordCell: UITableViewCell {
     @IBAction func recordPlayAction(_ sender: Any) {
         
         if recordPlayBtn.titleLabel?.text == "Play" {
-            if recordURL == nil {
+            if recordName == nil {
                 print("Record URL NIL -- DetailPage")
             }
             else {
-                Model.getInstance.fileOpManager.startPlaying(audioURL: recordURL!)
+                Model.getInstance.fileOpManager.startPlaying(audioName: self.recordName!)
             }
             recordPlayBtn.titleLabel?.text = "Stop"
         }

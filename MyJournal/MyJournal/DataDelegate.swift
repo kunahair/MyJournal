@@ -12,7 +12,9 @@ import Foundation
 protocol DataDelegate {
     func parseResult(dataList: Array<Weather>) //to receive weather data
     
-    func receiveFilePath(filePathURL: URL) // to receive file dir after recording
+    // func receiveFilePath(filePathURL: URL) // to receive file dir after recording
     
     func receiveVideoURL(webURL: URL) // to receive youtube video url
+    
+    func receiveFileName(fileName: String) // to receive audio file name
 }
