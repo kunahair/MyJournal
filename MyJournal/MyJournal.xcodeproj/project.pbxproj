@@ -369,13 +369,13 @@
 		EBA4BBE41E2CA06400C1C24D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				94E935131E4455F30070987D /* ExportViewController.swift */,
 				2BC94C991E3C289700009389 /* Extensions */,
-				3B0AC25F1E2840F0009992ED /* EditPageController.swift */,
-				EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */,
-				EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */,
-				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				EBA4BBCC1E2C855100C1C24D /* DetailViewController.swift */,
+				3B0AC25F1E2840F0009992ED /* EditPageController.swift */,
+				94E935131E4455F30070987D /* ExportViewController.swift */,
+				EBA4BBBF1E2C7D7000C1C24D /* MainTableController.swift */,
+				EBD43BCC1E2B4501006968DB /* PhotoViewController.swift */,
+				EBA4BC251E2F057A00C1C24D /* PlacesViewController.swift */,
 				94E25FA21E3A016B001B49AD /* WebViewController.swift */,
 			);
 			name = Controller;

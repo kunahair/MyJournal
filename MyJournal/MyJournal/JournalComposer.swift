@@ -37,7 +37,7 @@ class JournalComposer: NSObject {
         let address = "I was at " + journalDetail.location
         let mood = "I was feeling " + journalDetail.mood
         let content = journalDetail.note
-        let photo = Model.getInstance.getCurrntDirectory(photoName: journalDetail.photo)
+        let photo = Model.getInstance.getFilePathFromDocumentsDirectory(filename: journalDetail.photo)
         
         do {
             
@@ -70,7 +70,7 @@ class JournalComposer: NSObject {
         
         // custom function to return drawn PDF, also pass in a UIImage from the journal
         // read the String to UIImage first
-        let photoStr = Model.getInstance.getCurrntDirectory(photoName: journal.photo)
+        let photoStr = Model.getInstance.getFilePathFromDocumentsDirectory(filename: journal.photo)
         let photo = UIImage(contentsOfFile: photoStr)
         var pdfData = drawPDFUsingRenderer(renderer: journalPrintRenderer, photo: photo!)        // file name to pass and save
         let pdfFilename = Model.getInstance.fileOpManager.getFilePath(filename: Model.getInstance.fileOpManager.createFileName(type: ".pdf"))

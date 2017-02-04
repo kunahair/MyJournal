@@ -38,8 +38,8 @@ extension EditPageController {
                 print(error)
             }
             
-            let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-            let documentsDir: NSString = paths.object(at: 0) as! NSString
+//            let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+//            let documentsDir: NSString = paths.object(at: 0) as! NSString
             
             self.photoPath  = self.photoURL! //documentsDir.appendingPathComponent(self.photoURL!)
             

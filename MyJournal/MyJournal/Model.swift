@@ -105,12 +105,22 @@ class Model{
     }
     
     //Get current directory path
-    func getCurrntDirectory(photoName: String)->String{
+    func getCurrentDirectory()->NSString{
         let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         let documentsDir: NSString = paths.object(at: 0) as! NSString
         
-        let photoPath  = documentsDir.appendingPathComponent(photoName)
-        return photoPath
+//        let photoPath  = documentsDir.appendingPathComponent(photoName)
+        return documentsDir
+    }
+    
+    /**
+     Get document from Documents Directory.
+     Return path of selected filename as a String
+    **/
+    func getFilePathFromDocumentsDirectory(filename: String)->String
+    {
+        let documentsDir:NSString = getCurrentDirectory()
+        return documentsDir.appendingPathComponent(filename)
     }
 
     /**

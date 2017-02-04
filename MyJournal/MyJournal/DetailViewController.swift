@@ -100,33 +100,33 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         //Xing : pass the data to edit page
         if segue.identifier == "EditJournalSegue" {
             let editView = segue.destination as! EditPageController
-            editView.noteText = (journalDetail?.note)!
-            editView.quoteText = (journalDetail?.quote)!
-            editView.musicFileInfo = (journalDetail?.music)!
-            editView.today = (journalDetail?.date)!
-            editView.favoriteStatus = (journalDetail?.favorite)!
-            editView.videoWebURL = journalDetail?.videoURL
-            editView.recordPathURL = journalDetail?.recordURL
-            editView.id = journalDetail?.id
-            let locationInfo = journalDetail?.location
-            let photoPath = journalDetail?.photo
-            let weatherInfo = journalDetail?.weather
-            if weatherInfo == "No Internet Connection"{
-                editView.currentWeather = "sunny"
-            }else{
-                editView.currentWeather = weatherInfo!
-            }
-            if locationInfo == "Mark your location"{
-                editView.locationStatus = false
-            }else{
-                editView.locationStatus = true
-                editView.addressInfo = (journalDetail?.location)!
-            }
-            if photoPath == "defaultphoto"{
-                editView.photoDefault = UIImage(named: photoPath!)
-            }else{
-                editView.photoDefault = UIImage(contentsOfFile: photoPath!)
-            }
+//            editView.noteText = (journalDetail?.note)!
+//            editView.quoteText = (journalDetail?.quote)!
+//            editView.musicFileInfo = (journalDetail?.music)!
+//            editView.today = (journalDetail?.date)!
+//            editView.favoriteStatus = (journalDetail?.favorite)!
+//            editView.videoWebURL = journalDetail?.videoURL
+//            editView.recordPathURL = journalDetail?.recordURL
+//            editView.id = journalDetail?.id
+//            let locationInfo = journalDetail?.location
+//            let photoPath = journalDetail?.photo
+//            let weatherInfo = journalDetail?.weather
+//            if weatherInfo == "No Internet Connection"{
+//                editView.currentWeather = "sunny"
+//            }else{
+//                editView.currentWeather = weatherInfo!
+//            }
+//            if locationInfo == "Mark your location"{
+//                editView.locationStatus = false
+//            }else{
+//                editView.locationStatus = true
+//                editView.addressInfo = (journalDetail?.location)!
+//            }
+//            if photoPath == "defaultphoto"{
+//                editView.photoDefault = UIImage(named: photoPath!)
+//            }else{
+//                editView.photoDefault = UIImage(contentsOfFile: photoPath!)
+//            }
             
             editView.journalDetail = journalDetail
 
@@ -273,7 +273,7 @@ extension DetailViewController {
             {
                 cell.imageBody.image = UIImage(named: "defaultphoto")!
             }else{
-                cell.imageBody.image = UIImage(contentsOfFile: Model.getInstance.getCurrntDirectory(photoName: (journalDetail?.photo)!) )
+                cell.imageBody.image = UIImage(contentsOfFile: Model.getInstance.getFilePathFromDocumentsDirectory(filename: journalDetail!.photo))
             }
             return cell
         }

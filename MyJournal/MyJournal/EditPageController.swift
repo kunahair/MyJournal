@@ -42,12 +42,18 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     let photoPicker = UIImagePickerController()
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
-    let placeholderText: String = "What's new about today?"
+    
+    /**
+     Tracker information to hold state data of user input, mostly for initialsation
+    **/
+    let notePlaceholderText: String = "What's new about today?"
     var addressInfo = "Mark your location"
+    var today: String = Model.getInstance.getCurrentDate()
+    
     var switchOn = false
     var photoURL: String!
     var photoPath:String!
-    var today: String = Model.getInstance.getCurrentDate()
+    
     var currentLocation:Location = Location()
     var currentWeather: String = "Auto display upon activating location"
     var currentTemp: String?
@@ -56,13 +62,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var videoWebURL: URL!
     var weatherDes = WeatherEnum()
     var journalDetail:Journal?
-    var quoteText: String = ""
-    var noteText: String = "What's new about today?"
     var photoDefault: UIImage?
     var musicFileInfo: String = ""
-    var favoriteStatus: Bool = true
     var locationStatus: Bool = false
-    var id: String?
+    //var id: String?
     @IBOutlet weak var moodPickerView: UIPickerView!
     
     @IBOutlet weak var weatherResultLabel: UILabel!
@@ -79,77 +82,92 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         musicPicker.delegate = self
         note.delegate = self
         
-        
         //sets the class as delegate for locationManager, specifies the location accuracy and user request
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         
-        //Set weather label and grey for no weather info
-        weatherResultLabel.text = currentWeather
-        weatherResultLabel.textColor = UIColor.gray
-        
-        //Set the current day label text
-        currentDate.text = "\(today)"
-        
-        switchButton.isOn = locationStatus
-        address.text = addressInfo
         
         //Set mood picker delgate and datasource
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
         
-        //If we are in edit mode, then set the Mood Picker from the Journal Entry
+        //Setup the Audio Recorder
+        Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //If we are in edit mode, fill in information
         if journalDetail != nil {
+            self.note.text = journalDetail!.note
+            self.quote.text = journalDetail!.quote
+            self.isFavorite.isOn = journalDetail!.favorite
+            self.today = journalDetail!.date
+            self.currentDate.text = today
+            self.photoPath = Model.getInstance.getFilePathFromDocumentsDirectory(filename: journalDetail!.photo)
+            photo.image = UIImage(contentsOfFile: self.photoPath)
+            photoURL = journalDetail!.photo //"defaultphoto"
+            
+            
+            musicFileInfo = journalDetail!.music
+            
+            
+            videoWebURL = journalDetail!.videoURL
+            recordPathURL = journalDetail!.recordURL
+            
+            let locationInfo = journalDetail?.location
+            let photoPath = journalDetail?.photo
+            let weatherInfo = journalDetail?.weather
+            if weatherInfo == "No Internet Connection"{
+                currentWeather = "sunny"
+                weatherResultLabel.text = weatherInfo
+            }else{
+                currentWeather = weatherInfo!
+                weatherResultLabel.text = weatherInfo
+            }
+            if locationInfo == "Mark your location"{
+                locationStatus = false
+            }else{
+                locationStatus = true
+                addressInfo = (journalDetail?.location)!
+                self.currentLocation.lat = Float(journalDetail!.coordinates[0])
+                self.currentLocation.lon = Float(journalDetail!.coordinates[1])
+            }
+            if photoPath == "defaultphoto"{
+                photoDefault = UIImage(named: photoPath!)
+            }else{
+                photoDefault = UIImage(contentsOfFile: photoPath!)
+            }
+            
             //Get the array index value for the mood
             let moodInt:Int = Model.getInstance.getMoodByName(name: journalDetail!.mood)
             //If the index is valid, then set the mood picker
             if moodInt != -1 {
                 moodPickerView.selectRow(moodInt, inComponent: 0, animated: true)
             }
-            
-        }
-        
-        photo.image = photoDefault
-        musicFile.text = musicFileInfo
-        Model.getInstance.fileOpManager.setupRecorder(avDelegate: self, dataDelegate: self)
-        isFavorite.isOn = favoriteStatus
-        
-        //Set the quote text to default
-        quote.text =  quoteText
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        /**
-        //check the internet connection first
-        if ReachabilityStatus.isConnected() == true{
-            let location = try? Model.getInstance.getLocation()
-            if location == nil{
-                self.weatherResultLabel.text = currentWeather
-            }else{
-                self.currentLocation = location!
-                let weatherData = ParseWeatherData()
-            
-                weatherData.getWeatherData(lat: (location?.lat)!, lon: (location?.lon)!)
-                weatherData.delegate = self
-            }
-        }else{
-            print("No Internet Connection")
-        }
-         **/
-        
-        //
-        //self.note.text = noteText
-        if journalDetail == nil {
-            if(self.note.text == placeholderText || self.note.text == "") {
-                self.note.text = placeholderText
+        }else {
+            //If we are in create mode, setup the default values
+            if(self.note.text == notePlaceholderText || self.note.text == "") {
+                self.note.text = notePlaceholderText
                 self.note.textColor = UIColor.gray
             } else {
                 self.note.textColor = UIColor.black
             }
-        }else{
-            self.note.text = journalDetail!.note
+            
+            currentDate.text = "\(today)"
+            
+            address.text = addressInfo
+            
+            //Set defaults for switches
+            isFavorite.isOn = true
+            switchButton.isOn = false
+            
+            //Set default weather Label text
+            weatherResultLabel.text = currentWeather
+            weatherResultLabel.textColor = UIColor.gray
         }
         
     }
@@ -161,7 +179,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     //if users start to type, placeholderText dispears
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if self.note.text == placeholderText{
+        if self.note.text == notePlaceholderText{
             self.note.text = ""
             self.note.textColor = UIColor.black
         }
@@ -170,14 +188,14 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     //if users finish editing without entering anything, placeholderText will reappear
     func textViewDidEndEditing(_ textView: UITextView) {
         if self.note.text == ""{
-            self.note.text = placeholderText
+            self.note.text = notePlaceholderText
             self.note.textColor = UIColor.gray
         }
         self.note.resignFirstResponder()
 
     }
    
-    
+   //Parse Weather results to ensure it is valid Weather Enum Data
     func parseResult(dataList: Array<Weather>) {
         for weather in dataList{
             self.currentWeather = weather.description+"   "+String(weather.temp)+"°C"
@@ -295,7 +313,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     **/
     @IBAction func saveJournal(_ sender: Any) {
         //placeHolderText is not the content typed by users, so cannot be saved as note
-        if(note.text == placeholderText){
+        if(note.text == notePlaceholderText){
             note.text = ""
             self.note.textColor = UIColor.black
         }
@@ -314,14 +332,14 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             //If the save was successful, then go back to initial view (the calling view) with some fancy animation
             //Xing: change the value that pass to weather
             //Xing: if the journal exists, then update to memory model and database, otherwise add a new journal
-            if(self.id == nil){
+            if(self.journalDetail == nil){
                 if Model.getInstance.journalManager.addJournal(note: note.text, music: musicFile.text, quote: quote.text, photo:photoPath, weather: self.weatherDes.description, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
                 }else{
                     //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
                 }
             }else{
-                if  Model.getInstance.journalManager.updateJournalEntry(id: id!, note: note.text, music: musicFile.text, quote: quote.text, photo:photoURL, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
+                if  Model.getInstance.journalManager.updateJournalEntry(id: journalDetail!.id, note: note.text, music: musicFile.text, quote: quote.text, photo:photoURL, weather: self.currentWeather, mood: self.mood.description, date: self.today, location: address.text, favorite: isFavorite.isOn, coordinates: [Double(currentLocation.lat), Double(currentLocation.lon)], recordURL: recordPathURL, videoURL: self.videoWebURL){
                 }else{
                     //tell the user that the save was not successful, without deleting their work
                     showAlert(message: "Failed to save Journal Entry, please try again")
@@ -412,7 +430,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     // when recording stops, receive filepath as delegate
     func receiveFilePath(filePathURL: URL) {
-        self.recordPathURL = filePathURL
+        self.recordPathURL = URL(fileURLWithPath: filePathURL.relativePath)
         print("Record Audio Path Received: \(self.recordPathURL)")
     }
     
