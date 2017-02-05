@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2B3064081E42C385001C20D3 /* OpenWeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3064071E42C385001C20D3 /* OpenWeatherMap.swift */; };
-		2B30640B1E42C3E2001C20D3 /* WeatherViewUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B30640A1E42C3E2001C20D3 /* WeatherViewUpdateDelegate.swift */; };
 		2B83A3611E3C70FC0026C0DA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A3581E3C70FC0026C0DA /* FMDatabase.m */; };
 		2B83A3621E3C70FC0026C0DA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A35A1E3C70FC0026C0DA /* FMResultSet.m */; };
 		2B83A3631E3C70FC0026C0DA /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A35C1E3C70FC0026C0DA /* FMDatabaseQueue.m */; };
@@ -89,7 +88,6 @@
 
 /* Begin PBXFileReference section */
 		2B3064071E42C385001C20D3 /* OpenWeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMap.swift; sourceTree = "<group>"; };
-		2B30640A1E42C3E2001C20D3 /* WeatherViewUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewUpdateDelegate.swift; sourceTree = "<group>"; };
 		2B83A3551E3C70FC0026C0DA /* MyJournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyJournal-Bridging-Header.h"; sourceTree = "<group>"; };
 		2B83A3561E3C70FC0026C0DA /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		2B83A3571E3C70FC0026C0DA /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -190,15 +188,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B3064091E42C3C3001C20D3 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
-				2B30640A1E42C3E2001C20D3 /* WeatherViewUpdateDelegate.swift */,
-			);
-			name = Delegates;
-			sourceTree = "<group>";
-		};
 		2B83A3531E3C70B20026C0DA /* LocalDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +345,7 @@
 			children = (
 				94E935151E4456090070987D /* JournalComposer.swift */,
 				94E935161E4456090070987D /* JournalPrintRenderer.swift */,
-				2B3064091E42C3C3001C20D3 /* Delegates */,
+				EB5918AD1E3807D0009FC2F7 /* DataDelegate.swift */,
 				2B83A3531E3C70B20026C0DA /* LocalDB */,
 				EBA4BBC31E2C7D9100C1C24D /* Journal.swift */,
 				EBA4BC231E2E39D300C1C24D /* JournalManger.swift */,
@@ -573,7 +562,6 @@
 				EBA4BBD31E2C9E7E00C1C24D /* DeviceDate.swift in Sources */,
 				94E935171E4456090070987D /* JournalComposer.swift in Sources */,
 				2BC94C9B1E3C28B500009389 /* EditPageControllerLocation.swift in Sources */,
-				2B30640B1E42C3E2001C20D3 /* WeatherViewUpdateDelegate.swift in Sources */,
 				94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */,
 				EBA4BBD21E2C9E7E00C1C24D /* DeviceLocationError.swift in Sources */,
 				EBA4BBC21E2C7D7000C1C24D /* CustomCell.swift in Sources */,

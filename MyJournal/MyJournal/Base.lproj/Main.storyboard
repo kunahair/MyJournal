@@ -358,9 +358,6 @@
                                                         <subviews>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iYe-dR-cRL">
                                                                 <rect key="frame" x="14" y="25" width="51" height="31"/>
-                                                                <connections>
-                                                                    <action selector="isFavorite:" destination="BYZ-38-t0r" eventType="valueChanged" id="wr2-Ua-FJc"/>
-                                                                </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save it as favorite Journal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2f-Ua-czY">
                                                                 <rect key="frame" x="71" y="10" width="195.66666666666669" height="60"/>
@@ -1367,7 +1364,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="66f-7Y-QPy">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="gpj-Fg-dXn" userLabel="More Item">
+                            <barButtonItem systemItem="compose" id="gpj-Fg-dXn" userLabel="More Item">
                                 <connections>
                                     <action selector="menuSlide:" destination="3kV-eU-QMu" id="JKI-3C-qyP"/>
                                 </connections>
@@ -1453,7 +1450,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="O5a-SZ-2zG"/>
-        <segue reference="iJS-me-IPs"/>
-        <segue reference="505-Cq-t13"/>
+        <segue reference="U5r-DG-cqK"/>
+        <segue reference="mZK-4f-Rlx"/>
     </inferredMetricsTieBreakers>
 </document>

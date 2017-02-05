@@ -14,7 +14,7 @@ import Foundation
 struct OpenWeatherMap {
     
     //Delegate callback that updates a View
-    var delegate:WeatherViewUpdateDelegate?
+    var delegate:DataDelegate?
     
     /**
      Function that is called to get the Weather information from the OpenWeatherMap API

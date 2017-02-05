@@ -14,7 +14,7 @@ import UIKit
 class CustomCell: UITableViewCell {
 
     var journal:Journal?
-    //var journal:String?
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()

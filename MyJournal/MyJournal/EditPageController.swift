@@ -16,7 +16,7 @@ import MediaPlayer
 
 
 
-class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate,UITextViewDelegate, WeatherViewUpdateDelegate{
+class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPMediaPickerControllerDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, DataDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate,UITextViewDelegate{
     
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -32,28 +32,22 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     @IBOutlet weak var quote: UITextField!
     @IBOutlet weak var note: UITextView!
     @IBOutlet weak var isFavorite: UISwitch!
- 
-    /*
-        Ryan 26Jan; Record Audio Outlets and refs
-     */
     @IBOutlet weak var audioPlayBtn: UIButton!
     @IBOutlet weak var audioRecordBtn: UIButton!
     
     let photoPicker = UIImagePickerController()
     let musicPicker = MPMediaPickerController()
     let locationManager = CLLocationManager()
-    
+    let defaultPhoto = "defaultphoto"
     /**
      Tracker information to hold state data of user input, mostly for initialsation
     **/
     let notePlaceholderText: String = "What's new about today?"
     var addressInfo = "Mark your location"
     var today: String = Model.getInstance.getCurrentDate()
-    
     var switchOn = false
     var photoURL: String!
     var photoPath:String!
-    
     var currentLocation:Location = Location()
     var currentWeather: String = "Auto display upon activating location"
     var currentTemp: String?
@@ -62,7 +56,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     var videoWebURL: URL!
     var weatherDes = WeatherEnum()
     var journalDetail:Journal?
-    var photoDefault: UIImage?
     var musicFileInfo: String = ""
     var locationStatus: Bool = false
     //var id: String?
@@ -76,7 +69,6 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         super.viewDidLoad()
         //Hide the keyboard when the view is first loaded
         self.hideKeyboard()
-        
         //Assign all nessary delegates
         photoPicker.delegate = self
         musicPicker.delegate = self
@@ -86,8 +78,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        
-        
+
         //Set mood picker delgate and datasource
         moodPickerView.dataSource = self
         moodPickerView.delegate = self
@@ -108,18 +99,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             self.today = journalDetail!.date
             self.currentDate.text = today
             self.photoPath = Model.getInstance.getFilePathFromDocumentsDirectory(filename: journalDetail!.photo)
-            photo.image = UIImage(contentsOfFile: self.photoPath)
+            
             photoURL = journalDetail!.photo //"defaultphoto"
-            
-            
             musicFileInfo = journalDetail!.music
-            
-            
             videoWebURL = journalDetail!.videoURL
             recordFileName = journalDetail!.recordName
-            
             let locationInfo = journalDetail?.location
-            let photoPath = journalDetail?.photo
+            let photoName = journalDetail?.photo
             let weatherInfo = journalDetail?.weather
             if weatherInfo == "No Internet Connection"{
                 currentWeather = "sunny"
@@ -128,6 +114,8 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 currentWeather = weatherInfo!
                 weatherResultLabel.text = weatherInfo
             }
+            //if users didnt add location info to the journal, switch button of
+            //location is off
             if locationInfo == "Mark your location"{
                 locationStatus = false
             }else{
@@ -136,10 +124,10 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
                 self.currentLocation.lat = Float(journalDetail!.coordinates[0])
                 self.currentLocation.lon = Float(journalDetail!.coordinates[1])
             }
-            if photoPath == "defaultphoto"{
-                photoDefault = UIImage(named: photoPath!)
+            if photoName == "defaultphoto"{
+                photo.image = UIImage(named: "defaultphoto")
             }else{
-                photoDefault = UIImage(contentsOfFile: photoPath!)
+                photo.image = UIImage(contentsOfFile: self.photoPath)
             }
             
             //Get the array index value for the mood
@@ -174,7 +162,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     //if users start to type, placeholderText dispears
@@ -198,7 +186,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
    //Parse Weather results to ensure it is valid Weather Enum Data
     func parseResult(dataList: Array<Weather>) {
         for weather in dataList{
-            self.currentWeather = weather.description+"   "+String(weather.temp)+"°C"
+             self.currentWeather = weather.description
             //check the keyword from weather data
             if(weather.description.contains("clouds")){
                 self.weatherDes = WeatherEnum(weather: "cloudy")!
@@ -223,7 +211,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         present(photoPicker, animated: true, completion: nil)
     }
   
-    
+    //direct user to the music library
     @IBAction func selectMusic(_ sender: Any) {
         musicPicker.allowsPickingMultipleItems = false
         musicPicker.showsCloudItems = false
@@ -268,10 +256,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
     {
         self.view.endEditing(true)
     }
-    
-    
-    
-    
+
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         dismiss(animated: true, completion: nil)
@@ -281,35 +266,13 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
-    func saveButtonState(){
-        if (quote.text != "" || note.text != ""){
-            save.isEnabled = true
-            save.tintColor = UIColor.darkGray
-        }else{
-            save.isEnabled = false
-            save.tintColor = (UIColor.darkGray)
-        }
-    }
-    
-    //Action placeholder if favourite switch need to do Model work
-    @IBAction func isFavorite(_ sender: Any) {
-        
-    }
-   
-   
-    
-    
+
     
     /**
      Save Journal Entry
-     Notes-> Ryan 21Jan: waiting for weather & Location API calls when save to model
-     correct params waiting to be passed: weather, location, coordinates
-     Xing : add more features to improve user experience
-     Josh: Increased code maintainability by having only one Journal entry write to the Model
-     Josh: Do a check that the save was successful both in the database and the model, if not, show user error but do not delete their work.
+     add an saving animation to improve user experience
+     Increased code maintainability by having only one Journal entry write to the Model
+     Do a check that the save was successful both in the database and the model, if not, show user error but do not delete their work.
     **/
     @IBAction func saveJournal(_ sender: Any) {
         //placeHolderText is not the content typed by users, so cannot be saved as note
@@ -363,7 +326,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         }
     }
     /*
-        Ryan - 26Jan; audio button actions
+       audio button actions
      */
 
     @IBAction func audioRecordAction(_ sender: UIButton) {
@@ -403,7 +366,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             Model.getInstance.fileOpManager.stopPlaying()
         }
     }
-    
+      // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "WebGetSegue" {
             let destination = segue.destination as! WebViewController

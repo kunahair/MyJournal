@@ -86,8 +86,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+            }
     
     // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -110,17 +109,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    //btns
     
     /**
      When favourite button is pressed, toggle the value in the database and memory model
@@ -138,7 +126,7 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func delBtn(_ sender: Any) {
         // on successful deletion
-        // Xing: create the alert
+        // create the alert
         let alert = UIAlertController(title: "Warning", message: "Do you wnat to proceed to delete this journal?", preferredStyle: UIAlertControllerStyle.alert)
         
         // add the actions (buttons)
@@ -164,8 +152,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
      Set the local variable to keep in line with Model
     **/
     func localFavSet(set: Bool) {
-        if set { // when set to fav
-            // set btn appearence
+        if set {
+            // when set to fav set btn appearence
             favBtnOutlet.image = UIImage(named: "heartfill")
         }
         else { // when set to not fav

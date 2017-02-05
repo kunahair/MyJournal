@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "defaultphoto_1x.JPG",
+      "filename" : "snow.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "defaultphoto_2x.JPG",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "defaultphoto_3x.JPG",
       "scale" : "3x"
     }
   ],

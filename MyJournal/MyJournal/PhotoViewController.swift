@@ -14,7 +14,6 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
     
     @IBOutlet weak var photoView: UICollectionView!
     let albumName = "My Journal"
-    var photos = ["winter", "puppy","lake","snow","automn","road","koala","cloud","city"]
     var hasAlbum: Bool = false
     
     
@@ -34,8 +33,7 @@ class PhotoViewController: UIViewController,UICollectionViewDelegate,UICollectio
         
     }
     
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
