@@ -28,12 +28,8 @@ extension EditPageController {
                 if let formattedAddress = address["FormattedAddressLines"] as? [String] {
                     self.locationManager.stopUpdatingLocation()
                     self.address.text = formattedAddress.joined(separator: ", ")
-                    
-                    
-                    //self.weatherResultLabel.textColor = UIColor.black
+        
                     //Update weather based on location
-                    //self.weatherResultLabel.text = self.currentWeather
-                    
                     //Set text to show that the Weather info is loading
                     self.weatherResultLabel.textColor = UIColor.gray
                     

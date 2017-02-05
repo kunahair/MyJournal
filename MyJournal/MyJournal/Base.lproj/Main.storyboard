@@ -1367,7 +1367,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="66f-7Y-QPy">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="gpj-Fg-dXn" userLabel="More Item">
+                            <barButtonItem systemItem="compose" id="gpj-Fg-dXn" userLabel="More Item">
                                 <connections>
                                     <action selector="menuSlide:" destination="3kV-eU-QMu" id="JKI-3C-qyP"/>
                                 </connections>
@@ -1453,7 +1453,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="O5a-SZ-2zG"/>
-        <segue reference="iJS-me-IPs"/>
         <segue reference="505-Cq-t13"/>
+        <segue reference="U5r-DG-cqK"/>
     </inferredMetricsTieBreakers>
 </document>

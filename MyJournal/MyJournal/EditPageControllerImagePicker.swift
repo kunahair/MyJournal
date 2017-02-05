@@ -14,6 +14,8 @@ import UIKit
 extension EditPageController {
     
     //assign selected photo to the scene
+    // Delegate method to process once the photo has been selected
+    // by the user.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let selectedPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
@@ -27,7 +29,7 @@ extension EditPageController {
             let dateStr = Model.getInstance.getCurrentDateSec()
             self.photoURL = String(format: "%@.png", dateStr)
             let photoData = UIImagePNGRepresentation(selectedPhoto!)
-            
+            //get the url of the photo to be saved
             let photoPaths = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(self.photoURL)
             //write data
             print("DocPath: \(try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).absoluteString)")
@@ -37,11 +39,7 @@ extension EditPageController {
             } catch {
                 print(error)
             }
-            
-//            let paths: NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-//            let documentsDir: NSString = paths.object(at: 0) as! NSString
-            
-            self.photoPath  = self.photoURL! //documentsDir.appendingPathComponent(self.photoURL!)
+             self.photoPath  = self.photoURL!
             
             print("picture : "+"\(self.photoPath)")
             
