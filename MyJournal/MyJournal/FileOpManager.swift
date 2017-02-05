@@ -38,7 +38,7 @@ class FileOpManager {
     
     // set up recorder
     // this function needs to be called every time when page is loading so that the record file name will be unique and consistent with the timestamp of: YY-MM-DD-HH-MM-SS
-    func setupRecorder(avDelegate: AVAudioRecorderDelegate, dataDelegate: DataDelegate) {
+    func setupRecorder(avDelegate: AVAudioRecorderDelegate, dataDelegate: DataDelegate) -> Bool {
         // set up everthing in the recorder
         // audio file needs: format, quality, bitrate
         let recordSetting = [AVFormatIDKey : kAudioFormatAppleLossless, AVEncoderAudioQualityKey : AVAudioQuality.medium.rawValue, AVEncoderBitRateKey : 320000, AVNumberOfChannelsKey : 2, AVSampleRateKey : 44100.0 ] as [String : Any]
@@ -49,6 +49,7 @@ class FileOpManager {
         // register the audio file name
 
         let fileURL = URL(fileURLWithPath: Model.getInstance.getFilePathFromDocumentsDirectory(filename: self.audioFileName!))
+        // create new and set up, could be nil
         audioRecorder = try! AVAudioRecorder(url: fileURL, settings: recordSetting as [String : Any])
         
         print("Trying to create recorder at: \(audioRecorder!.url.absoluteString)")
@@ -57,12 +58,15 @@ class FileOpManager {
             self.dataDelegate = dataDelegate
             audioRecorder!.delegate = avDelegate
             audioRecorder!.prepareToRecord()
+            return true
         }
-        
+        else {
+            return false
+        }
     }
     
     // prepare AV player
-    func preparePlayer(audioURL: URL) {
+    func preparePlayer(audioURL: URL) -> Bool {
         print("Preparing AVPlayer: \(audioURL)")
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
@@ -72,11 +76,13 @@ class FileOpManager {
         }
         if audioPlayer == nil {
             print("Tried to create AVPlayer but Failed")
+            return false
         }
         else { // when successfully created
             audioPlayer!.delegate = dataDelegate as? AVAudioPlayerDelegate
             audioPlayer!.prepareToPlay()
             audioPlayer!.volume = 1.0
+            return true
         }
     }
     

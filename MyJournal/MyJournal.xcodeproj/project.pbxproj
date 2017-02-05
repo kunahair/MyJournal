@@ -37,10 +37,12 @@
 		9420328E1E309178005B1541 /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328D1E309178005B1541 /* FooterCell.swift */; };
 		942032901E31E044005B1541 /* testDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9420328F1E31E044005B1541 /* testDetailView.swift */; };
 		942032921E334AF2005B1541 /* FavPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942032911E334AF2005B1541 /* FavPhotos.swift */; };
+		947C5C091E46D5C30071C521 /* TestAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C5C081E46D5C30071C521 /* TestAudio.swift */; };
 		94E25FA11E396BEC001B49AD /* FileOpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA01E396BEC001B49AD /* FileOpManager.swift */; };
 		94E25FA31E3A016B001B49AD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA21E3A016B001B49AD /* WebViewController.swift */; };
 		94E25FA51E3A1015001B49AD /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA41E3A1015001B49AD /* VideoCell.swift */; };
 		94E25FA71E3A1021001B49AD /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E25FA61E3A1021001B49AD /* RecordCell.swift */; };
+		94E91CF81E46DC2400B2CCB7 /* TestComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E91CF71E46DC2400B2CCB7 /* TestComposer.swift */; };
 		94E935121E4454310070987D /* journal.html in Resources */ = {isa = PBXBuildFile; fileRef = 94E935111E4454310070987D /* journal.html */; };
 		94E935141E4455F30070987D /* ExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E935131E4455F30070987D /* ExportViewController.swift */; };
 		94E935171E4456090070987D /* JournalComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E935151E4456090070987D /* JournalComposer.swift */; };
@@ -129,10 +131,12 @@
 		9420328D1E309178005B1541 /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		9420328F1E31E044005B1541 /* testDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testDetailView.swift; sourceTree = "<group>"; };
 		942032911E334AF2005B1541 /* FavPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavPhotos.swift; sourceTree = "<group>"; };
+		947C5C081E46D5C30071C521 /* TestAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAudio.swift; sourceTree = "<group>"; };
 		94E25FA01E396BEC001B49AD /* FileOpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileOpManager.swift; sourceTree = "<group>"; };
 		94E25FA21E3A016B001B49AD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		94E25FA41E3A1015001B49AD /* VideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		94E25FA61E3A1021001B49AD /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		94E91CF71E46DC2400B2CCB7 /* TestComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestComposer.swift; sourceTree = "<group>"; };
 		94E935111E4454310070987D /* journal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = journal.html; sourceTree = "<group>"; };
 		94E935131E4455F30070987D /* ExportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportViewController.swift; sourceTree = "<group>"; };
 		94E935151E4456090070987D /* JournalComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JournalComposer.swift; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 				2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */,
 				3B95AE441E271EB8003C9490 /* MyJournalTests.swift */,
 				3B95AE461E271EB8003C9490 /* Info.plist */,
+				947C5C081E46D5C30071C521 /* TestAudio.swift */,
+				94E91CF71E46DC2400B2CCB7 /* TestComposer.swift */,
 			);
 			path = MyJournalTests;
 			sourceTree = "<group>";
@@ -587,6 +593,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */,
+				94E91CF81E46DC2400B2CCB7 /* TestComposer.swift in Sources */,
+				947C5C091E46D5C30071C521 /* TestAudio.swift in Sources */,
 				3B95AE451E271EB8003C9490 /* MyJournalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,12 @@
 import XCTest
 @testable import MyJournal
 
+/*
+ To Rodney and Fardin:
+ In our assignment files, each unit test file may contain multiple test cases, rather than one.
+ Usually each func represents a single unit test case
+ */
+
 /**
  Test all Database functionality
  NOTE: All tests run in testDatabase method to ensure correct order of execution
