@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2027AF1E47163E0068347D /* TestJournalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2027AE1E47163E0068347D /* TestJournalManager.swift */; };
 		2B3064081E42C385001C20D3 /* OpenWeatherMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3064071E42C385001C20D3 /* OpenWeatherMap.swift */; };
 		2B83A3611E3C70FC0026C0DA /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A3581E3C70FC0026C0DA /* FMDatabase.m */; };
 		2B83A3621E3C70FC0026C0DA /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A35A1E3C70FC0026C0DA /* FMResultSet.m */; };
@@ -87,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B2027AE1E47163E0068347D /* TestJournalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestJournalManager.swift; sourceTree = "<group>"; };
 		2B3064071E42C385001C20D3 /* OpenWeatherMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMap.swift; sourceTree = "<group>"; };
 		2B83A3551E3C70FC0026C0DA /* MyJournal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyJournal-Bridging-Header.h"; sourceTree = "<group>"; };
 		2B83A3561E3C70FC0026C0DA /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		3B95AE431E271EB8003C9490 /* MyJournalTests */ = {
 			isa = PBXGroup;
 			children = (
+				2B2027AE1E47163E0068347D /* TestJournalManager.swift */,
 				2B83A36F1E3C731F0026C0DA /* TestDatabase.swift */,
 				3B95AE441E271EB8003C9490 /* MyJournalTests.swift */,
 				3B95AE461E271EB8003C9490 /* Info.plist */,
@@ -580,6 +583,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B2027AF1E47163E0068347D /* TestJournalManager.swift in Sources */,
 				2B83A3701E3C731F0026C0DA /* TestDatabase.swift in Sources */,
 				94E91CF81E46DC2400B2CCB7 /* TestComposer.swift in Sources */,
 				947C5C091E46D5C30071C521 /* TestAudio.swift in Sources */,

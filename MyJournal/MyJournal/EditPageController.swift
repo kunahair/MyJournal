@@ -416,7 +416,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
             }
     
     /**
-     Delgate callback to update the weather information to be displayed in the View
+     Delgate callback to update the weather information to be displayed in the View, as well as the WeatherDes state
      Checks for errors, changes Weather label to an error if there was a problem with API GET
      Has parameter Weather Object that holds weather information returned from the chosen WeatherAPI
      **/
@@ -424,6 +424,7 @@ class EditPageController: UIViewController ,UIImagePickerControllerDelegate, MPM
         if weather.code == 200{
             self.weatherResultLabel.textColor = UIColor.black
             self.weatherResultLabel.text = weather.conditions+"   "+String(weather.temp)+"°C"
+            self.weatherDes.description = weather.conditions
             
         }else
         {

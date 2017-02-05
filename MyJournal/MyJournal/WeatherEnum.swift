@@ -10,6 +10,8 @@ import Foundation
 
 /**
  Enum that matches weather with an icon
+ Weather cases taken from OpenWeatherMap documentation: http://openweathermap.org/weather-conditions
+ Plus some of our own nouns for describing weather.
  **/
 enum WeatherEnum: String {
     
@@ -18,39 +20,59 @@ enum WeatherEnum: String {
     
     // default init
     init() {
-        self = .sunny
+        self = .rainy
     }
     
     init?(weather: String) {
-        switch weather {
-        case "sunny": self = .sunny
-        case "rainy": self = .rainy
-        case "cloudy": self = .cloudy
-        case "snowy" : self = .snowy
-        case "windy" : self = .windy
-        default: self = .sunny
+        let weatherLowercase:String = weather.lowercased()
+        switch weatherLowercase {
+            case "sunny": self = .sunny
+            case "rainy": self = .rainy
+            case "rain": self = .rainy
+            case "drizzle": self = .rainy
+            case "thunderstorm": self = .rainy
+            case "cloudy": self = .cloudy
+            case "clouds": self = .cloudy
+            case "snowy" : self = .snowy
+            case "snow" : self = .snowy
+            case "atmosphere" : self = .snowy
+            case "clear" : self = .sunny
+            case "extreme" : self = .sunny
+            case "additional" : self = .sunny
+            case "windy" : self = .windy
+            default: self = .rainy
         }
     }
     
     var description:String {
         get {
             switch self {
-            case .sunny: return "sunny"
-            case .rainy: return "rainy"
-            case .cloudy: return "cloudy"
-            case .snowy: return "snowy"
-            case .windy: return "windy"
+                case .sunny: return "sunny"
+                case .rainy: return "rainy"
+                case .cloudy: return "cloudy"
+                case .snowy: return "snowy"
+                case .windy: return "windy"
             }
         }
         
         set(weather) {
-            switch weather {
-            case "sunny": self = .sunny
-            case "rainy": self = .rainy
-            case "cloudy": self = .cloudy
-            case "snowy" : self = .snowy
-            case "windy" : self = .windy
-            default: self = .sunny
+            let weatherLowercase:String = weather.lowercased()
+            switch weatherLowercase {
+                case "sunny": self = .sunny
+                case "rainy": self = .rainy
+                case "rain": self = .rainy
+                case "drizzle": self = .rainy
+                case "thunderstorm": self = .rainy
+                case "cloudy": self = .cloudy
+                case "clouds": self = .cloudy
+                case "snowy" : self = .snowy
+                case "snow" : self = .snowy
+                case "atmosphere" : self = .snowy
+                case "clear" : self = .sunny
+                case "extreme" : self = .sunny
+                case "additional" : self = .sunny
+                case "windy" : self = .windy
+                default: self = .rainy
             }
         }
     }

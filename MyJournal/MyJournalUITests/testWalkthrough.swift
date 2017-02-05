@@ -30,7 +30,128 @@ class testWalkthrough: XCTestCase {
         super.tearDown()
     }
     
-    func testPlaces() {
+    
+    /**
+     Updated Walkthrough to show some of the new features.
+     Gives you an idea, does not show Edit or deletion
+    **/
+    func testUpdatedWalkthrough() {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCUIApplication().launch()
+        
+        let app = XCUIApplication()
+        app.tables.containing(.other, identifier:"THIS WEEK").element.swipeUp()
+        
+        
+        /**
+         UITest Places Tab
+        **/
+        app.tabBars.buttons["Places"].tap()
+        
+        var element = app.otherElements["03-02-17, Melbourne, Victoria, Australia"]
+        element.tap()
+        
+        
+        
+        let moreInfoButton = app.buttons["More Info"]
+        moreInfoButton.tap()
+        
+        let tablesQuery = app.tables
+       
+        let journalStaticText = tablesQuery.staticTexts["Journal"]
+        journalStaticText.swipeUp()
+        
+        let iWasAtStaticText = tablesQuery.staticTexts["I Was at"]
+        iWasAtStaticText.swipeUp()
+        iWasAtStaticText.swipeUp()
+        
+        XCUIApplication().navigationBars["MyJournal.DetailView"].children(matching: .button).matching(identifier: "Back").element(boundBy: 0).tap()
+        
+        
+        
+        /**
+         UITest Favourites Tab
+        **/
+        
+        app.tabBars.buttons["Favourites"].tap()
+        app.collectionViews.children(matching: .cell).element(boundBy: 0).images["defaultphoto"].tap()
+        
+        let myjournalDetailviewNavigationBar = app.navigationBars["MyJournal.DetailView"]
+        myjournalDetailviewNavigationBar.buttons["Compose"].tap()
+        app.buttons["Export"].tap()
+        app.images["1"].swipeUp()
+        app.navigationBars["Preview"].buttons["Back"].tap()
+        myjournalDetailviewNavigationBar.buttons["heartfill"].tap()
+        myjournalDetailviewNavigationBar.buttons["My Jounal"].tap()
+        
+        
+        /**
+         Test Add New Entry
+        **/
+        
+        XCUIApplication().tabBars.buttons["Home"].tap()
+        
+        
+        app.navigationBars["Main"].buttons["Add"].tap()
+        
+        if app.alerts["Allow “MyJournal” to access your location while you use the app?"].exists
+        {
+            app.alerts["Allow “MyJournal” to access your location while you use the app?"].buttons["Allow"].tap()
+        }
+        
+        
+        var scrollViewsQuery = app.scrollViews
+        let happyPickerWheel = scrollViewsQuery.otherElements.pickerWheels["happy"]
+        happyPickerWheel.swipeUp()
+        
+        element = scrollViewsQuery.otherElements.containing(.image, identifier:"border5").children(matching: .other).element
+        let textView = element.children(matching: .other).element(boundBy: 3).children(matching: .textView).element
+        textView.tap()
+        textView.typeText("H")
+        app.typeText("ello")
+        
+        
+        scrollViewsQuery = app.scrollViews
+        element = scrollViewsQuery.otherElements.containing(.image, identifier:"border5").children(matching: .other).element
+        let textField = element.children(matching: .other).element(boundBy: 2).children(matching: .textField).element
+        textField.tap()
+        textField.typeText("Hi")
+        element.swipeUp()
+        
+        let elementsQuery = scrollViewsQuery.otherElements
+        let selectphotoButton = elementsQuery.buttons["selectPhoto"]
+        selectphotoButton.tap()
+        
+        if app.alerts["“MyJournal” Would Like to Access Your Photos"].exists
+        {
+            app.alerts["“MyJournal” Would Like to Access Your Photos"].buttons["OK"].tap()
+        }
+        
+        
+        app.navigationBars["Photos"].buttons["Cancel"].tap()
+        selectphotoButton.swipeUp()
+        element.children(matching: .other).element(boundBy: 6).buttons["Button"].tap()
+        
+        
+        XCUIApplication().navigationBars["YouTube"].buttons["Save Video"].tap()
+
+        XCUIApplication().scrollViews.otherElements.staticTexts["Video"].swipeDown()
+        
+        app.navigationBars["MyJournal.EditPage"].buttons["Save"].tap()
+        
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Favourites"].tap()
+        tabBarsQuery.buttons["Home"].tap()
+        
+        
+    }
+    
+    /**
+     NOTE: This Test does not work anymore
+     Kept as a show of prior work
+    **/
+    func testOldWalkthrough() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         XCUIApplication().launch()

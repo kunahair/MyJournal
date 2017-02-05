@@ -170,10 +170,17 @@ struct JournalDBManager: JournalManagerProtocol {
     }
     
     /**
-     Save a Journal Entry into the Database
+     Save a Journal Entry into the Database.
+     First it checks that the note field in the journal is note empty, business rule
      Return boolean to indicate success of insertion, false by default, that is just good practice :P
      **/
     mutating func addJournal(journal: Journal) -> Bool {
+        
+        //Test that the note Field in not empty
+        if journal.note.trimmingCharacters(in: CharacterSet(charactersIn: " " )) == ""{
+            return false
+        }
+        
         //Ensure the database path is set
         setDatabasePath()
         
