@@ -18,7 +18,6 @@ import XCTest
 class TestComposer: XCTestCase {
     var journalComposer: JournalComposer!
     var defaultJournal: Journal!
-    // var pathToHTMLTemplate:String? = Bundle.main.path(forResource: "journal", ofType: "html")
     
     override func setUp() {
         super.setUp()
