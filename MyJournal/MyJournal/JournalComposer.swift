@@ -72,7 +72,7 @@ class JournalComposer: NSObject {
         // read the String to UIImage first
         let photoStr = Model.getInstance.getFilePathFromDocumentsDirectory(filename: journal.photo)
         let photo = UIImage(contentsOfFile: photoStr)
-        var pdfData = drawPDFUsingRenderer(renderer: journalPrintRenderer, photo: photo!)        // file name to pass and save
+        var pdfData = drawPDFUsingRenderer(renderer: journalPrintRenderer, photo: photo)        // file name to pass and save
         let pdfFilename = Model.getInstance.fileOpManager.getFilePath(filename: Model.getInstance.fileOpManager.createFileName(type: ".pdf"))
         pdfData.write(toFile: pdfFilename, atomically: true)
         print("PDF SAVED: " + pdfFilename)
@@ -80,19 +80,21 @@ class JournalComposer: NSObject {
     }
     
     // actual drawing
-    func drawPDFUsingRenderer(renderer: JournalPrintRenderer, photo: UIImage) -> NSData{
+    func drawPDFUsingRenderer(renderer: JournalPrintRenderer, photo: UIImage?) -> NSData{
         let data = NSMutableData()
-        let photoHeight = (composeWidth/photo.size.width)*photo.size.height
-        UIGraphicsBeginPDFContextToData(data, CGRect(x:0, y:0, width:composeWidth, height:(composeHeight+photoHeight-150)), nil)
+        let photoHeight = photo == nil ? 0 : (composeWidth/photo!.size.width)*photo!.size.height
+        UIGraphicsBeginPDFContextToData(data, CGRect(x:0, y:0, width:composeWidth, height:(composeHeight+photoHeight-100)), nil)
 
         UIGraphicsBeginPDFPage()
         renderer.drawPage(at: 0, in: UIGraphicsGetPDFContextBounds())
         let curContext = UIGraphicsGetCurrentContext()
         // convert UIImage to CI then CG
-        let cgi = CIImage(image: photo)?.applyingOrientation(4)
-        // image rect
-        let imageRect = CGRect(x: 0, y: composeHeight-150, width: composeWidth, height: photoHeight)
-        curContext!.draw(convertCIImageToCGImage(inputImage: cgi!), in: imageRect)
+        if photo != nil {
+            let cgi = CIImage(image: photo!)?.applyingOrientation(4)
+            // image rect
+            let imageRect = CGRect(x: 0, y: composeHeight-150, width: composeWidth, height: photoHeight)
+            curContext!.draw(convertCIImageToCGImage(inputImage: cgi!), in: imageRect)
+        }
         UIGraphicsEndPDFContext()
         return data
     }

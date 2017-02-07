@@ -8,6 +8,7 @@
 
 import XCTest
 import AVFoundation
+import Foundation
 @testable import MyJournal
 
 /*
@@ -28,23 +29,21 @@ class TestAudio: XCTestCase {
     }
     
     /*
-        Test if the the recorder can be initialised
+        1. Test if the the recorder can be initialised
+     
+        2. test if the av player can be initialised
      */
     func testRecorderSetup() {
         let fileManager = Model.getInstance.fileOpManager
         let editVC = EditPageController()
         // fail if the audio recorder is nil
         XCTAssert(fileManager.setupRecorder(avDelegate: editVC as AVAudioRecorderDelegate, dataDelegate: editVC as DataDelegate))
-    }
-    
-    /*
-        test if the av player can be initialised
-     */
-    func testPlayerSetup() {
-        let fileManager = Model.getInstance.fileOpManager
+        
         // get a default audioURL from database
-        let name = Model.getInstance.journalManager.getJournalEntryByIndex(id: 0).recordName!
-        let url = Model.getInstance.getFilePathFromDocumentsDirectory(filename: name)
+        // create a empty m4a for testing
+        fileManager.startRecording()
+        fileManager.stopRecording()
+        let url = Model.getInstance.getFilePathFromDocumentsDirectory(filename: editVC.recordFileName)
         XCTAssert(fileManager.preparePlayer(audioURL: URL(fileURLWithPath: url)))
     }
     

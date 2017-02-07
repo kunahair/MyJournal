@@ -25,14 +25,6 @@ class TestJournalManager: XCTestCase {
         super.tearDown()
     }
     
-    func testAllJournalManagerTests() {
-        testInsertIntoJournalManager()
-        testInsertValuesIntoJournalManager()
-        testUpdateJournalFromJournalManager()
-        testDeleteFromJournalManager()
-        testUnableToInsertEmptyNote()
-    }
-    
     /**
      Test that a test Journal Entry can be added
      **/
